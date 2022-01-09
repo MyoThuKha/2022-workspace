@@ -1,7 +1,7 @@
 def binarySearch(arr, start, end, find):
     if end >1:
         # //(integer division operator) means divide and keeps the whole number
-        mid = start + end //2
+        mid = (start + end-1)//2
         if (find == arr[mid]):
             return mid
         if (find < arr[mid]):
