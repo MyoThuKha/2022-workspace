@@ -1,4 +1,4 @@
-const greet = "Hello"; 
+const greet = "Hello";
 const val = 42;
 
 const arr = [
@@ -7,4 +7,9 @@ const arr = [
     function Greeting(){console.log('Hi')}
 ];
 
-arr[2]()
+//function run
+arr[2]();
+
+for (let i=0; i<arr.length; i++){
+    console.log(arr[i]);
+}
