@@ -17,9 +17,14 @@ obj2['names'] = function(){console.log("Hello There")};
 /* (But seriously, careful between , and ;) */
 
 const obj3 = {
-first : "Will",
-second : "Smith",
-names : function(){console.log("Hello!")}
+first : "Clarie",
+second : "Samantha",
+names : function(){console.log("Hello!")},
+
+    address: {
+    street : "Main St.",
+    number : 1234
+ }
 }
 
 /* Man! Js really don't give a sh*t about you. */
