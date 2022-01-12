@@ -1,18 +1,24 @@
+//Global scope but has no reason to use it. just fyi.
+thisIsAVar = "Hello world";
+
+
+//Here i tried to change constant variable and it will give me error.
 function case1(){
-    //Here i tried to change constant variable and it will give me error.
     const name = "John";
     name = "Sam";
 }
 
+
+//This one is okay cause We are still pointing to that object.Only memebers that are mutable are changed.
 function case2(){
-    //This one is okay cause We are still pointing to that object.Only memebers that are mutable are changed.
     const obj = {};
     obj.a = 'value';
     return obj;
 }
 
+
+//with 'let', you can change value but cannot declare second time.
 function let_eg(){
-    //with 'let', you can change value but cannot declare second time.
     let num_let = 34;
     num_let = 56;
     console.log(num_let);
