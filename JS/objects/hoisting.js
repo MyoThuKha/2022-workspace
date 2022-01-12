@@ -1,8 +1,6 @@
 hoisting();
 varHoist();
 
-//Global scope but has no reason to use it. just fyi.
-thisIsAVar = "Hello world";
 
 var x = 3;
 var y = 67;
