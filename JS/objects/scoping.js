@@ -13,16 +13,24 @@ function case2(){
 
 function let_eg(){
     //with 'let', you can change value but cannot declare second time.
-    let var_let = 34;
-    var_let = 56;
-    console.log(var_let);
+    let num_let = 34;
+    num_let = 56;
+    console.log(num_let);
 
     //will give error
-    let var_let = 84;
+    //let num_let = 84;
 }
 
+function var_eg(){
+    var num_var = 56;
+    console.log(num_var);
+    var num_var = 34;
+    console.log(num_var);
+}
 /*------------------------------------------*/
 
 console.log(case2().a);
 
-let_eg();
+//let_eg();
+
+var_eg();
