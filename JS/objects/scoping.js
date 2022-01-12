@@ -11,4 +11,18 @@ function case2(){
     return obj;
 }
 
+function let_eg(){
+    //with 'let', you can change value but cannot declare second time.
+    let var_let = 34;
+    var_let = 56;
+    console.log(var_let);
+
+    //will give error
+    let var_let = 84;
+}
+
+/*------------------------------------------*/
+
 console.log(case2().a);
+
+let_eg();
