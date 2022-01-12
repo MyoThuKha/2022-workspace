@@ -1,5 +1,5 @@
 hoisting();
-cantHoist();
+varHoist();
 
 var x = 3;
 var y = 67;
@@ -14,3 +14,6 @@ function hoisting(){
 //cannot use in some case. (const cannot use before it declare. Error)
 
 const cantHoist = function(){console.log("Can't Hoist");};
+
+//undefined. (Error)
+var varHoist = function(){console.log("Hoisting with var type")};
