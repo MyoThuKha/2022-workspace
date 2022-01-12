@@ -7,7 +7,6 @@ const obj = {
 }
 
 function deepCopy(argObj){
-    
     //return array with keys
     const keys = Object.keys(argObj);
     const new_object = {};
