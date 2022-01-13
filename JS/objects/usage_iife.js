@@ -1,3 +1,4 @@
+//Cannot access the function and the variable inside by others.
 const count = (function (){
     let num = 0;
     return {
