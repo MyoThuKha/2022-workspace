@@ -23,7 +23,13 @@ function filter(arr,func){
 
 //reduce implementation
 function reduce(arr,func){
-   return ("Unfinished work!!! Implement here")
+    const newArr = [];
+    let number = 0;
+    for (let i=0; i<arr.length; i++){
+        number += arr[i];
+    }
+    newArr.push(number);
+    return newArr;
 }
 
 
@@ -32,6 +38,7 @@ const grtTwo = function(num){return (num>2)};
 const add = function(x,y){return (x+y)};
 arr = [0,1,2,3,4];
 
+console.log(arr);
 console.log(map(arr,addOne));
 console.log(filter(arr,grtTwo));
 console.log(reduce(arr,add));
