@@ -1,4 +1,5 @@
 function addOne(num){
+    throw new Error('This is Error message at addOne');
     return (num+1);
 }
 
@@ -11,4 +12,3 @@ function result(){
 }
 
 result();
-
