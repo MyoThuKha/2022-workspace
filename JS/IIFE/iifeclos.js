@@ -1,4 +1,4 @@
-function closure_bug(){
+function closure(){
     const arr = [];
     for (var i = 0; i < 3; i++){
         arr.push((function(x){
@@ -8,5 +8,5 @@ function closure_bug(){
     return arr;
 }
 
-const cbug = closure_bug();
-cbug[0]();
+const clos = closure();
+clos[0]();
