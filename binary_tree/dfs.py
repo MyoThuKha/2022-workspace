@@ -6,11 +6,13 @@ class Node:
         self.right = None
 
 class Depth_search:
-    def __init__(self,node):
+    def __init__(self,node = None):
         self.node = node
 
     def implement(self):
         val = []
+        if self.node == None:
+            return val
         stack = [self.node]
 
         while (len(stack) != 0):
