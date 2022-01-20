@@ -9,8 +9,7 @@ def find(node,target):
         return False
     if (node.val == target):
         return True
-    find(node.left,target)
-    find(node.right,target)
+    return find(node.left,target) or find(node.right,target)
 
 root = Node(4)
 node2 = Node(9)
@@ -27,7 +26,6 @@ node2.right = node5
 
 node3.right = node6
 
-print(find(root,6))
 if (find(root,6) == True):
     print("Found in Tree")
 else:
