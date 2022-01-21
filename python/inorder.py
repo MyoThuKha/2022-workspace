@@ -1,29 +1,42 @@
-#        2
-#       / \
-#      4   6
-#     / \ / \
-#    3  7 9  3
-
-
-#Depth First Traversals:
-#(a) Inorder (Left, Root, Right) : 4 2 5 1 3
-#(b) Preorder (Root, Left, Right) : 1 2 4 5 3
-#(c) Postorder (Left, Right, Root) : 4 5 2 3 1
-class node:
-    def __init__(self,val=0,left= None,right= None):
+class Node:
+    def __init__(self,val):
         self.val = val
-        self.right = right
-        self.left = left
+        self.left = None
+        self.right = None
 
-def inorder(node):
-    if node is None:
-        return
-    print(node.val)
-    inorder(node.left)
-    inorder(node.right)
-#this line is written by vim.
-tree = node(12)
-tree.left = node(9)
-tree.right = node(3)
+class bfs:
+    def __init__(self,node):
+        self.node = node
+        self.queue = [self.node]
+        self.value = []
+    def preorder(self):
+        if self.node == None:
+            return []
+        curr = self.queue[0]
+        while (len(self.queue) > 0):
+            self.value.append(curr.val)
+            if (curr.left != None):
+                self.queue.append(curr.left)
+            if (curr.right != None):
+                self.queue.append(curr.right)
+            self.queue.remove(self.queue[0])
+        return val
+        
+    
+root = Node(4)
+node2 = Node(9)
+node3 = Node(3)
+node4 = Node(2)
+node5 = Node(6)
+node6 = Node(1)
 
-inorder(tree)
+root.left =node2
+root.right = node3
+
+node2.left =node4
+node2.right = node5
+
+node3.right = node6
+
+bfs = bfs(root)
+bfs.preorder()
