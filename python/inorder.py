@@ -10,18 +10,6 @@ class bfs:
         self.queue = [self.node]
         self.value = []
     def preorder(self):
-        if self.node == None:
-            return []
-        curr = self.queue[0]
-        while (len(self.queue) > 0):
-            self.value.append(curr.val)
-            if (curr.left != None):
-                self.queue.append(curr.left)
-            if (curr.right != None):
-                self.queue.append(curr.right)
-            self.queue.remove(self.queue[0])
-        return val
-        
     
 root = Node(4)
 node2 = Node(9)
