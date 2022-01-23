@@ -9,7 +9,7 @@ class dfs:
         self.node = node
         self.stack = [self.node]
 
-    def sum(self):
+    def iter_sum(self):
         if self.node == None:
             return 0
         sum = 0
@@ -22,6 +22,12 @@ class dfs:
                 self.stack.append(curr.right)
             self.stack.remove(curr)
         return sum
+
+#Recursively
+def rec_sum(node):
+    if node == None:
+        return 0
+    return (node.val + (rec_sum(node.left)) + (rec_sum(node.right)))
 
 root = Node(4)
 node2 = Node(9)
@@ -39,4 +45,7 @@ node2.right = node5
 node3.right = node6
 
 dfs = dfs(root)
-print(dfs.sum())
+print("DFS Iterative method - ",dfs.iter_sum())
+
+
+print("Recursive - ",rec_sum(root))
