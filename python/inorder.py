@@ -4,13 +4,13 @@ class Node:
         self.left = None
         self.right = None
 
-class bfs:
-    def __init__(self,node):
-        self.node = node
-        self.queue = [self.node]
-        self.value = []
-    def preorder(self):
-    
+def printResult(node):
+    if (node == None):
+        return
+    printResult(node.left)
+    printResult(node.right)
+    print(node.val)
+
 root = Node(4)
 node2 = Node(9)
 node3 = Node(3)
@@ -26,5 +26,4 @@ node2.right = node5
 
 node3.right = node6
 
-bfs = bfs(root)
-bfs.preorder()
+printResult(root)
