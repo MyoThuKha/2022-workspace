@@ -8,8 +8,8 @@ def printResult(node):
     if (node == None):
         return
     printResult(node.left)
-    printResult(node.right)
     print(node.val)
+    printResult(node.right)
 
 root = Node(4)
 node2 = Node(9)
