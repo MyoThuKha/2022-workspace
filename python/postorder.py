@@ -4,7 +4,7 @@ class Node:
         self.left = None
         self.right = None
 
-def prestruct(node):
+def poststr(node):
     if node == None:
         return 0
     prestruct(node.left)
@@ -26,4 +26,4 @@ node2.right = node5
 
 node3.right =node6
 
-prestruct(root)
+poststr(root)
