@@ -1,4 +1,3 @@
-#Note that this file will change every time the revision goes.
 import pygame
 
 pygame.init()
@@ -6,4 +5,5 @@ pygame.init()
 screen = pygame.display.set_mode((800,400))
 
 while True:
-    pygame.display.update()
+    for event in pygame.event.get()
+    screen.display.update()
