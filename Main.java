@@ -1,4 +1,3 @@
-package codecamp;
 //Pascal naming convention
 public class Main {
 	public static void main(String[] args) {
