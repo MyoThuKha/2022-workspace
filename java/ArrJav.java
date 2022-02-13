@@ -1,5 +1,3 @@
-package codecamp;
-
 import java.util.Arrays;
 public class ArrJav {
     public static void main(String[] args) {
