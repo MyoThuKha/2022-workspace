@@ -1,0 +1,9 @@
+First section
+
+Variables and constant
+
+Primitive and reference type
+
+TypeCasting
+
+Numbers,String and Arrays
