@@ -9,3 +9,16 @@ TypeCasting
 Numbers,String and Arrays
 
 UserInput
+
+__________________________________________
+
+
+My recap
+
+Arrays / Math / String to numbers (Don't need import)
+
+FormatMethod (abstract method)
+
+
+add deep to "toString" if array is two or multi-dimensional
+
