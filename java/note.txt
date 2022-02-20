@@ -22,3 +22,4 @@ FormatMethod (abstract method)
 
 add deep to "toString" if array is two or multi-dimensional
 
+scanner     .next____(Line,Int,etc.)
