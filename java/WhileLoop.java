@@ -3,10 +3,11 @@ import java.util.Scanner;
 public class WhileLoop {
     public static void main(String[] args) {
         String rightAns = "Apple Pie";
-        while (true) {
+        String userInput = "";
+        while (!userInput.equals("quit")) {
             Scanner scan = new Scanner(System.in);
             System.out.print("Enter guess: ");
-            String userInput = scan.nextLine().trim();
+            userInput = scan.nextLine().trim();
 
             if (userInput.equals(rightAns)) {
                 System.out.println("You win");
