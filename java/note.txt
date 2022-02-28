@@ -15,7 +15,7 @@ __________________________________________
 
 My recap
 
-Arrays / Math / String to numbers (Don't need import)
+Math / String to numbers (Don't need import)
 
 FormatMethod (abstract method)
 
