@@ -3,9 +3,10 @@ import java.util.Scanner;
 public class WhileLoop {
     public static void main(String[] args) {
         String rightAns = "Apple Pie";
+        Scanner scan = new Scanner(System.in);
         String userInput = "";
+
         while (!userInput.equals("quit")) {
-            Scanner scan = new Scanner(System.in);
             System.out.print("Enter guess: ");
             userInput = scan.nextLine().trim();
 
