@@ -68,6 +68,12 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
+      bottomNavigationBar: BottomAppBar(
+        shape: const CircularNotchedRectangle(),
+        child: Container(
+          height: 50.0,
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         backgroundColor: Colors.blue[200],
@@ -75,6 +81,8 @@ class HomePage extends StatelessWidget {
           Icons.add,
         ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }
+
