@@ -16,8 +16,16 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue[200],
-        title: const Text("App Title"),
         centerTitle: true,
+        title: const Text("Home Page"),
+        actions: <Widget>[
+          IconButton(
+            onPressed: () {
+              print("User want settings");
+            },
+            icon: const Icon(Icons.settings),
+          ),
+        ],
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -85,4 +93,3 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-
