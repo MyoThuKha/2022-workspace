@@ -8,9 +8,15 @@ void main() {
   );
 }
 
-class FirstPage extends StatelessWidget {
+class FirstPage extends StatefulWidget {
   const FirstPage({Key? key}) : super(key: key);
 
+  @override
+  State<FirstPage> createState() => _FirstPageState();
+}
+
+class _FirstPageState extends State<FirstPage> {
+  int levelValue = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,9 +70,9 @@ class FirstPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10.0),
-            const Text(
-              "8",
-              style: TextStyle(
+            Text(
+              '$levelValue',
+              style: const TextStyle(
                 fontSize: 25.0,
                 color: Colors.black,
                 letterSpacing: 2.0,
@@ -100,7 +106,11 @@ class FirstPage extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          setState(() {
+            levelValue++;
+          });
+        },
         backgroundColor: Colors.blue[200],
         child: const Icon(Icons.add),
       ),
