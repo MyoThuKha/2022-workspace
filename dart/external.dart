@@ -32,7 +32,9 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: books.map((book) => Text('${book.author} ')).toList(),
+        children: books
+            .map((book) => Text('${book.author} - ${book.title}'))
+            .toList(),
       ),
     );
   }
