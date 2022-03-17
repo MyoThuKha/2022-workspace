@@ -3,8 +3,9 @@ import 'book.dart';
 
 class BookCard extends StatelessWidget {
   final Book argBook;
+  final VoidCallback delete;
 
-  BookCard({required this.argBook});
+  const BookCard({required this.argBook, required this.delete});
 
   @override
   Widget build(BuildContext context) {
@@ -16,14 +17,23 @@ class BookCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Center(
-                child: Text(
-              argBook.title,
-              style: const TextStyle(
-                fontSize: 18.0,
+              child: Text(
+                argBook.title,
+                style: const TextStyle(
+                  fontSize: 18.0,
+                ),
               ),
-            )),
+            ),
             const SizedBox(height: 10.0),
-            Center(child: Text(argBook.author)),
+            Center(
+              child: Text(argBook.author),
+            ),
+            const SizedBox(height: 5.0),
+            TextButton.icon(
+              onPressed: delete,
+              icon: const Icon(Icons.delete),
+              label: const Text("Remove"),
+            )
           ],
         ),
       ),
