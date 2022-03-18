@@ -8,11 +8,16 @@ class Location extends StatefulWidget {
 }
 
 class _LocationState extends State<Location> {
-  void getData() {
-    Future.delayed(const Duration(seconds: 3), () {
+  void getData() async {
+    await Future.delayed(const Duration(seconds: 3), () {
       print("Delayed data");
     });
 
+    String data2 = await Future.delayed(const Duration(seconds: 2), () {
+      return "Delayed data2";
+    });
+
+    print("data set 2 - $data2");
     print("Data");
   }
 
@@ -32,7 +37,7 @@ class _LocationState extends State<Location> {
       ),
       body: Column(
         children: <Widget>[
-          const Text("Myanmar"),
+          const Text("Working in Progress"),
         ],
       ),
     );
