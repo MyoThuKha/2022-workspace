@@ -8,25 +8,6 @@ class Location extends StatefulWidget {
 }
 
 class _LocationState extends State<Location> {
-  void getData() async {
-    await Future.delayed(const Duration(seconds: 3), () {
-      print("Delayed data");
-    });
-
-    String data2 = await Future.delayed(const Duration(seconds: 2), () {
-      return "Delayed data2";
-    });
-
-    print("data set 2 - $data2");
-    print("Data");
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    getData();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
