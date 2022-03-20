@@ -40,6 +40,8 @@ class _LocationState extends State<Location> {
                 child: ListTile(
                   onTap: () {},
                   title: Text(locations[index].location),
+                  leading: CircleAvatar(
+                    backgroundImage: AssetImage('assets/flag.png'),
                 ),
               ),
             );
