@@ -15,9 +15,15 @@ class _EditNoteState extends State<EditNote> {
   late TextEditingController titleEditor;
   late TextEditingController contextEditor;
 
-  deleteData(int id) async {
+  Future<void> deleteData(int id) async {
     await NoteTemplate.instance.delete(id);
     goBack();
+  }
+
+  Future<void> updateData() async {
+    Note note = Note(
+        title: titleEditor.text, context: contextEditor.text, id: data['id']);
+    await NoteTemplate.instance.update(note);
   }
 
   void goBack() {
@@ -44,6 +50,7 @@ class _EditNoteState extends State<EditNote> {
         leading: IconButton(
           onPressed: () {
             setState(() {
+              updateData();
               goBack();
             });
           },
