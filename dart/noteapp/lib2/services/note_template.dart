@@ -1,10 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 class NoteTemplate {
   Future<Database> initDatabase() async {
     String dbpath = await getDatabasesPath();
-    String path = join(dbpath, 'Notes.db');
+    String path = join(dbpath, 'ColorNotes.db');
     return await openDatabase(path, version: 1, onCreate: _onCreate);
   }
 
@@ -14,18 +15,22 @@ class NoteTemplate {
         id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE;
         title TEXT;
         context TEXT;
+        color TEXT NOT NULL;
+        favorite INTEGER DEFAULT 0;
       }
   ''');
   }
 
-  Future<void> create(String title, String context) async {
+  Future<int> create(String title, String context, Color color) async {
     Database db = await NoteTemplate().initDatabase();
-    await db.insert('Notes', {'title': title, 'context': context});
+    return await db.insert(
+        'Notes', {'title': title, 'context': context, 'color': '$color'});
   }
 
-  Future<int> update(int id, String title, String context) async {
+  Future<int> update(int id, String title, String context, Color color) async {
     Database db = await NoteTemplate().initDatabase();
-    return await db.update('Notes', {'title': title, 'context': context},
+    return await db.update(
+        'Notes', {'title': title, 'context': context, 'color': '$color'},
         where: '_id = ?', whereArgs: [id]);
   }
 
@@ -42,6 +47,7 @@ class NoteTemplate {
               'id': data['_id'] as int,
               'title': data['title'] as String?,
               'context': data['context'] as String?,
+              'color': data['color'] as Color,
             })
         .toList();
   }
@@ -54,6 +60,7 @@ class NoteTemplate {
               'id': data['_id'] as int,
               'title': data['title'] as String?,
               'context': data['context'] as String?,
+              'color': data['color'] as Color,
             })
         .toList();
   }
