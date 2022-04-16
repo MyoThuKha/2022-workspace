@@ -79,10 +79,25 @@ class _SearchPageState extends State<SearchPage> {
               children: [
                 Container(
                   margin: const EdgeInsets.only(left: 10),
-                  child: const Text(
-                    "Notes",
-                    style: TextStyle(
-                        color: Colors.black, fontSize: 30, letterSpacing: 1),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      const Text(
+                        "Notes",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 30,
+                            letterSpacing: 1),
+                      ),
+                      SizedBox(
+                        height: 35,
+                        child: IconButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            icon: const Icon(Icons.menu_rounded)),
+                      )
+                    ],
                   ),
                 ),
                 const SizedBox(height: 20),
