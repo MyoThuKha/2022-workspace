@@ -111,6 +111,7 @@ class _MenuPageState extends State<MenuPage> {
                     isASC = !isASC;
                     orderBy = isASC ? 'ASC' : 'DESC';
                   });
+                  Navigator.pop(context);
                 },
                 child: Card(
                   child: ListTile(

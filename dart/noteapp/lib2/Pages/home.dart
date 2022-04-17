@@ -44,9 +44,9 @@ class _HomePageState extends State<HomePage> {
     });
 
     if (isFavorite) {
-      notes = await NoteTemplate().readNote('favorite', 1);
+      notes = await NoteTemplate().readNote('favorite', 1, orderBy);
     } else if (isTodayNote) {
-      notes = await NoteTemplate().readNote('date', currDay);
+      notes = await NoteTemplate().readNote('date', currDay, orderBy);
     } else {
       notes = await NoteTemplate().readAllNote(orderBy);
     }

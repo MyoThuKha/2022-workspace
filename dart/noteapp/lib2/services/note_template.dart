@@ -1,3 +1,4 @@
+import 'package:note_app/services/base.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -62,9 +63,11 @@ CREATE TABLE Notes(
     await db.delete('Notes');
   }
 
-  Future<List<Map>> readNote(String name, dynamic value) async {
+  Future<List<Map>> readNote(String name, dynamic value, String order) async {
     Database db = await NoteTemplate().initDatabase();
-    var list = await db.query('Notes', where: '$name = ?', whereArgs: [value]);
+    String orderBy = 'id $order';
+    var list = await db.query('Notes',
+        orderBy: orderBy, where: '$name = ?', whereArgs: [value]);
     return list
         .map((data) => {
               'id': data['id'] as int,
