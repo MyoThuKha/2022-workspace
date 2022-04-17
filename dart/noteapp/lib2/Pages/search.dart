@@ -26,7 +26,7 @@ class _SearchPageState extends State<SearchPage> {
   }
 
   Future<void> getAllNote() async {
-    allNotes = await NoteTemplate().readAllNote();
+    allNotes = await NoteTemplate().readAllNote(orderBy);
   }
 
   OutlineInputBorder searchBar() {

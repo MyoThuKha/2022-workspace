@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
     } else if (isTodayNote) {
       notes = await NoteTemplate().readNote('date', currDay);
     } else {
-      notes = await NoteTemplate().readAllNote();
+      notes = await NoteTemplate().readAllNote(orderBy);
     }
     /*
     notes = isFavorite

@@ -11,6 +11,8 @@ Color? darkAppBar = Colors.grey[900];
 bool isDarkMode = false;
 int selectedValue = 0;
 bool isAutoCorrect = false;
+String orderBy = 'ASC';
+bool isASC = false;
 List<String> fonts = [
   'Roboto',
   'Abel',
@@ -296,6 +298,18 @@ class CustomIcon {
         begin: Alignment.centerLeft,
         end: Alignment.centerRight,
         colors: [Colors.red, Colors.amber],
+      ),
+    );
+  }
+
+  Widget sortIcon() {
+    return AdvancedIcon(
+      icon: isASC ? CupertinoIcons.sort_down : CupertinoIcons.sort_up,
+      size: 28,
+      gradient: const LinearGradient(
+        begin: Alignment.topCenter,
+        end: Alignment.centerRight,
+        colors: [Colors.purple, Colors.green],
       ),
     );
   }

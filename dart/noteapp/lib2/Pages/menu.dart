@@ -103,6 +103,25 @@ class _MenuPageState extends State<MenuPage> {
                   ),
                 ),
               ),
+
+              //SortBy
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    isASC = !isASC;
+                    orderBy = isASC ? 'ASC' : 'DESC';
+                  });
+                },
+                child: Card(
+                  child: ListTile(
+                    leading: CustomIcon().sortIcon(),
+                    title: Text(
+                      'Sort',
+                      style: TextStyle(fontFamily: defaultAppFont),
+                    ),
+                  ),
+                ),
+              ),
               //setting
               GestureDetector(
                 onTap: () async {

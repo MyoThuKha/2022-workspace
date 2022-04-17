@@ -78,9 +78,10 @@ CREATE TABLE Notes(
         .toList();
   }
 
-  Future<List<Map>> readAllNote() async {
+  Future<List<Map>> readAllNote(String order) async {
     Database db = await NoteTemplate().initDatabase();
-    var list = await db.query('Notes');
+    String orderBy = 'id $order';
+    var list = await db.query('Notes', orderBy: orderBy);
     return list
         .map((data) => {
               'id': data['id'] as int,
