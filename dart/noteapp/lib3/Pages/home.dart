@@ -82,7 +82,10 @@ class _HomePageState extends State<HomePage> {
                   : "Notes",
           style: TextStyle(
               color: !isDarkMode ? Colors.black : Colors.white,
-              fontFamily: defaultAppFont),
+              fontSize: 24,
+              letterSpacing: 1,
+              fontFamily: defaultAppFont,
+              fontWeight: FontWeight.w500),
         ),
         centerTitle: true,
         backgroundColor: !isDarkMode ? Colors.white : darkAppBar,
@@ -160,9 +163,10 @@ class _HomePageState extends State<HomePage> {
                                         : AutoSizeText(
                                             notes[index]['title'],
                                             style: TextStyle(
+                                                color: Colors.grey[850],
                                                 fontSize: 25,
                                                 letterSpacing: 1,
-                                                fontWeight: FontWeight.w500,
+                                                fontWeight: FontWeight.w600,
                                                 fontFamily: defaultAppFont),
                                             maxLines: null,
                                           ),

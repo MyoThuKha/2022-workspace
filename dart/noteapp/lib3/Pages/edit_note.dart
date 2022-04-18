@@ -82,11 +82,15 @@ class _EditNoteState extends State<EditNote> {
         iconTheme: const IconThemeData(color: Colors.black),
         title: Text(
           'Edit Note',
-          style: TextStyle(color: Colors.black, fontFamily: defaultAppFont),
+          style: TextStyle(
+              color: Colors.black,
+              fontSize: 22,
+              letterSpacing: 1,
+              fontFamily: defaultAppFont),
         ),
         centerTitle: true,
         backgroundColor: Color(colorCode),
-        elevation: 1.0,
+        elevation: 1,
         //App Bar Buttons
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new_rounded),

@@ -80,7 +80,12 @@ class _NewNoteState extends State<NewNote> {
         iconTheme: const IconThemeData(color: Colors.black),
         title: Text(
           'New Note',
-          style: TextStyle(color: Colors.black, fontFamily: defaultAppFont),
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 22,
+            letterSpacing: 1,
+            fontFamily: defaultAppFont,
+          ),
         ),
         centerTitle: true,
         backgroundColor: Color(colorCode),
