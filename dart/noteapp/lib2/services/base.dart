@@ -13,6 +13,7 @@ int selectedValue = 0;
 bool isAutoCorrect = false;
 String orderBy = 'ASC';
 bool isASC = false;
+
 List<String> fonts = [
   'Roboto',
   'Abel',
@@ -84,20 +85,24 @@ class _FontAlertState extends State<FontAlert> {
           Divider(),
         ],
       ),
-      content: ListView.builder(
-          itemCount: fonts.length,
-          itemBuilder: (BuildContext context, int index) {
-            return RadioListTile<int>(
-              activeColor: Colors.green,
-              value: index,
-              title: Text(fonts[index] == 'Roboto' ? 'Default' : fonts[index]),
-              groupValue: selectedValue,
-              onChanged: (value) => setState(() {
-                selectedValue = index;
-                chooseFont = fonts[index];
-              }),
-            );
-          }),
+      content: Container(
+        height: 200,
+        child: ListView.builder(
+            itemCount: fonts.length,
+            itemBuilder: (BuildContext context, int index) {
+              return RadioListTile<int>(
+                activeColor: Colors.green,
+                value: index,
+                title:
+                    Text(fonts[index] == 'Roboto' ? 'Default' : fonts[index]),
+                groupValue: selectedValue,
+                onChanged: (value) => setState(() {
+                  selectedValue = index;
+                  chooseFont = fonts[index];
+                }),
+              );
+            }),
+      ),
       actions: <Widget>[
         const Divider(),
         Row(

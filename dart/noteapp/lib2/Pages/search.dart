@@ -69,7 +69,7 @@ class _SearchPageState extends State<SearchPage> {
         backgroundColor: lightAppColor,
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          toolbarHeight: 150,
+          toolbarHeight: MediaQuery.of(context).size.height / 4,
           backgroundColor: lightAppColor,
           elevation: 0,
           flexibleSpace: Container(

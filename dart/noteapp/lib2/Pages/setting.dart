@@ -47,7 +47,7 @@ class _SettingPageState extends State<SettingPage> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         centerTitle: true,
-        toolbarHeight: 130,
+        toolbarHeight: MediaQuery.of(context).size.height / 5,
         backgroundColor: Colors.blue[200],
         elevation: 0,
         flexibleSpace: Center(
