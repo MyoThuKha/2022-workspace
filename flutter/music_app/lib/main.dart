@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:music_app/Pages/home.dart';
 
 void main() {
-  runApp(const MaterialApp(
+  runApp(FluentApp(
     title: "Music App",
     debugShowCheckedModeBanner: false,
     home: HomePage(),

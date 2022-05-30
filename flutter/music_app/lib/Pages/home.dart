@@ -1,4 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:fluent_ui/fluent_ui.dart';
+import 'package:flutter/material.dart' as material;
+//import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -24,43 +26,48 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     double appWidth = MediaQuery.of(context).size.width;
     double appHeight = MediaQuery.of(context).size.height;
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "Music",
-          style: TextStyle(color: Colors.black),
+    return Container(
+      child: NavigationView(
+        appBar: NavigationAppBar(
+            backgroundColor: Colors.white,
+            automaticallyImplyLeading: false,
+            actions: Row()),
+        pane: NavigationPane(
+          displayMode: PaneDisplayMode.auto,
         ),
-        backgroundColor: Colors.white,
-        elevation: 1,
-        actions: <Widget>[],
-      ),
-      body: Row(
-        children: <Widget>[
-          Material(
-            elevation: 2,
-            child: Container(
-              width: appWidth / 5,
-              height: appHeight,
-              color: Colors.white,
-              child: Column(),
-            ),
+        content: ScaffoldPage(
+          content: NavigationBody(
+            index: 0,
+            children: <Widget>[
+              Container(
+                width: appWidth,
+                height: appHeight,
+                child: const Text(
+                  "Hello",
+                ),
+              )
+            ],
           ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: music.length,
-              itemBuilder: (context, index) => Container(
-                width: appWidth / 5 * 4,
-                height: appHeight / 12,
-                color: index / 2 == 0 ? Colors.grey : Colors.white,
-                child: Text(music[index]),
+          bottomBar: BottomNavigation(
+            index: 0,
+            items: const [
+              BottomNavigationItem(
+                icon: Icon(material.Icons.two_k),
+                selectedIcon: Icon(material.Icons.two_k_plus),
+                title: Text('Both'),
               ),
-            ),
+              BottomNavigationItem(
+                icon: Icon(material.Icons.phone_android_outlined),
+                selectedIcon: Icon(material.Icons.phone_android),
+                title: Text('Android'),
+              ),
+              BottomNavigationItem(
+                icon: Icon(material.Icons.phone_iphone_outlined),
+                selectedIcon: Icon(material.Icons.phone_iphone),
+                title: Text('iOS'),
+              ),
+            ],
           ),
-        ],
-      ),
-      bottomNavigationBar: BottomAppBar(
-        child: SizedBox(
-          height: appHeight / 8,
         ),
       ),
     );
