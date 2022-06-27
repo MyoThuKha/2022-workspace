@@ -1,3 +1,4 @@
+import 'package:brew_crew/Models/user_model.dart';
 import 'package:brew_crew/Services/auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -12,25 +13,23 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool _isElevated = true;
+  Color coffeeColor = const Color.fromARGB(255, 111, 78, 55);
 
   final AuthService _auth = AuthService();
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.brown[400],
+      backgroundColor: coffeeColor,
       appBar: AppBar(
         toolbarHeight: 150,
         title: const Text(
-          "Log in",
-          style: TextStyle(fontSize: 40),
+          "Log In",
+          style: TextStyle(
+            fontSize: 40,
+          ),
         ),
-        backgroundColor: Colors.brown[400],
+        backgroundColor: coffeeColor,
         elevation: 0,
       ),
 
@@ -39,7 +38,7 @@ class _LoginPageState extends State<LoginPage> {
         decoration: BoxDecoration(
           color: Colors.grey[300],
           borderRadius: const BorderRadius.vertical(
-            top: Radius.circular(15),
+            top: Radius.circular(30),
           ),
         ),
         child: Center(
@@ -53,7 +52,7 @@ class _LoginPageState extends State<LoginPage> {
                 print("Failed");
               } else {
                 print("Success");
-                print(result);
+                print(result.uid);
               }
             },
             child: AnimatedContainer(
@@ -61,36 +60,23 @@ class _LoginPageState extends State<LoginPage> {
                 width: 100,
                 height: 100,
                 decoration: BoxDecoration(
-                  color: Colors.grey[300],
-                  borderRadius: BorderRadius.circular(30),
-                  boxShadow: _isElevated
-                      ? [
-                          BoxShadow(
-                            color: Colors.grey[500]!,
-                            offset: const Offset(4, 4),
-                            blurRadius: 15,
-                            spreadRadius: 1,
-                          ),
-                          const BoxShadow(
-                              color: Colors.white,
-                              offset: Offset(-4, -4),
+                    color: Colors.grey[300],
+                    borderRadius: BorderRadius.circular(30),
+                    boxShadow: _isElevated
+                        ? [
+                            BoxShadow(
+                              color: Colors.grey[500]!,
+                              offset: const Offset(4, 4),
                               blurRadius: 15,
-                              spreadRadius: 1)
-                        ]
-                      : [
-                          const BoxShadow(
-                            color: Colors.green,
-                            offset: Offset(2, 2),
-                            blurRadius: 15,
-                            spreadRadius: 1,
-                          ),
-                          const BoxShadow(
-                              color: Colors.white,
-                              offset: Offset(-2, -2),
-                              blurRadius: 15,
-                              spreadRadius: 1)
-                        ],
-                ),
+                              spreadRadius: 1,
+                            ),
+                            const BoxShadow(
+                                color: Colors.white,
+                                offset: Offset(-4, -4),
+                                blurRadius: 15,
+                                spreadRadius: 1)
+                          ]
+                        : null),
                 child: Icon(
                   _isElevated
                       ? CupertinoIcons.person_solid
