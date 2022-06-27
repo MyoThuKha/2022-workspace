@@ -56,7 +56,7 @@ class _SettingsState extends State<Settings> {
                               spreadRadius: 1)
                         ]
                       : null),
-              child: Icon(
+              child: const Icon(
                 Icons.exit_to_app_rounded,
                 size: 30,
               )),

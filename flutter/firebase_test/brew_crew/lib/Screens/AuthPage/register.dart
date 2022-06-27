@@ -2,15 +2,16 @@ import 'package:brew_crew/Services/auth.dart';
 import 'package:brew_crew/Services/colors.dart';
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class Register extends StatefulWidget {
+  const Register({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<Register> createState() => _RegisterState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterState extends State<Register> {
   bool _isElevated = true;
 
   OutlineInputBorder customBorder() {
@@ -46,7 +47,7 @@ class _LoginPageState extends State<LoginPage> {
         appBar: AppBar(
           toolbarHeight: 150,
           title: const Text(
-            "Log In",
+            "JOIN Us",
             style: TextStyle(
               fontSize: 40,
             ),
@@ -109,13 +110,15 @@ class _LoginPageState extends State<LoginPage> {
                                       spreadRadius: 1)
                                 ]
                               : null),
-                      child: Icon(
-                        _isElevated
-                            ? CupertinoIcons.signature
-                            : CupertinoIcons.checkmark_alt,
-                        color: _isElevated ? Colors.black : Colors.green,
-                        size: 30,
-                      ),
+                      // child: Icon(
+                      //   _isElevated
+                      //       ? Icons.local_cafe_rounded
+                      //       : CupertinoIcons.checkmark_alt,
+                      //   color: _isElevated ? Colors.black : Colors.green,
+                      //   size: 30,
+                      // ),
+                      child:
+                          const Center(child: FaIcon(FontAwesomeIcons.mugHot)),
                     ),
                   ),
                 ],

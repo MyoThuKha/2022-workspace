@@ -1,4 +1,5 @@
 import 'package:brew_crew/Screens/AuthPage/login.dart';
+import 'package:brew_crew/Screens/AuthPage/register.dart';
 import 'package:flutter/material.dart';
 
 class Authenticate extends StatefulWidget {
