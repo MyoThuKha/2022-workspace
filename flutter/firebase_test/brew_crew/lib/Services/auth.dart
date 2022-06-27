@@ -5,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  //get custom user id anon
+  //get custom user id from firebaseauth data.
   UserModel _getUId(User? user) {
     return user != null ? UserModel(uid: user.uid) : null!;
   }
@@ -31,4 +31,12 @@ class AuthService {
   //Register
 
   //Signout
+  Future signOut() async {
+    try {
+      return await _auth.signOut();
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
 }

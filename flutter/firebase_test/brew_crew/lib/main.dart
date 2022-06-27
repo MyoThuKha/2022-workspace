@@ -1,9 +1,11 @@
 import 'package:brew_crew/Models/user_model.dart';
+import 'package:brew_crew/Screens/settings.dart';
 import 'package:brew_crew/Screens/wrapper.dart';
 import 'package:brew_crew/Services/auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:brew_crew/Screens/settings.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,8 +22,12 @@ class MyApp extends StatelessWidget {
     return StreamProvider<UserModel?>.value(
       value: AuthService().userStream,
       initialData: null,
-      child: const MaterialApp(
-        home: Wrapper(),
+      catchError: (_, __) {},
+      child: MaterialApp(
+        home: const Wrapper(),
+        routes: {
+          '/settings': (context) => const Settings(),
+        },
       ),
     );
   }

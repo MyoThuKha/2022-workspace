@@ -1,5 +1,6 @@
 import 'package:brew_crew/Models/user_model.dart';
 import 'package:brew_crew/Services/auth.dart';
+import 'package:brew_crew/Services/colors.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
@@ -13,7 +14,6 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool _isElevated = true;
-  Color coffeeColor = const Color.fromARGB(255, 111, 78, 55);
 
   final AuthService _auth = AuthService();
 
