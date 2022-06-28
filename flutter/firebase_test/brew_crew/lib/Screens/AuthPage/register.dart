@@ -1,11 +1,11 @@
 import 'package:brew_crew/Services/auth.dart';
 import 'package:brew_crew/Services/colors.dart';
-import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Register extends StatefulWidget {
-  const Register({Key? key}) : super(key: key);
+  final VoidCallback toggleView;
+  const Register({Key? key, required this.toggleView}) : super(key: key);
 
   @override
   State<Register> createState() => _RegisterState();
@@ -34,6 +34,7 @@ class _RegisterState extends State<Register> {
 
   @override
   Widget build(BuildContext context) {
+    double deviceHeight = MediaQuery.of(context).size.height;
     return GestureDetector(
       onTap: (() {
         FocusScopeNode currentFocus = FocusScope.of(context);
@@ -45,7 +46,7 @@ class _RegisterState extends State<Register> {
         resizeToAvoidBottomInset: false,
         backgroundColor: coffeeColor,
         appBar: AppBar(
-          toolbarHeight: 150,
+          toolbarHeight: deviceHeight * 15 / 64,
           title: const Text(
             "JOIN Us",
             style: TextStyle(
@@ -121,6 +122,26 @@ class _RegisterState extends State<Register> {
                           const Center(child: FaIcon(FontAwesomeIcons.mugHot)),
                     ),
                   ),
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        const Text(
+                          "Go back to",
+                          style: TextStyle(fontSize: 15),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            widget.toggleView();
+                          },
+                          child: Text(
+                            "Log in Page",
+                            style: TextStyle(fontSize: 15, color: coffeeColor),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
                 ],
               ),
             ),

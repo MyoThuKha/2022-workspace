@@ -4,7 +4,8 @@ import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  final VoidCallback toggleView;
+  const LoginPage({Key? key, required this.toggleView}) : super(key: key);
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -33,6 +34,8 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    double deviceHeight = MediaQuery.of(context).size.height;
+    //print("height: $height");
     return GestureDetector(
       onTap: (() {
         FocusScopeNode currentFocus = FocusScope.of(context);
@@ -44,7 +47,7 @@ class _LoginPageState extends State<LoginPage> {
         resizeToAvoidBottomInset: false,
         backgroundColor: coffeeColor,
         appBar: AppBar(
-          toolbarHeight: 150,
+          toolbarHeight: deviceHeight * 15 / 64,
           title: const Text(
             "Log In",
             style: TextStyle(
@@ -77,13 +80,13 @@ class _LoginPageState extends State<LoginPage> {
                       setState(() {
                         _isElevated = !_isElevated;
                       });
-                      // dynamic result = await _auth.signAsAnys();
-                      // if (result == null) {
-                      //   print("Failed");
-                      // } else {
-                      //   print("Success");
-                      //   print(result.uid);
-                      // }
+                      dynamic result = await _auth.signAsAnys();
+                      if (result == null) {
+                        print("Failed");
+                      } else {
+                        print("Success");
+                        print(result.uid);
+                      }
                       print(email);
                       print(password);
                     },
@@ -118,6 +121,26 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                   ),
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        const Text(
+                          "New here?",
+                          style: TextStyle(fontSize: 15),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            widget.toggleView();
+                          },
+                          child: Text(
+                            "Join us",
+                            style: TextStyle(fontSize: 15, color: coffeeColor),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
                 ],
               ),
             ),
@@ -135,21 +158,19 @@ class _LoginPageState extends State<LoginPage> {
       decoration: BoxDecoration(
           color: Colors.grey[300],
           borderRadius: BorderRadius.circular(30),
-          boxShadow: _isElevated
-              ? [
-                  BoxShadow(
-                    color: Colors.grey[500]!,
-                    offset: const Offset(4, 4),
-                    blurRadius: 20,
-                    spreadRadius: 0.5,
-                  ),
-                  const BoxShadow(
-                      color: Colors.white,
-                      offset: Offset(-4, -4),
-                      blurRadius: 20,
-                      spreadRadius: 0.5)
-                ]
-              : null),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey[500]!,
+              offset: const Offset(4, 4),
+              blurRadius: 20,
+              spreadRadius: 0.5,
+            ),
+            const BoxShadow(
+                color: Colors.white,
+                offset: Offset(-4, -4),
+                blurRadius: 20,
+                spreadRadius: 0.5)
+          ]),
       child: TextFormField(
         cursorColor: Colors.black,
         obscureText: isPassword ? true : false,

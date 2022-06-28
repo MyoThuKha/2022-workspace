@@ -1,9 +1,15 @@
 import 'package:brew_crew/Services/colors.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  final VoidCallback toggleHomeView;
+  const HomePage({Key? key, required this.toggleHomeView}) : super(key: key);
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +25,7 @@ class HomePage extends StatelessWidget {
         actions: <Widget>[
           IconButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/settings');
+                widget.toggleHomeView();
               },
               icon: const Icon(Icons.settings_rounded))
         ],
@@ -39,7 +45,7 @@ class HomePage extends StatelessWidget {
                     spreadRadius: 1),
                 BoxShadow(
                     color: Colors.brown[600]!,
-                    offset: Offset(-4, -4),
+                    offset: const Offset(-4, -4),
                     blurRadius: 15,
                     spreadRadius: 1),
               ]),

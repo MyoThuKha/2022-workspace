@@ -1,12 +1,10 @@
 import 'package:brew_crew/Services/auth.dart';
 import 'package:brew_crew/Services/colors.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class Settings extends StatefulWidget {
-  const Settings({Key? key}) : super(key: key);
+  final VoidCallback toggleHomeView;
+  const Settings({Key? key, required this.toggleHomeView}) : super(key: key);
 
   @override
   State<Settings> createState() => _SettingsState();
@@ -16,10 +14,6 @@ class _SettingsState extends State<Settings> {
   bool _isElevated = true;
 
   final AuthService _auth = AuthService();
-
-  void back() {
-    Navigator.pop(context);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,8 +25,8 @@ class _SettingsState extends State<Settings> {
             setState(() {
               _isElevated = !_isElevated;
             });
+            await Future.delayed(const Duration(milliseconds: 250));
             await _auth.signOut();
-            back();
           },
           child: AnimatedContainer(
               duration: const Duration(milliseconds: 200),
