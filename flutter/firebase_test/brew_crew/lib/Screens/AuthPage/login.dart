@@ -97,8 +97,7 @@ class _LoginPageState extends State<LoginPage> {
                       //   print(result.uid);
                       // }
                       if (_formkey.currentState!.validate()) {
-                        dynamic result =
-                            await _auth.CreateAccount(email, password);
+                        dynamic result = await _auth.logIn(email, password);
                         setState(() {
                           invalidEmail = (result == null) ? true : false;
                         });

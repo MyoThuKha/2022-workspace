@@ -99,7 +99,7 @@ class _RegisterState extends State<Register> {
                       // }
                       if (_formkey.currentState!.validate()) {
                         dynamic result =
-                            await _auth.CreateAccount(email, password);
+                            await _auth.createAccount(email, password);
                         setState(() {
                           invalidEmail = (result == null) ? true : false;
                         });
