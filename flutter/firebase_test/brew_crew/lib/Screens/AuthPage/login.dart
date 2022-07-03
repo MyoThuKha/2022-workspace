@@ -34,6 +34,8 @@ class _LoginPageState extends State<LoginPage> {
   String errorMessage = "";
   bool invalidEmail = false;
   bool _startAutoValidate = false;
+  bool _userExist = true;
+  bool _wrongPassword = false;
 
   final _formkey = GlobalKey<FormState>();
 
@@ -46,6 +48,10 @@ class _LoginPageState extends State<LoginPage> {
         if (!currentFocus.hasPrimaryFocus) {
           currentFocus.unfocus();
         }
+        setState(() {
+          _userExist = true;
+          _wrongPassword = false;
+        });
       }),
       child: Scaffold(
         resizeToAvoidBottomInset: false,
@@ -98,15 +104,21 @@ class _LoginPageState extends State<LoginPage> {
                       // }
                       if (_formkey.currentState!.validate()) {
                         dynamic result = await _auth.logIn(email, password);
-                        setState(() {
-                          invalidEmail = (result == null) ? true : false;
-                        });
+                        if (result == "/wrong-password" ||
+                            result == "/invalid-email") {
+                          setState(() {
+                            result == "/wrong-password"
+                                ? _wrongPassword = true
+                                : _userExist = false;
+                          });
+                          //button reappear
+                          await Future.delayed(
+                              const Duration(milliseconds: 800));
+                          setState(() {
+                            _isElevated = !_isElevated;
+                          });
+                        }
                       }
-                      //button reappear
-                      await Future.delayed(const Duration(milliseconds: 800));
-                      setState(() {
-                        _isElevated = !_isElevated;
-                      });
                     },
                     child: AnimatedContainer(
                       duration: const Duration(milliseconds: 200),
@@ -233,11 +245,14 @@ class _LoginPageState extends State<LoginPage> {
                   ? "Password Required"
                   : val.length < 6
                       ? "Password needs more than 6"
-                      : null)
+                      : _wrongPassword
+                          ? "Wrong Password"
+                          : null)
+              // : (val!.isEmpty ? "Email required" : null);
               : (val!.isEmpty
                   ? "Email required"
-                  : invalidEmail
-                      ? "Invalid Email"
+                  : !_userExist
+                      ? "User doesn't Exist"
                       : null);
         },
         onChanged: (val) {

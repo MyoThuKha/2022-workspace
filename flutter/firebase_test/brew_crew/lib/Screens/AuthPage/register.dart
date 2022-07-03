@@ -100,15 +100,19 @@ class _RegisterState extends State<Register> {
                       if (_formkey.currentState!.validate()) {
                         dynamic result =
                             await _auth.createAccount(email, password);
-                        setState(() {
-                          invalidEmail = (result == null) ? true : false;
-                        });
+                        if (result == null) {
+                          setState(() {
+                            invalidEmail = true;
+                          });
+
+                          //button reappear
+                          await Future.delayed(
+                              const Duration(milliseconds: 800));
+                          setState(() {
+                            _isElevated = !_isElevated;
+                          });
+                        }
                       }
-                      //button reappear
-                      await Future.delayed(const Duration(milliseconds: 800));
-                      setState(() {
-                        _isElevated = !_isElevated;
-                      });
                     },
                     child: AnimatedContainer(
                       duration: const Duration(milliseconds: 200),

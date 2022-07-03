@@ -31,10 +31,14 @@ class AuthService {
     try {
       UserCredential result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
+      //print(result);
       return _getUId(result.user);
     } catch (e) {
-      print(e.toString());
-      return null;
+      // print(e.toString());
+      String error = e.toString();
+      error = error.substring(error.indexOf('/'), error.indexOf(']'));
+      //print(error);
+      return error;
     }
   }
 
