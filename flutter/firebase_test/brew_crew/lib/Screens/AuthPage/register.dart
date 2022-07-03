@@ -34,6 +34,7 @@ class _RegisterState extends State<Register> {
   String password = "";
   String errorMessage = "";
   bool invalidEmail = false;
+  bool _startAutoValidate = false;
 
   final _formkey = GlobalKey<FormState>();
 
@@ -73,7 +74,9 @@ class _RegisterState extends State<Register> {
           child: Center(
             child: Form(
               key: _formkey,
-              //autovalidateMode: AutovalidateMode.onUserInteraction,
+              autovalidateMode: _startAutoValidate
+                  ? AutovalidateMode.onUserInteraction
+                  : AutovalidateMode.disabled,
               child: Column(
                 children: <Widget>[
                   const SizedBox(height: 50),
@@ -85,6 +88,7 @@ class _RegisterState extends State<Register> {
                     onTap: () async {
                       setState(() {
                         _isElevated = !_isElevated;
+                        _startAutoValidate = true;
                       });
                       // dynamic result = await _auth.signAsAnys();
                       // if (result == null) {
@@ -100,6 +104,7 @@ class _RegisterState extends State<Register> {
                           invalidEmail = (result == null) ? true : false;
                         });
                       }
+                      //button reappear
                       await Future.delayed(const Duration(milliseconds: 800));
                       setState(() {
                         _isElevated = !_isElevated;
@@ -231,7 +236,11 @@ class _RegisterState extends State<Register> {
         ),
         validator: (val) {
           return isPassword
-              ? (val!.length < 6 ? "Password must more than 6" : null)
+              ? (val!.isEmpty
+                  ? "Password Required"
+                  : val.length < 6
+                      ? "Password must contain more than 6"
+                      : null)
               : (val!.isEmpty
                   ? "Email required"
                   : invalidEmail
