@@ -1,5 +1,6 @@
 import 'package:brew_crew/Services/auth.dart';
-import 'package:brew_crew/Services/colors.dart';
+import 'package:brew_crew/Templates/colors.dart';
+import 'package:brew_crew/Templates/constants.dart';
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -14,19 +15,6 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   bool _isElevated = true;
-
-  OutlineInputBorder customBorder() {
-    return OutlineInputBorder(
-      borderRadius: BorderRadius.circular(30),
-      borderSide: BorderSide(color: milkColor!),
-    );
-  }
-
-  OutlineInputBorder customFocusBorder() {
-    return OutlineInputBorder(
-        borderRadius: BorderRadius.circular(30),
-        borderSide: BorderSide(color: Colors.grey[600]!));
-  }
 
   final AuthService _auth = AuthService();
 
@@ -227,17 +215,7 @@ class _RegisterState extends State<Register> {
         keyboardType: !isPassword
             ? TextInputType.emailAddress
             : TextInputType.visiblePassword,
-        decoration: InputDecoration(
-          hintText: hintText,
-          fillColor: milkColor,
-          filled: true,
-          border: customFocusBorder(),
-          focusedBorder: customFocusBorder(),
-          enabledBorder: customBorder(),
-          contentPadding:
-              const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-          focusedErrorBorder: customFocusBorder(),
-        ),
+        decoration: customInputDecoration.copyWith(hintText: hintText),
         validator: (val) {
           return isPassword
               ? (val!.isEmpty

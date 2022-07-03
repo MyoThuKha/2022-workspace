@@ -1,5 +1,6 @@
 import 'package:brew_crew/Services/auth.dart';
-import 'package:brew_crew/Services/colors.dart';
+import 'package:brew_crew/Templates/colors.dart';
+import 'package:brew_crew/Templates/constants.dart';
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
 
@@ -13,19 +14,6 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool _isElevated = true;
-
-  OutlineInputBorder customBorder() {
-    return OutlineInputBorder(
-      borderRadius: BorderRadius.circular(30),
-      borderSide: BorderSide(color: milkColor!),
-    );
-  }
-
-  OutlineInputBorder customFocusBorder() {
-    return OutlineInputBorder(
-        borderRadius: BorderRadius.circular(30),
-        borderSide: BorderSide(color: Colors.grey[600]!));
-  }
 
   final AuthService _auth = AuthService();
 
@@ -228,17 +216,7 @@ class _LoginPageState extends State<LoginPage> {
         keyboardType: !isPassword
             ? TextInputType.emailAddress
             : TextInputType.visiblePassword,
-        decoration: InputDecoration(
-          hintText: hintText,
-          fillColor: milkColor,
-          filled: true,
-          border: customFocusBorder(),
-          focusedBorder: customFocusBorder(),
-          enabledBorder: customBorder(),
-          contentPadding:
-              const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-          focusedErrorBorder: customFocusBorder(),
-        ),
+        decoration: customInputDecoration.copyWith(hintText: hintText),
         validator: (val) {
           return isPassword
               ? (val!.isEmpty

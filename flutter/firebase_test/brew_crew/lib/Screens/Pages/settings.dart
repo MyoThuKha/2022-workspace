@@ -1,5 +1,5 @@
 import 'package:brew_crew/Services/auth.dart';
-import 'package:brew_crew/Services/colors.dart';
+import 'package:brew_crew/Templates/colors.dart';
 import 'package:flutter/material.dart';
 
 class Settings extends StatefulWidget {
