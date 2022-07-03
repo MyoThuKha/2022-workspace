@@ -37,15 +37,15 @@ class _HomePageState extends State<HomePage> {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
               color: coffeeColor,
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
-                    color: Colors.brown[800]!,
-                    offset: const Offset(4, 4),
+                    color: Color.fromARGB(255, 94, 66, 47),
+                    offset: Offset(4, 4),
                     blurRadius: 15,
                     spreadRadius: 1),
                 BoxShadow(
-                    color: Colors.brown[600]!,
-                    offset: const Offset(-4, -4),
+                    color: Color.fromARGB(255, 128, 90, 63),
+                    offset: Offset(-4, -4),
                     blurRadius: 15,
                     spreadRadius: 1),
               ]),

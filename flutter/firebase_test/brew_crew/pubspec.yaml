@@ -39,6 +39,7 @@ dependencies:
   firebase_core: ^1.18.0
   provider: ^6.0.3
   font_awesome_flutter: ^10.1.0
+  flutter_inset_box_shadow: ^1.0.8
 
 dev_dependencies:
   flutter_test:

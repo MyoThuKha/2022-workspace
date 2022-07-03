@@ -1,7 +1,7 @@
 import 'package:brew_crew/Services/auth.dart';
 import 'package:brew_crew/Services/colors.dart';
 import 'package:flutter/cupertino.dart';
-import "package:flutter/material.dart";
+import "package:flutter/material.dart" hide BoxDecoration, BoxShadow;
 
 class LoginPage extends StatefulWidget {
   final VoidCallback toggleView;
@@ -31,6 +31,7 @@ class _LoginPageState extends State<LoginPage> {
 
   String email = "";
   String password = "";
+  final _formkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -68,6 +69,7 @@ class _LoginPageState extends State<LoginPage> {
           ),
           child: Center(
             child: Form(
+              key: _formkey,
               child: Column(
                 children: <Widget>[
                   const SizedBox(height: 50),
@@ -80,15 +82,24 @@ class _LoginPageState extends State<LoginPage> {
                       setState(() {
                         _isElevated = !_isElevated;
                       });
-                      dynamic result = await _auth.signAsAnys();
-                      if (result == null) {
-                        print("Failed");
-                      } else {
-                        print("Success");
-                        print(result.uid);
+                      // dynamic result = await _auth.signAsAnys();
+                      // if (result == null) {
+                      //   print("Failed");
+                      // } else {
+                      //   print("Success");
+                      //   print(result.uid);
+                      // }
+                      // print(email);
+                      // print(password);
+                      if (_formkey.currentState!.validate()) {
+                        print(email);
+                        print(password);
                       }
-                      print(email);
-                      print(password);
+
+                      await Future.delayed(const Duration(milliseconds: 800));
+                      setState(() {
+                        _isElevated = !_isElevated;
+                      });
                     },
                     child: AnimatedContainer(
                       duration: const Duration(milliseconds: 200),
@@ -183,6 +194,11 @@ class _LoginPageState extends State<LoginPage> {
           contentPadding:
               const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
         ),
+        validator: (val) {
+          isPassword
+              ? (val!.length < 6 ? "Password must more than 6" : null)
+              : (val!.isEmpty ? "Enter your email" : null);
+        },
         onChanged: (val) {
           setState(() {
             isPassword ? password = val : email = val;
