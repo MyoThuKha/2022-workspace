@@ -12,14 +12,15 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    double deviceHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: coffeeColor,
       appBar: AppBar(
         title: const Text(
-          "Coffee",
+          "Brew",
           style: TextStyle(fontSize: 40),
         ),
-        toolbarHeight: 100,
+        toolbarHeight: deviceHeight * 15 / 64,
         backgroundColor: coffeeColor,
         elevation: 0,
         actions: <Widget>[
@@ -30,25 +31,12 @@ class _HomePageState extends State<HomePage> {
               icon: const Icon(Icons.settings_rounded))
         ],
       ),
-      body: Center(
-        child: Container(
-          width: 100,
-          height: 100,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
-              color: coffeeColor,
-              boxShadow: const [
-                BoxShadow(
-                    color: Color.fromARGB(255, 94, 66, 47),
-                    offset: Offset(4, 4),
-                    blurRadius: 15,
-                    spreadRadius: 1),
-                BoxShadow(
-                    color: Color.fromARGB(255, 128, 90, 63),
-                    offset: Offset(-4, -4),
-                    blurRadius: 15,
-                    spreadRadius: 1),
-              ]),
+      body: Container(
+        decoration: BoxDecoration(
+          color: Colors.grey[300],
+          borderRadius: const BorderRadius.vertical(
+            top: Radius.circular(30),
+          ),
         ),
       ),
     );
