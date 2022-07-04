@@ -1,5 +1,7 @@
 import 'package:brew_crew/Templates/colors.dart';
+import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
+import 'package:advanced_icon/advanced_icon.dart';
 
 OutlineInputBorder customFocusBorder() {
   return OutlineInputBorder(
@@ -24,3 +26,53 @@ final customInputDecoration = InputDecoration(
   contentPadding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
   focusedErrorBorder: customFocusBorder(),
 );
+//-----------------------------------------------
+Widget explanIcon() {
+  return const AdvancedIcon(
+    icon: CupertinoIcons.exclamationmark_circle,
+    size: 28,
+    gradient: LinearGradient(
+      begin: Alignment.centerLeft,
+      end: Alignment.centerRight,
+      colors: [Colors.red, Colors.amber],
+    ),
+  );
+}
+
+Widget errorText(String text) {
+  return Container(
+      //height: 30,
+      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 30),
+      margin: const EdgeInsets.symmetric(horizontal: 60, vertical: 20),
+      decoration: BoxDecoration(
+        color: Colors.grey[300],
+        borderRadius: BorderRadius.circular(30),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey[500]!,
+            offset: const Offset(4, 4),
+            blurRadius: 20,
+            spreadRadius: 0.5,
+          ),
+          const BoxShadow(
+              color: Colors.white,
+              offset: Offset(-4, -4),
+              blurRadius: 20,
+              spreadRadius: 0.5)
+        ],
+      ),
+      child: Row(
+        children: [
+          explanIcon(),
+          const SizedBox(width: 10),
+          Align(
+            alignment: Alignment.center,
+            child: Text(
+              text,
+              style: const TextStyle(
+                  color: Colors.red, fontSize: 15, wordSpacing: 1),
+            ),
+          ),
+        ],
+      ));
+}
