@@ -10,6 +10,7 @@ class AuthService {
     return user != null ? UserModel(uid: user.uid) : null!;
   }
 
+  //get Stream
   Stream<UserModel> get userStream {
     return _auth.authStateChanges().map(_getUId);
   }

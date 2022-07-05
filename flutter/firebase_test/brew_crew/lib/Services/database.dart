@@ -4,9 +4,15 @@ class DatabaseService {
   final String uid;
 
   DatabaseService({required this.uid});
+
   //collectionreference
   CollectionReference brewCollection =
       FirebaseFirestore.instance.collection("brews");
+
+  //Stream data
+  Stream<QuerySnapshot> get brewStream {
+    return brewCollection.snapshots();
+  }
 
   Future updateUserData(String sugars, String name, int strength) async {
     return await brewCollection.doc(uid).set({
