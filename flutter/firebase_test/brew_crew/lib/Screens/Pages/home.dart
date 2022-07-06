@@ -1,3 +1,4 @@
+import 'package:brew_crew/Models/brew.dart';
 import 'package:brew_crew/Screens/Pages/brew_list.dart';
 import 'package:brew_crew/Services/database.dart';
 import 'package:brew_crew/Templates/colors.dart';
@@ -17,7 +18,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     double deviceHeight = MediaQuery.of(context).size.height;
-    return StreamProvider<QuerySnapshot?>.value(
+    return StreamProvider<List<BrewModel>?>.value(
       initialData: null,
       value: DatabaseService(uid: '').brewStream,
       child: Scaffold(
