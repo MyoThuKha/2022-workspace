@@ -1,6 +1,5 @@
 import 'package:brew_crew/Models/brew.dart';
 import 'package:brew_crew/Templates/colors.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -27,8 +26,7 @@ class _BrewListState extends State<BrewList> {
           return Column(
             children: <Widget>[
               Container(
-                margin:
-                    const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                margin: const EdgeInsets.fromLTRB(30, 20, 30, 15),
                 width: 300,
                 height: 100,
                 decoration: BoxDecoration(
@@ -37,35 +35,54 @@ class _BrewListState extends State<BrewList> {
                     boxShadow: [
                       BoxShadow(
                         color: Colors.grey[300]!,
-                        offset: const Offset(4, 4),
+                        offset: const Offset(1, 1),
                         blurRadius: 15,
-                        spreadRadius: 1,
+                        spreadRadius: 0.5,
                       ),
                       BoxShadow(
-                        color: Colors.grey[500]!,
-                        offset: const Offset(-4, -4),
+                        color: Colors.grey[400]!,
+                        offset: const Offset(-1, -1),
                         blurRadius: 15,
-                        spreadRadius: 1,
+                        spreadRadius: 0.5,
                       )
                     ]),
                 child: Row(
                   children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                    Expanded(
+                      flex: 1,
                       child: CircleAvatar(
                         backgroundColor: Colors.brown[brews[index].strength],
                       ),
                     ),
-                    VerticalDivider(color: coffeeColor),
-                    Padding(
-                        padding: const EdgeInsets.only(left: 10),
-                        child: Text(
-                          brews[index].name,
-                          style: const TextStyle(
-                              fontSize: 18,
-                              wordSpacing: 1,
-                              fontWeight: FontWeight.w400),
-                        )),
+                    VerticalDivider(
+                      color: coffeeColor,
+                      indent: 10,
+                      endIndent: 10,
+                    ),
+                    Expanded(
+                      flex: 3,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text(
+                            brews[index].name,
+                            style: const TextStyle(
+                                fontSize: 18,
+                                wordSpacing: 1,
+                                fontWeight: FontWeight.w400),
+                          ),
+                          const SizedBox(height: 5),
+                          Text(
+                            "Sugars: ${brews[index].sugars}",
+                            style: const TextStyle(
+                                fontSize: 14,
+                                wordSpacing: 1.5,
+                                fontWeight: FontWeight.w300),
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),
