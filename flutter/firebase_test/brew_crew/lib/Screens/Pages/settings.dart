@@ -19,6 +19,15 @@ class _SettingsState extends State<Settings> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: milkColor,
+
+      //appBar area
+      appBar: AppBar(
+        title: Text(""),
+        elevation: 0,
+        backgroundColor: milkColor,
+      ),
+
+      //Body area
       body: Center(
         child: GestureDetector(
           onTap: () async {
@@ -28,32 +37,41 @@ class _SettingsState extends State<Settings> {
             await Future.delayed(const Duration(milliseconds: 250));
             await _auth.signOut();
           },
-          child: AnimatedContainer(
-              duration: const Duration(milliseconds: 200),
-              width: 100,
-              height: 100,
-              decoration: BoxDecoration(
-                  color: Colors.grey[300],
-                  borderRadius: BorderRadius.circular(30),
-                  boxShadow: _isElevated
-                      ? [
-                          BoxShadow(
-                            color: Colors.grey[500]!,
-                            offset: const Offset(4, 4),
-                            blurRadius: 15,
-                            spreadRadius: 1,
-                          ),
-                          const BoxShadow(
-                              color: Colors.white,
-                              offset: Offset(-4, -4),
-                              blurRadius: 15,
-                              spreadRadius: 1)
-                        ]
-                      : null),
-              child: const Icon(
-                Icons.exit_to_app_rounded,
-                size: 30,
-              )),
+          child: Column(
+            children: [
+              //will add name
+              Text("Lorem Ipsum"),
+              const SizedBox(height: 50),
+              Flexible(
+                child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 200),
+                    width: 100,
+                    height: 100,
+                    decoration: BoxDecoration(
+                        color: Colors.grey[300],
+                        borderRadius: BorderRadius.circular(30),
+                        boxShadow: _isElevated
+                            ? [
+                                BoxShadow(
+                                  color: Colors.grey[500]!,
+                                  offset: const Offset(4, 4),
+                                  blurRadius: 15,
+                                  spreadRadius: 1,
+                                ),
+                                const BoxShadow(
+                                    color: Colors.white,
+                                    offset: Offset(-4, -4),
+                                    blurRadius: 15,
+                                    spreadRadius: 1)
+                              ]
+                            : null),
+                    child: const Icon(
+                      Icons.exit_to_app_rounded,
+                      size: 30,
+                    )),
+              ),
+            ],
+          ),
         ),
       ),
     );
