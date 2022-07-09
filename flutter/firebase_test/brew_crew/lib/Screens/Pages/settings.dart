@@ -18,13 +18,13 @@ class _SettingsState extends State<Settings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: milkColor,
+      backgroundColor: customGreyColor,
 
       //appBar area
       appBar: AppBar(
         title: Text(""),
         elevation: 0,
-        backgroundColor: milkColor,
+        backgroundColor: customGreyColor,
       ),
 
       //Body area
@@ -40,7 +40,7 @@ class _SettingsState extends State<Settings> {
           child: Column(
             children: [
               //will add name
-              Text("Lorem Ipsum"),
+              const Text("Lorem Ipsum"),
               const SizedBox(height: 50),
               Flexible(
                 child: AnimatedContainer(

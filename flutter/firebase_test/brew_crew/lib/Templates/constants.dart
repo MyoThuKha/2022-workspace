@@ -12,13 +12,13 @@ OutlineInputBorder customFocusBorder() {
 OutlineInputBorder customBorder() {
   return OutlineInputBorder(
     borderRadius: BorderRadius.circular(30),
-    borderSide: BorderSide(color: milkColor!),
+    borderSide: BorderSide(color: customGreyColor!),
   );
 }
 
 final customInputDecoration = InputDecoration(
   //hintText: hintText,
-  fillColor: milkColor,
+  fillColor: customGreyColor,
   filled: true,
   border: customFocusBorder(),
   focusedBorder: customFocusBorder(),

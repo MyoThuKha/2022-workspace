@@ -30,7 +30,7 @@ class _BrewListState extends State<BrewList> {
                 width: 300,
                 height: 100,
                 decoration: BoxDecoration(
-                    color: milkColor,
+                    color: customGreyColor,
                     borderRadius: BorderRadius.circular(15),
                     boxShadow: [
                       BoxShadow(

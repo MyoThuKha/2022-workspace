@@ -28,9 +28,9 @@ class _HomePageState extends State<HomePage> {
             SliverAppBar(
               title: const Text(
                 "Brew",
-                style: TextStyle(fontSize: 40),
+                style: TextStyle(fontSize: 40, color: Colors.white),
               ),
-              toolbarHeight: deviceHeight * 15 / 64,
+              toolbarHeight: deviceHeight * 15 / 70,
               backgroundColor: coffeeColor,
               elevation: 0,
               actions: <Widget>[
@@ -49,9 +49,18 @@ class _HomePageState extends State<HomePage> {
                 top: Radius.circular(30),
               ),
             ),
-
-            //
-            child: BrewList(),
+            child: Column(
+              children: [
+                const SizedBox(height: 400),
+                Container(
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: coffeeColor,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
