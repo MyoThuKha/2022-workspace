@@ -76,3 +76,17 @@ Widget errorText(String text) {
         ],
       ));
 }
+
+List<BoxShadow> customShadow = [
+  BoxShadow(
+    color: Colors.grey[500]!,
+    offset: const Offset(4, 4),
+    blurRadius: 15,
+    spreadRadius: 1,
+  ),
+  const BoxShadow(
+      color: Colors.white,
+      offset: Offset(-4, -4),
+      blurRadius: 15,
+      spreadRadius: 1)
+];
