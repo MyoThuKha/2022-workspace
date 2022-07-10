@@ -14,9 +14,7 @@ class DatabaseService {
   List<BrewModel> customBrew(QuerySnapshot snapshot) {
     return snapshot.docs.map((each) {
       return BrewModel(
-          name: each.get('name') ?? '',
-          strength: each.get('strength') ?? 0,
-          sugars: each.get('sugars') ?? '0');
+          name: each.get('name') ?? '', brew: each.get('brew') ?? '');
     }).toList();
   }
 
@@ -25,11 +23,17 @@ class DatabaseService {
     return brewCollection.snapshots().map(customBrew);
   }
 
-  Future updateUserData(String sugars, String name, int strength) async {
+  Future updateUserData(String name, String brew) async {
     return await brewCollection.doc(uid).set({
-      'sugars': sugars,
       'name': name,
-      'strength': strength,
+      'brew': brew,
+    });
+  }
+
+  Future updateCoffee(String name, int price) async {
+    return await brewCollection.doc("brew menu").set({
+      'name': name,
+      'price': price,
     });
   }
 }

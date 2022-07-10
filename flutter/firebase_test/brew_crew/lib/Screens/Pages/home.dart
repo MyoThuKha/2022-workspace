@@ -33,13 +33,10 @@ class _HomePageState extends State<HomePage> {
               toolbarHeight: deviceHeight * 15 / 70,
               backgroundColor: coffeeColor,
               elevation: 0,
-              actions: <Widget>[
-                IconButton(
-                    onPressed: () {
-                      widget.toggleHomeView();
-                    },
-                    icon: const Icon(Icons.settings_rounded))
-              ],
+              // actions: <Widget>[
+              //   IconButton(
+              //       onPressed: () {}, icon: const Icon(Icons.settings_rounded))
+              // ],
             ),
           ],
           body: Container(
@@ -74,7 +71,9 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          widget.toggleHomeView();
+                        },
                         child: Text(
                           "Settings",
                           style: TextStyle(color: coffeeColor, fontSize: 17),

@@ -46,45 +46,6 @@ class _BrewListState extends State<BrewList> {
                         spreadRadius: 0.5,
                       )
                     ]),
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
-                      flex: 1,
-                      child: CircleAvatar(
-                        backgroundColor: Colors.brown[brews[index].strength],
-                      ),
-                    ),
-                    VerticalDivider(
-                      color: coffeeColor,
-                      indent: 10,
-                      endIndent: 10,
-                    ),
-                    Expanded(
-                      flex: 3,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Text(
-                            brews[index].name,
-                            style: const TextStyle(
-                                fontSize: 18,
-                                wordSpacing: 1,
-                                fontWeight: FontWeight.w400),
-                          ),
-                          const SizedBox(height: 5),
-                          Text(
-                            "Sugars: ${brews[index].sugars}",
-                            style: const TextStyle(
-                                fontSize: 14,
-                                wordSpacing: 1.5,
-                                fontWeight: FontWeight.w300),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
               ),
             ],
           );

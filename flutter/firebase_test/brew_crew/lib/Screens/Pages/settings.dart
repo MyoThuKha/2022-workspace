@@ -24,7 +24,17 @@ class _SettingsState extends State<Settings> {
       appBar: AppBar(
         title: Text(""),
         elevation: 0,
+        leading: IconButton(
+          onPressed: () {
+            widget.toggleHomeView();
+          },
+          icon: const Icon(
+            Icons.arrow_back_ios_new_rounded,
+            color: Colors.black,
+          ),
+        ),
         backgroundColor: customGreyColor,
+        automaticallyImplyLeading: true,
       ),
 
       //Body area
