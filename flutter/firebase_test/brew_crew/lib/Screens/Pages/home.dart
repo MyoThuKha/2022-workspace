@@ -50,13 +50,37 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             child: Column(
-              children: [
-                const SizedBox(height: 400),
+              children: <Widget>[
+                //Header Navigation
                 Container(
-                  height: 40,
-                  decoration: BoxDecoration(
-                    color: coffeeColor,
-                    borderRadius: BorderRadius.circular(10),
+                  // color: Colors.blue,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          "Home",
+                          style: TextStyle(color: coffeeColor, fontSize: 17),
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          "Orders",
+                          style: TextStyle(color: coffeeColor, fontSize: 17),
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          "Settings",
+                          style: TextStyle(color: coffeeColor, fontSize: 17),
+                        ),
+                      ),
+                    ],
                   ),
                 )
               ],
