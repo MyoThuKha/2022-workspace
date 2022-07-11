@@ -1,5 +1,6 @@
 import 'package:brew_crew/Models/brew.dart';
 import 'package:brew_crew/Screens/Pages/brew_list.dart';
+import 'package:brew_crew/Services/auth.dart';
 import 'package:brew_crew/Services/database.dart';
 import 'package:brew_crew/Templates/colors.dart';
 import 'package:brew_crew/Templates/constants.dart';
