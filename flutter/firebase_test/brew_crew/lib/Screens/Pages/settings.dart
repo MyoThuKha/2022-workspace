@@ -1,6 +1,10 @@
+import 'package:brew_crew/Models/brew.dart';
+import 'package:brew_crew/Models/user_model.dart';
 import 'package:brew_crew/Services/auth.dart';
+import 'package:brew_crew/Services/database.dart';
 import 'package:brew_crew/Templates/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Settings extends StatefulWidget {
   final VoidCallback toggleHomeView;
@@ -17,6 +21,9 @@ class _SettingsState extends State<Settings> {
 
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<UserModel>(context);
+    final userData = DatabaseService(uid: user.uid).brewStream;
+
     return Scaffold(
       backgroundColor: customGreyColor,
 
