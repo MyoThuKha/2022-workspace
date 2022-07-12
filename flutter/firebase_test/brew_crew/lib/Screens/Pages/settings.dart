@@ -3,7 +3,9 @@ import 'package:brew_crew/Models/user_model.dart';
 import 'package:brew_crew/Services/auth.dart';
 import 'package:brew_crew/Services/database.dart';
 import 'package:brew_crew/Templates/colors.dart';
+import 'package:brew_crew/Templates/constants.dart';
 import 'package:brew_crew/Templates/loading.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -34,7 +36,11 @@ class _SettingsState extends State<Settings> {
 
             //appBar area
             appBar: AppBar(
-              title: Text(userData!.name),
+              title: const Text(
+                ("Settings"),
+                style: TextStyle(color: Colors.black, fontSize: 30),
+              ),
+              centerTitle: true,
               elevation: 0,
               leading: IconButton(
                 onPressed: () {
@@ -46,25 +52,39 @@ class _SettingsState extends State<Settings> {
                 ),
               ),
               backgroundColor: customGreyColor,
-              automaticallyImplyLeading: true,
+              toolbarHeight: 100,
             ),
 
             //Body area
             body: Center(
-              child: GestureDetector(
-                onTap: () async {
-                  setState(() {
-                    _isElevated = !_isElevated;
-                  });
-                  await Future.delayed(const Duration(milliseconds: 250));
-                  await _auth.signOut();
-                },
-                child: Column(
-                  children: [
-                    //will add name
-                    const Text("Lorem Ipsum"),
-                    const SizedBox(height: 50),
-                    Flexible(
+              child: Column(
+                children: <Widget>[
+                  //will add name
+                  const Text("Lorem Ipsum"),
+                  const SizedBox(height: 50),
+
+                  //
+                  Container(
+                    width: 40,
+                    height: 40,
+                    margin: const EdgeInsets.symmetric(horizontal: 10),
+                    decoration: BoxDecoration(
+                      color: customGreyColor,
+                      borderRadius: BorderRadius.circular(15),
+                      boxShadow: customShadow,
+                    ),
+                    child: const Icon(CupertinoIcons.pencil),
+                  ),
+                  const SizedBox(height: 50),
+                  Flexible(
+                    child: GestureDetector(
+                      onTap: () async {
+                        setState(() {
+                          _isElevated = !_isElevated;
+                        });
+                        await Future.delayed(const Duration(milliseconds: 250));
+                        await _auth.signOut();
+                      },
                       child: AnimatedContainer(
                           duration: const Duration(milliseconds: 200),
                           width: 100,
@@ -92,8 +112,8 @@ class _SettingsState extends State<Settings> {
                             size: 30,
                           )),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           );
