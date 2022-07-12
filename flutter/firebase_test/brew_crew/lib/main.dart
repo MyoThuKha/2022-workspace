@@ -1,4 +1,5 @@
 import 'package:brew_crew/Models/user_model.dart';
+import 'package:brew_crew/Screens/Pages/settings.dart';
 import 'package:brew_crew/Screens/wrapper.dart';
 import 'package:brew_crew/Services/auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -22,7 +23,12 @@ class MyApp extends StatelessWidget {
       initialData: null,
       catchError: (_, __) {},
       child: MaterialApp(
-        home: Wrapper(),
+        initialRoute: '/',
+        routes: {
+          '/': (context) => Wrapper(),
+          '/settings': (context) => Settings(),
+        },
+        // home: Wrapper(),
       ),
     );
   }

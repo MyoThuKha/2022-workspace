@@ -11,8 +11,11 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 class Settings extends StatefulWidget {
-  final VoidCallback toggleHomeView;
-  const Settings({Key? key, required this.toggleHomeView}) : super(key: key);
+  // final VoidCallback toggleHomeView;
+  const Settings({
+    Key? key,
+    //  required this.toggleHomeView
+  }) : super(key: key);
 
   @override
   State<Settings> createState() => _SettingsState();
@@ -117,7 +120,7 @@ class _SettingsState extends State<Settings> {
                               flex: 1,
                               child: GestureDetector(
                                 onTap: () {
-                                  widget.toggleHomeView();
+                                  // widget.toggleHomeView();
                                 },
                                 child: Container(
                                   width: _buttonWidth,

@@ -1,15 +1,15 @@
 import 'package:brew_crew/Models/brew.dart';
-import 'package:brew_crew/Screens/Pages/brew_list.dart';
-import 'package:brew_crew/Services/auth.dart';
 import 'package:brew_crew/Services/database.dart';
 import 'package:brew_crew/Templates/colors.dart';
-import 'package:brew_crew/Templates/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
-  final VoidCallback toggleHomeView;
-  const HomePage({Key? key, required this.toggleHomeView}) : super(key: key);
+  // final VoidCallback toggleHomeView;
+  const HomePage({
+    Key? key,
+    /*required this.toggleHomeView*/
+  }) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -74,7 +74,8 @@ class _HomePageState extends State<HomePage> {
                       ),
                       TextButton(
                         onPressed: () {
-                          widget.toggleHomeView();
+                          // widget.toggleHomeView();
+                          Navigator.pushNamed(context, '/settings');
                         },
                         child: Text(
                           "Settings",
