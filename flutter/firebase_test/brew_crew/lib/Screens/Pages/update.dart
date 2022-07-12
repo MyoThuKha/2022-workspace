@@ -6,8 +6,7 @@ import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
 
 class UpdatePage extends StatefulWidget {
-  final VoidCallback toggleView;
-  const UpdatePage({Key? key, required this.toggleView}) : super(key: key);
+  const UpdatePage({Key? key}) : super(key: key);
 
   @override
   State<UpdatePage> createState() => _UpdatePageState();
@@ -57,6 +56,7 @@ class _UpdatePageState extends State<UpdatePage> {
                   ),
                 ),
                 backgroundColor: coffeeColor,
+                automaticallyImplyLeading: false,
                 elevation: 0,
               ),
 
@@ -159,7 +159,7 @@ class _UpdatePageState extends State<UpdatePage> {
                             // ),
                             child: Icon(
                               _isElevated
-                                  ? CupertinoIcons.signature
+                                  ? CupertinoIcons.add
                                   : CupertinoIcons.checkmark_alt,
                               color: _isElevated ? Colors.black : Colors.green,
                               size: 30,
@@ -176,7 +176,7 @@ class _UpdatePageState extends State<UpdatePage> {
                               ),
                               TextButton(
                                 onPressed: () {
-                                  widget.toggleView();
+                                  Navigator.pop(context);
                                 },
                                 child: Text(
                                   "Go back",

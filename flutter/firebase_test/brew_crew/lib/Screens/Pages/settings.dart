@@ -117,10 +117,28 @@ class _SettingsState extends State<Settings> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
                           Flexible(
+                            flex: 1,
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.pop(context);
+                              },
+                              child: Container(
+                                width: _buttonWidth,
+                                height: _buttonHeight,
+                                decoration: BoxDecoration(
+                                  color: customGreyColor,
+                                  borderRadius: BorderRadius.circular(30),
+                                  boxShadow: customShadow,
+                                ),
+                                child: const Icon(CupertinoIcons.back),
+                              ),
+                            ),
+                          ),
+                          Flexible(
                               flex: 1,
                               child: GestureDetector(
                                 onTap: () {
-                                  // widget.toggleHomeView();
+                                  Navigator.pushNamed(context, '/update');
                                 },
                                 child: Container(
                                   width: _buttonWidth,
@@ -130,20 +148,8 @@ class _SettingsState extends State<Settings> {
                                     borderRadius: BorderRadius.circular(30),
                                     boxShadow: customShadow,
                                   ),
-                                  child: const Icon(CupertinoIcons.back),
+                                  child: const Icon(CupertinoIcons.pencil),
                                 ),
-                              )),
-                          Flexible(
-                              flex: 1,
-                              child: Container(
-                                width: _buttonWidth,
-                                height: _buttonHeight,
-                                decoration: BoxDecoration(
-                                  color: customGreyColor,
-                                  borderRadius: BorderRadius.circular(30),
-                                  boxShadow: customShadow,
-                                ),
-                                child: const Icon(CupertinoIcons.pencil),
                               )),
                           Flexible(
                             child: GestureDetector(
