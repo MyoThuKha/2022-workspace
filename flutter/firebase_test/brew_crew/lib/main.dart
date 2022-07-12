@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       value: AuthService().userStream,
       initialData: null,
       catchError: (_, __) {},
-      child: const MaterialApp(
+      child: MaterialApp(
         home: Wrapper(),
       ),
     );

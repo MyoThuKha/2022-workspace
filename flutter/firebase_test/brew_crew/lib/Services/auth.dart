@@ -59,6 +59,8 @@ class AuthService {
     }
   }
 
+  //for update password
+  Future changePassword(String password) async {}
   //Signout
   Future signOut() async {
     try {
