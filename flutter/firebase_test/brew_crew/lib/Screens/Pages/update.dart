@@ -69,7 +69,17 @@ class _UpdatePageState extends State<UpdatePage> {
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     child: Column(
                       children: <Widget>[
-                        const SizedBox(height: 50),
+                        // const SizedBox(height: 40),
+                        Container(
+                            margin: const EdgeInsets.fromLTRB(40, 40, 40, 40),
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              userName,
+                              style: TextStyle(
+                                  color: coffeeColor,
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.w600),
+                            )),
                         Container(
                           margin: const EdgeInsets.symmetric(horizontal: 20),
                           decoration: BoxDecoration(
@@ -82,7 +92,7 @@ class _UpdatePageState extends State<UpdatePage> {
                             obscureText: false,
                             keyboardType: TextInputType.name,
                             decoration: customInputDecoration.copyWith(
-                                hintText: "New Name"),
+                                hintText: "Abcd"),
                             validator: (val) {
                               return (val!.isEmpty
                                   ? "Name required"
@@ -169,9 +179,9 @@ class _UpdatePageState extends State<UpdatePage> {
                             // ),
                             child: Icon(
                               _isElevated
-                                  ? CupertinoIcons.add
+                                  ? Icons.save_rounded
                                   : CupertinoIcons.checkmark_alt,
-                              color: _isElevated ? Colors.black : Colors.green,
+                              color: _isElevated ? coffeeColor : Colors.green,
                               size: 30,
                             ),
                           ),
