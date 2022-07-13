@@ -11,11 +11,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 class Settings extends StatefulWidget {
-  // final VoidCallback toggleHomeView;
-  const Settings({
-    Key? key,
-    //  required this.toggleHomeView
-  }) : super(key: key);
+  final VoidCallback toggleHomeView;
+  const Settings({Key? key, required this.toggleHomeView}) : super(key: key);
 
   @override
   State<Settings> createState() => _SettingsState();
@@ -32,7 +29,7 @@ class _SettingsState extends State<Settings> {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<UserModel>(context);
-    final _deviceHeight = MediaQuery.of(context).size.height;
+    final deviceHeight = MediaQuery.of(context).size.height;
 
     return StreamBuilder<BrewModel>(
       stream: DatabaseService(uid: user.uid).userDocStream,
@@ -42,27 +39,6 @@ class _SettingsState extends State<Settings> {
           return Scaffold(
             backgroundColor: customGreyColor,
 
-            //appBar area
-            // appBar: AppBar(
-            // title: const Text(
-            //   ("Settings"),
-            //   style: TextStyle(color: Colors.black, fontSize: 30),
-            // ),
-            // centerTitle: true,
-            // elevation: 0,
-            // leading: IconButton(
-            //   onPressed: () {
-            //     widget.toggleHomeView();
-            //   },
-            //   icon: const Icon(
-            //     Icons.arrow_back_ios_new_rounded,
-            //     color: Colors.black,
-            //   ),
-            // ),
-            // backgroundColor: customGreyColor,
-            // toolbarHeight: 100,
-            // ),
-
             //Body area
             body: SafeArea(
               child: Center(
@@ -70,7 +46,7 @@ class _SettingsState extends State<Settings> {
                   children: <Widget>[
                     //will add name
                     // const Text("Lorem Ipsum"),
-                    SizedBox(height: _deviceHeight * 5 / 64),
+                    SizedBox(height: deviceHeight * 5 / 64),
                     Expanded(
                       child: Column(
                         children: <Widget>[
@@ -120,7 +96,7 @@ class _SettingsState extends State<Settings> {
                             flex: 1,
                             child: GestureDetector(
                               onTap: () {
-                                Navigator.pop(context);
+                                widget.toggleHomeView();
                               },
                               child: Container(
                                 width: _buttonWidth,
@@ -138,7 +114,12 @@ class _SettingsState extends State<Settings> {
                               flex: 1,
                               child: GestureDetector(
                                 onTap: () {
-                                  Navigator.pushNamed(context, '/update');
+                                  Navigator.pushNamed(context, '/update',
+                                      arguments: {
+                                        "uid": user.uid,
+                                        "name": userData.name,
+                                        "brew": userData.brew,
+                                      });
                                 },
                                 child: Container(
                                   width: _buttonWidth,
@@ -157,8 +138,8 @@ class _SettingsState extends State<Settings> {
                                 setState(() {
                                   _isElevated = !_isElevated;
                                 });
-                                await Future.delayed(
-                                    const Duration(milliseconds: 250));
+                                // await Future.delayed(
+                                // const Duration(milliseconds: 250));
                                 await _auth.signOut();
                               },
                               child: AnimatedContainer(

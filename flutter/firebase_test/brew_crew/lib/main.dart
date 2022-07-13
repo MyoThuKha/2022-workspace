@@ -22,12 +22,13 @@ class MyApp extends StatelessWidget {
     return StreamProvider<UserModel?>.value(
       value: AuthService().userStream,
       initialData: null,
-      catchError: (_, __) {},
+      catchError: (_, __) {
+        return null;
+      },
       child: MaterialApp(
         initialRoute: '/',
         routes: {
           '/': (context) => const Wrapper(),
-          '/settings': (context) => const Settings(),
           '/update': (context) => const UpdatePage(),
         },
         // home: Wrapper(),

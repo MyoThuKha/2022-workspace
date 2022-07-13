@@ -42,10 +42,15 @@ class DatabaseService {
 //---------------------------------------
 
   Future updateUserData(String name, String brew) async {
-    return await brewCollection.doc(uid).set({
-      'name': name,
-      'brew': brew,
-    });
+    try {
+      return await brewCollection.doc(uid).set({
+        'name': name,
+        'brew': brew,
+      });
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
   }
 
   // Future updateCoffee(String name, int price) async {

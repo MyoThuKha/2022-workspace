@@ -5,11 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
-  // final VoidCallback toggleHomeView;
-  const HomePage({
-    Key? key,
-    /*required this.toggleHomeView*/
-  }) : super(key: key);
+  final VoidCallback toggleHomeView;
+  const HomePage({Key? key, required this.toggleHomeView}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -74,8 +71,8 @@ class _HomePageState extends State<HomePage> {
                       ),
                       TextButton(
                         onPressed: () {
-                          // widget.toggleHomeView();
-                          Navigator.pushNamed(context, '/settings');
+                          widget.toggleHomeView();
+                          // Navigator.pushNamed(context, '/settings');
                         },
                         child: Text(
                           "Settings",
@@ -101,13 +98,14 @@ class _HomePageState extends State<HomePage> {
                       Expanded(
                         flex: 2,
                         child: Container(
+                          padding: const EdgeInsets.all(15),
                           height: 100,
                           margin: const EdgeInsets.fromLTRB(20, 20, 20, 20),
                           decoration: BoxDecoration(
                             color: coffeeColor,
                             borderRadius: BorderRadius.circular(20),
                           ),
-                          child: Image.asset("assets/cappuccino.png"),
+                          child: Image.asset("assets/coffee_cup.png"),
                         ),
                       ),
                       Expanded(
@@ -156,13 +154,14 @@ class _HomePageState extends State<HomePage> {
                       Expanded(
                         flex: 2,
                         child: Container(
+                          padding: const EdgeInsets.all(15),
                           height: 100,
                           margin: const EdgeInsets.fromLTRB(20, 20, 20, 20),
                           decoration: BoxDecoration(
                             color: coffeeColor,
                             borderRadius: BorderRadius.circular(20),
                           ),
-                          child: Image.asset("assets/espresso.png"),
+                          child: Image.asset("assets/coffee_cup.png"),
                         ),
                       ),
                       Expanded(
