@@ -92,7 +92,7 @@ class _UpdatePageState extends State<UpdatePage> {
                             obscureText: false,
                             keyboardType: TextInputType.name,
                             decoration: customInputDecoration.copyWith(
-                                hintText: "Abcd"),
+                                hintText: "New Name"),
                             validator: (val) {
                               return (val!.isEmpty
                                   ? "Name required"

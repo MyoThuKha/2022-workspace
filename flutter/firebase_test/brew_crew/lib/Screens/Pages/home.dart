@@ -1,4 +1,5 @@
 import 'package:brew_crew/Models/brew.dart';
+import 'package:brew_crew/Screens/Pages/coffee.dart';
 import 'package:brew_crew/Services/database.dart';
 import 'package:brew_crew/Templates/colors.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,21 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+  @override
+  void initState() {
+    _tabController = TabController(length: 3, vsync: this);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     double deviceHeight = MediaQuery.of(context).size.height;
@@ -49,7 +64,6 @@ class _HomePageState extends State<HomePage> {
               children: <Widget>[
                 //Header Navigation
                 Container(
-                  // color: Colors.blue,
                   padding:
                       const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
                   child: Row(
@@ -82,116 +96,9 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                 ),
+
                 const SizedBox(height: 10),
-
-                //Coffee part
-                Container(
-                  height: 150,
-                  margin: const EdgeInsets.symmetric(horizontal: 10),
-                  // decoration: BoxDecoration(
-                  //   color: customGreyColor,
-                  //   borderRadius: BorderRadius.circular(15),
-                  //   boxShadow: customShadow,
-                  // ),
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(
-                        flex: 2,
-                        child: Container(
-                          padding: const EdgeInsets.all(15),
-                          height: 100,
-                          margin: const EdgeInsets.fromLTRB(20, 20, 20, 20),
-                          decoration: BoxDecoration(
-                            color: coffeeColor,
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Image.asset("assets/coffee_cup.png"),
-                        ),
-                      ),
-                      Expanded(
-                        flex: 3,
-                        child: Container(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
-                              Text(
-                                "Cappuccino",
-                                style: TextStyle(
-                                  fontSize: 25,
-                                ),
-                              ),
-                              SizedBox(height: 20),
-                              Text(
-                                "\$1.5",
-                                style: TextStyle(
-                                  fontSize: 17,
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-
-                const Divider(
-                  indent: 40,
-                  endIndent: 40,
-                ),
-                //Coffee part
-                Container(
-                  height: 150,
-                  margin: const EdgeInsets.symmetric(horizontal: 10),
-                  // decoration: BoxDecoration(
-                  //   color: customGreyColor,
-                  //   borderRadius: BorderRadius.circular(15),
-                  //   boxShadow: customShadow,
-                  // ),
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(
-                        flex: 2,
-                        child: Container(
-                          padding: const EdgeInsets.all(15),
-                          height: 100,
-                          margin: const EdgeInsets.fromLTRB(20, 20, 20, 20),
-                          decoration: BoxDecoration(
-                            color: coffeeColor,
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Image.asset("assets/coffee_cup.png"),
-                        ),
-                      ),
-                      Expanded(
-                        flex: 3,
-                        child: Container(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
-                              Text(
-                                "Espresso",
-                                style: TextStyle(
-                                  fontSize: 25,
-                                ),
-                              ),
-                              SizedBox(height: 20),
-                              Text(
-                                "\$1.0",
-                                style: TextStyle(
-                                  fontSize: 17,
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-
+                const CoffeeList(),
                 //
               ],
             ),
