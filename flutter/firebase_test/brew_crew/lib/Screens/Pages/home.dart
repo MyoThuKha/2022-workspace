@@ -18,9 +18,8 @@ class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   @override
-  void initState() async {
+  void initState() {
     _tabController = TabController(length: 3, vsync: this);
-    await AuthService().signOut();
     super.initState();
   }
 

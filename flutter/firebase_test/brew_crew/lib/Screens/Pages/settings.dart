@@ -118,6 +118,7 @@ class _SettingsState extends State<Settings> {
                                       arguments: {
                                         "uid": user.uid,
                                         "name": userData.name,
+                                        "barista": userData.barista,
                                         "brew": userData.brew,
                                       });
                                 },
