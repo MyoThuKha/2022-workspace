@@ -59,34 +59,57 @@ class _SettingsState extends State<Settings> {
                             ),
                           ),
                           const SizedBox(height: 50),
-                          Row(
-                            // mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Expanded(
-                                flex: 4,
-                                child: Center(
-                                  child: Text(
-                                    userData!.name,
-                                    style: TextStyle(
-                                        color: coffeeColor,
-                                        fontSize: 38,
-                                        fontWeight: FontWeight.w600),
-                                  ),
+                          Expanded(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: <Widget>[
+                                Text(
+                                  userData!.name,
+                                  style: TextStyle(
+                                      color: coffeeColor,
+                                      fontSize: 38,
+                                      fontWeight: FontWeight.w600),
                                 ),
-                              ),
-                            ],
-                          ),
+
+                                //If user is barista
+                                userData.barista
+                                    ? Center(
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            Navigator.pushNamed(
+                                                context, '/barista');
+                                          },
+                                          child: Container(
+                                            width: 100,
+                                            height: 100,
+                                            decoration: BoxDecoration(
+                                              color: customGreyColor,
+                                              borderRadius:
+                                                  BorderRadius.circular(50),
+                                              boxShadow: customShadow,
+                                            ),
+                                            child: Icon(
+                                              Icons.add_business_rounded,
+                                              size: 35,
+                                              color: coffeeColor,
+                                            ),
+                                          ),
+                                        ),
+                                      )
+                                    : const SizedBox(),
+                              ],
+                            ),
+                          )
                         ],
                       ),
                     ),
 
-                    // const SizedBox(height: 50),
                     const Divider(
                       height: 80,
                       indent: 30,
                       endIndent: 30,
                     ),
-                    // const SizedBox(height: 50),
                     Container(
                       margin: const EdgeInsets.fromLTRB(0, 0, 0, 20),
                       child: Row(
