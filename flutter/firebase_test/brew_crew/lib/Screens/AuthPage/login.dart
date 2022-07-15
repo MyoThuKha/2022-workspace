@@ -27,6 +27,13 @@ class _LoginPageState extends State<LoginPage> {
   bool _userExist = true;
   bool _wrongPassword = false;
 
+  void buttonReappear() async {
+    await Future.delayed(const Duration(milliseconds: 800));
+    setState(() {
+      _isElevated = !_isElevated;
+    });
+  }
+
   final _formkey = GlobalKey<FormState>();
 
   @override
@@ -114,12 +121,10 @@ class _LoginPageState extends State<LoginPage> {
                                   _isLoading = false;
                                 });
                                 //button reappear
+                                buttonReappear();
                               }
-                              await Future.delayed(
-                                  const Duration(milliseconds: 800));
-                              setState(() {
-                                _isElevated = !_isElevated;
-                              });
+                            } else {
+                              buttonReappear();
                             }
                           },
                           child: AnimatedContainer(
@@ -164,11 +169,9 @@ class _LoginPageState extends State<LoginPage> {
                             //   color: _isElevated ? Colors.black : Colors.green,
                             //   size: 30,
                             // ),
-                            child: Icon(
-                              _isElevated
-                                  ? CupertinoIcons.signature
-                                  : CupertinoIcons.checkmark_alt,
-                              color: _isElevated ? Colors.black : Colors.green,
+                            child: const Icon(
+                              CupertinoIcons.signature,
+                              color: Colors.black,
                               size: 30,
                             ),
                           ),

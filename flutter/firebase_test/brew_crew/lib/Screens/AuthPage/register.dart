@@ -26,6 +26,13 @@ class _RegisterState extends State<Register> {
   bool invalidEmail = false;
   bool _startAutoValidate = false;
 
+  void buttonReappear() async {
+    await Future.delayed(const Duration(milliseconds: 800));
+    setState(() {
+      _isElevated = !_isElevated;
+    });
+  }
+
   final _formkey = GlobalKey<FormState>();
 
   @override
@@ -100,14 +107,11 @@ class _RegisterState extends State<Register> {
                                   invalidEmail = true;
                                   _isLoading = false;
                                 });
-
                                 //button reappear
-                                await Future.delayed(
-                                    const Duration(milliseconds: 800));
-                                setState(() {
-                                  _isElevated = !_isElevated;
-                                });
+                                buttonReappear();
                               }
+                            } else {
+                              buttonReappear();
                             }
                           },
                           child: AnimatedContainer(
@@ -140,18 +144,9 @@ class _RegisterState extends State<Register> {
                             //   color: _isElevated ? Colors.black : Colors.green,
                             //   size: 30,
                             // ),
-                            child: Center(
-                                child: _isElevated
-                                    ? const FaIcon(FontAwesomeIcons.mugHot)
-                                    : (!invalidEmail
-                                        ? const Icon(
-                                            CupertinoIcons.checkmark_alt,
-                                            color: Colors.green,
-                                          )
-                                        : const Icon(
-                                            CupertinoIcons.clear_thick,
-                                            color: Colors.red,
-                                          ))),
+                            child: const Center(
+                              child: FaIcon(FontAwesomeIcons.mugHot),
+                            ),
                           ),
                         ),
                         Expanded(
