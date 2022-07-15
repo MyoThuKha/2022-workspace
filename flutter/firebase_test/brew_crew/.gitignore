@@ -56,3 +56,5 @@ app.*.map.json
 makefile
 
 /.vscode
+
+todo.txt

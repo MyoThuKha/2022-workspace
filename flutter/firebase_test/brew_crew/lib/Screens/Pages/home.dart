@@ -1,5 +1,6 @@
 import 'package:brew_crew/Models/brew.dart';
 import 'package:brew_crew/Screens/Pages/coffee.dart';
+import 'package:brew_crew/Services/auth.dart';
 import 'package:brew_crew/Services/database.dart';
 import 'package:brew_crew/Templates/colors.dart';
 import 'package:flutter/material.dart';
@@ -17,8 +18,9 @@ class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   @override
-  void initState() {
+  void initState() async {
     _tabController = TabController(length: 3, vsync: this);
+    await AuthService().signOut();
     super.initState();
   }
 

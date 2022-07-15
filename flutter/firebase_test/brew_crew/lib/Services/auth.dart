@@ -50,7 +50,8 @@ class AuthService {
           email: email, password: password);
       User? user = result.user;
       //create dbase when register
-      await DatabaseService(uid: user!.uid).updateUserData('new member', '');
+      await DatabaseService(uid: user!.uid)
+          .updateUserData('new member', false, '');
 
       return _getUId(user);
     } catch (e) {

@@ -119,10 +119,9 @@ class _UpdatePageState extends State<UpdatePage> {
                               setState(() {
                                 _isLoading = true;
                               });
-                              //change auth to db
                               await DatabaseService(uid: userData['uid'])
-                                  .updateUserData(
-                                      userName, userData['brew'] ?? "");
+                                  .updateUserData(userName, userData['barista'],
+                                      userData['brew'] ?? "");
                               // print(userName);
                               setState(() {
                                 _isLoading = false;
