@@ -26,6 +26,31 @@ final customInputDecoration = InputDecoration(
   contentPadding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
   focusedErrorBorder: customFocusBorder(),
 );
+
+Widget searchBoxContainer({required Widget searchField}) {
+  return Container(
+    margin: const EdgeInsets.symmetric(horizontal: 20),
+    decoration: BoxDecoration(
+      color: Colors.grey[300],
+      borderRadius: BorderRadius.circular(30),
+      boxShadow: [
+        BoxShadow(
+          color: Colors.grey[500]!,
+          offset: const Offset(4, 4),
+          blurRadius: 20,
+          spreadRadius: 0.5,
+        ),
+        const BoxShadow(
+            color: Colors.white,
+            offset: Offset(-4, -4),
+            blurRadius: 20,
+            spreadRadius: 0.5)
+      ],
+    ),
+    child: searchField,
+  );
+}
+
 //-----------------------------------------------
 Widget explanIcon() {
   return const AdvancedIcon(
