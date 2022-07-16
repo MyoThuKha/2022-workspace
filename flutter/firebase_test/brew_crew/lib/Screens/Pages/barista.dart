@@ -1,3 +1,5 @@
+import 'package:brew_crew/Services/brewdb.dart';
+import 'package:brew_crew/Services/database.dart';
 import 'package:brew_crew/Templates/colors.dart';
 import 'package:brew_crew/Templates/constants.dart';
 import 'package:flutter/cupertino.dart';
@@ -14,8 +16,8 @@ class Barista extends StatefulWidget {
 
 class _BaristaState extends State<Barista> {
   String name = "";
-  int price = 0;
-  String _about = "";
+  double price = 0;
+  String about = "";
 
   @override
   void initState() {
@@ -46,6 +48,18 @@ class _BaristaState extends State<Barista> {
           "Barista Brew",
           style: TextStyle(color: Colors.black),
         ),
+        actions: [
+          IconButton(
+              onPressed: () async {
+                if (name != "" && price != 0 && about != "") {
+                  await brewdatabase().updateCoffee(name, price, about);
+                }
+              },
+              icon: const Icon(
+                Icons.file_upload_outlined,
+                color: Colors.black,
+              ))
+        ],
         elevation: 1,
       ),
       body: SingleChildScrollView(
@@ -77,10 +91,18 @@ class _BaristaState extends State<Barista> {
     return searchBoxContainer(
       searchField: TextFormField(
         validator: (val) {
-          (val!.isEmpty) ? "Fill Here" : null;
+          return (val!.isEmpty) ? "Fill Here" : null;
         },
         onChanged: (val) {
-          setState(() {});
+          setState(() {
+            if (boxNum == 1) {
+              name = val;
+            } else if (boxNum == 2) {
+              price = double.parse(val);
+            } else {
+              about = val;
+            }
+          });
         },
         cursorColor: Colors.black,
         keyboardType: TextInputType.multiline,

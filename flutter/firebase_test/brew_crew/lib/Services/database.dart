@@ -56,12 +56,4 @@ class DatabaseService {
       return null;
     }
   }
-
-  //For barista
-  Future updateCoffee(String name, int price) async {
-    return await brewCollection.doc("menu").set({
-      'name': name,
-      'price': price,
-    });
-  }
 }
