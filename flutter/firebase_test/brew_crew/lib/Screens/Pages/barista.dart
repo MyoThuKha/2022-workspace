@@ -111,6 +111,7 @@ class _BaristaState extends State<Barista> {
             }
           });
         },
+        maxLines: null,
         cursorColor: Colors.black,
         keyboardType: TextInputType.multiline,
         decoration: InputDecoration(
