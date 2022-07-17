@@ -15,6 +15,7 @@ class Barista extends StatefulWidget {
 }
 
 class _BaristaState extends State<Barista> {
+  bool _autoValidate = false;
   String name = "";
   double price = 0;
   String about = "";
@@ -28,13 +29,13 @@ class _BaristaState extends State<Barista> {
 
   @override
   Widget build(BuildContext context) {
-    double _deviceHeight = MediaQuery.of(context).size.height;
+    double deviceHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: customGreyColor,
       appBar: AppBar(
         backgroundColor: customGreyColor,
         automaticallyImplyLeading: false,
-        toolbarHeight: _deviceHeight * 7 / 64,
+        toolbarHeight: deviceHeight * 7 / 64,
         leading: IconButton(
             onPressed: () {
               Navigator.pop(context);
@@ -52,8 +53,12 @@ class _BaristaState extends State<Barista> {
           IconButton(
               onPressed: () async {
                 if (name != "" && price != 0 && about != "") {
-                  await brewdatabase().updateCoffee(name, price, about);
+                  await Brewdatabase().updateCoffee(name, price, about);
                 }
+
+                setState(() {
+                  _autoValidate = true;
+                });
               },
               icon: const Icon(
                 Icons.file_upload_outlined,
@@ -67,7 +72,9 @@ class _BaristaState extends State<Barista> {
           children: <Widget>[
             Form(
               key: _formkey,
-              autovalidateMode: AutovalidateMode.onUserInteraction,
+              autovalidateMode: _autoValidate
+                  ? AutovalidateMode.onUserInteraction
+                  : AutovalidateMode.disabled,
               child: Column(
                 children: <Widget>[
                   const SizedBox(height: 30),
@@ -76,7 +83,7 @@ class _BaristaState extends State<Barista> {
                   _userInputBar("Price", 2),
                   const SizedBox(height: 30),
                   SizedBox(
-                      height: _deviceHeight * 1 / 2,
+                      height: deviceHeight * 1 / 2,
                       child: _userInputBar("About", 3)),
                 ],
               ),

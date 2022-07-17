@@ -1,14 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class brewdatabase {
+class Brewdatabase {
   final CollectionReference brewCollection =
       FirebaseFirestore.instance.collection("menu");
 
   //For barista
   Future updateCoffee(String name, double price, String about) async {
     try {
-      return await brewCollection.doc("menu").set({
-        'name': name,
+      return await brewCollection.doc(name).set({
         'price': price,
         'about': about,
       });
