@@ -1,6 +1,8 @@
 import 'package:brew_crew/Models/brew.dart';
+import 'package:brew_crew/Models/menu_model.dart';
 import 'package:brew_crew/Screens/Pages/coffee.dart';
 import 'package:brew_crew/Services/auth.dart';
+import 'package:brew_crew/Services/brewdb.dart';
 import 'package:brew_crew/Services/database.dart';
 import 'package:brew_crew/Templates/colors.dart';
 import 'package:flutter/material.dart';
@@ -35,73 +37,77 @@ class _HomePageState extends State<HomePage>
     return StreamProvider<List<BrewModel>>.value(
       initialData: const [],
       value: DatabaseService(uid: '').brewStream,
-      child: Scaffold(
-        backgroundColor: coffeeColor,
-        body: NestedScrollView(
-          headerSliverBuilder:
-              (BuildContext context, bool innerBoxIsScrolled) => [
-            SliverAppBar(
-              title: const Text(
-                "Brew",
-                style: TextStyle(fontSize: 40, color: Colors.white),
-              ),
-              toolbarHeight: deviceHeight * 15 / 70,
-              backgroundColor: coffeeColor,
-              elevation: 0,
-              // actions: <Widget>[
-              //   IconButton(
-              //       onPressed: () {}, icon: const Icon(Icons.settings_rounded))
-              // ],
-            ),
-          ],
-          body: Container(
-            decoration: BoxDecoration(
-              color: Colors.grey[300],
-              borderRadius: const BorderRadius.vertical(
-                top: Radius.circular(30),
-              ),
-            ),
-            child: Column(
-              children: <Widget>[
-                //Header Navigation
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          "Menu",
-                          style: TextStyle(color: coffeeColor, fontSize: 17),
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          "Orders",
-                          style: TextStyle(color: coffeeColor, fontSize: 17),
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          widget.toggleHomeView();
-                          // Navigator.pushNamed(context, '/settings');
-                        },
-                        child: Text(
-                          "Settings",
-                          style: TextStyle(color: coffeeColor, fontSize: 17),
-                        ),
-                      ),
-                    ],
-                  ),
+      child: StreamProvider<List<MenuModel>>.value(
+        initialData: [],
+        value: Brewdatabase().menuStream,
+        child: Scaffold(
+          backgroundColor: coffeeColor,
+          body: NestedScrollView(
+            headerSliverBuilder:
+                (BuildContext context, bool innerBoxIsScrolled) => [
+              SliverAppBar(
+                title: const Text(
+                  "Brew",
+                  style: TextStyle(fontSize: 40, color: Colors.white),
                 ),
+                toolbarHeight: deviceHeight * 15 / 70,
+                backgroundColor: coffeeColor,
+                elevation: 0,
+                // actions: <Widget>[
+                //   IconButton(
+                //       onPressed: () {}, icon: const Icon(Icons.settings_rounded))
+                // ],
+              ),
+            ],
+            body: Container(
+              decoration: BoxDecoration(
+                color: Colors.grey[300],
+                borderRadius: const BorderRadius.vertical(
+                  top: Radius.circular(30),
+                ),
+              ),
+              child: Column(
+                children: <Widget>[
+                  //Header Navigation
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 30, vertical: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        TextButton(
+                          onPressed: () {},
+                          child: Text(
+                            "Menu",
+                            style: TextStyle(color: coffeeColor, fontSize: 17),
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () {},
+                          child: Text(
+                            "Orders",
+                            style: TextStyle(color: coffeeColor, fontSize: 17),
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            widget.toggleHomeView();
+                            // Navigator.pushNamed(context, '/settings');
+                          },
+                          child: Text(
+                            "Settings",
+                            style: TextStyle(color: coffeeColor, fontSize: 17),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
 
-                const SizedBox(height: 10),
-                const CoffeeList(),
-                //
-              ],
+                  const SizedBox(height: 10),
+                  const CoffeeList(),
+                  //
+                ],
+              ),
             ),
           ),
         ),

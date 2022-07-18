@@ -12,11 +12,6 @@ class DatabaseService {
 
 // get all documents (list of brew data)
   //Custom Data
-  //Stream data
-  Stream<List<BrewModel>> get brewStream {
-    return brewCollection.snapshots().map(customBrew);
-  }
-
   List<BrewModel> customBrew(QuerySnapshot snapshot) {
     return snapshot.docs.map((each) {
       return BrewModel(
@@ -24,6 +19,11 @@ class DatabaseService {
           barista: each.get('barista') ?? false,
           brew: each.get('brew') ?? '');
     }).toList();
+  }
+
+  //Stream data
+  Stream<List<BrewModel>> get brewStream {
+    return brewCollection.snapshots().map(customBrew);
   }
 
 //---------------------------------------

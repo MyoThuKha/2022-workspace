@@ -1,18 +1,19 @@
 import 'package:brew_crew/Models/menu_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 
 class Brewdatabase {
   final CollectionReference brewCollection =
       FirebaseFirestore.instance.collection("menu");
 
   List<MenuModel> customMenuModel(QuerySnapshot snapshot) {
-    return snapshot.docs.map((eachDocument) {
+    return snapshot.docs.map((each) {
       // print(eachDocument);
       return MenuModel(
-          name: eachDocument.toString(),
-          price: eachDocument['price'],
-          about: eachDocument['about']);
+          // name: each.id,
+          name: each['name'] ?? "",
+          price: each['price'] ?? 0.0,
+          about: each['about'] ?? "");
     }).toList();
   }
 
@@ -24,11 +25,14 @@ class Brewdatabase {
   Future updateCoffee(String name, double price, String about) async {
     try {
       return await brewCollection.doc(name).set({
+        'name': name,
         'price': price,
         'about': about,
       });
     } catch (e) {
-      print(e.toString());
+      if (kDebugMode) {
+        print(e.toString());
+      }
       return null;
     }
   }
