@@ -11,6 +11,7 @@ class Brewdatabase {
       // print(eachDocument);
       return MenuModel(
           // name: each.id,
+          //for name change
           name: each['name'] ?? "",
           price: each['price'] ?? 0.0,
           about: each['about'] ?? "");

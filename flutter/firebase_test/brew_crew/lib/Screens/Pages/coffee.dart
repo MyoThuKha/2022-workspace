@@ -20,7 +20,20 @@ class _CoffeeListState extends State<CoffeeList> {
         builder: (context, snapshot) {
           if (snapshot.hasError) return Text('error ${snapshot.error}');
           if (!snapshot.hasData) {
-            return Text("No Data here");
+            return Center(
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.grey[300],
+                  borderRadius: const BorderRadius.vertical(
+                    top: Radius.circular(30),
+                  ),
+                ),
+                child: Center(
+                  child: LoadingAnimationWidget.inkDrop(
+                      color: coffeeColor, size: 50),
+                ),
+              ),
+            );
           }
           List<MenuModel>? menuData = snapshot.data;
           return Expanded(
@@ -56,26 +69,24 @@ class _CoffeeListState extends State<CoffeeList> {
                         ),
                         Expanded(
                           flex: 3,
-                          child: Container(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Text(
-                                  menuData![index].name,
-                                  style: const TextStyle(
-                                    fontSize: 25,
-                                  ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text(
+                                menuData![index].name,
+                                style: const TextStyle(
+                                  fontSize: 25,
                                 ),
-                                const SizedBox(height: 20),
-                                Text(
-                                  menuData[index].price.toString(),
-                                  style: const TextStyle(
-                                    fontSize: 17,
-                                  ),
-                                )
-                              ],
-                            ),
+                              ),
+                              const SizedBox(height: 15),
+                              Text(
+                                "\$ ${menuData[index].price.toString()}",
+                                style: const TextStyle(
+                                  fontSize: 17,
+                                ),
+                              )
+                            ],
                           ),
                         ),
                       ],
@@ -91,20 +102,6 @@ class _CoffeeListState extends State<CoffeeList> {
               ),
             ),
           );
-          // return Center(
-          //   child: Container(
-          //     decoration: BoxDecoration(
-          //       color: Colors.grey[300],
-          //       borderRadius: const BorderRadius.vertical(
-          //         top: Radius.circular(30),
-          //       ),
-          //     ),
-          //     child: Center(
-          //       child: LoadingAnimationWidget.inkDrop(
-          //           color: coffeeColor, size: 50),
-          //     ),
-          //   ),
-          // );
         });
   }
 }
