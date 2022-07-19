@@ -1,5 +1,6 @@
 import 'package:brew_crew/Models/user_model.dart';
 import 'package:brew_crew/Screens/Pages/barista.dart';
+import 'package:brew_crew/Screens/Pages/orders.dart';
 import 'package:brew_crew/Screens/Pages/settings.dart';
 import 'package:brew_crew/Screens/Pages/update.dart';
 import 'package:brew_crew/Screens/wrapper.dart';
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
           '/': (context) => const Wrapper(),
           '/update': (context) => const UpdatePage(),
           '/barista': (context) => const Barista(),
+          '/orders': (context) => const OrderPage(),
         },
         // home: Wrapper(),
       ),

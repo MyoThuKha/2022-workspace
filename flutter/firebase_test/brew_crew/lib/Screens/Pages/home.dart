@@ -15,20 +15,33 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage>
-    with SingleTickerProviderStateMixin {
-  late TabController _tabController;
+class _HomePageState extends State<HomePage> {
+  // with SingleTickerProviderStateMixin {
+  // late TabController _tabController;
   @override
   void initState() {
-    _tabController = TabController(length: 3, vsync: this);
+    // _tabController = TabController(length: 3, vsync: this);
     super.initState();
   }
 
   @override
   void dispose() {
-    _tabController.dispose();
+    // _tabController.dispose();
     super.dispose();
   }
+
+  Container _customBar() {
+    return Container(
+      width: 30,
+      height: 5,
+      decoration: ShapeDecoration(
+        shape: const StadiumBorder(),
+        color: coffeeColor,
+      ),
+    );
+  }
+
+  int _currentTab = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +76,6 @@ class _HomePageState extends State<HomePage>
             ),
             child: Column(
               children: <Widget>[
-                //Header Navigation
                 Container(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
@@ -72,16 +84,31 @@ class _HomePageState extends State<HomePage>
                     children: <Widget>[
                       TextButton(
                         onPressed: () {},
-                        child: Text(
-                          "Menu",
-                          style: TextStyle(color: coffeeColor, fontSize: 17),
+                        child: Column(
+                          children: <Widget>[
+                            Text(
+                              "Menu",
+                              style:
+                                  TextStyle(color: coffeeColor, fontSize: 17),
+                            ),
+                            const SizedBox(height: 5),
+                            _customBar(),
+                          ],
                         ),
                       ),
                       TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          "Orders",
-                          style: TextStyle(color: coffeeColor, fontSize: 17),
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/orders');
+                        },
+                        child: Column(
+                          children: <Widget>[
+                            Text(
+                              "Orders",
+                              style:
+                                  TextStyle(color: coffeeColor, fontSize: 17),
+                            ),
+                            // _customBar(),
+                          ],
                         ),
                       ),
                       TextButton(
@@ -89,18 +116,20 @@ class _HomePageState extends State<HomePage>
                           widget.toggleHomeView();
                           // Navigator.pushNamed(context, '/settings');
                         },
-                        child: Text(
-                          "Settings",
-                          style: TextStyle(color: coffeeColor, fontSize: 17),
+                        child: Column(
+                          children: [
+                            Text(
+                              "Settings",
+                              style:
+                                  TextStyle(color: coffeeColor, fontSize: 17),
+                            ),
+                          ],
                         ),
                       ),
                     ],
                   ),
                 ),
-
-                const SizedBox(height: 10),
                 const CoffeeList(),
-                //
               ],
             ),
           ),

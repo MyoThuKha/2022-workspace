@@ -6,8 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class OrderPage extends StatefulWidget {
-  final VoidCallback toggleHomeView;
-  const OrderPage({Key? key, required this.toggleHomeView}) : super(key: key);
+  const OrderPage({Key? key}) : super(key: key);
 
   @override
   State<OrderPage> createState() => _OrderPageState();
@@ -35,10 +34,7 @@ class _OrderPageState extends State<OrderPage> {
               elevation: 0,
               actions: <Widget>[
                 IconButton(
-                    onPressed: () {
-                      widget.toggleHomeView();
-                    },
-                    icon: const Icon(Icons.settings_rounded))
+                    onPressed: () {}, icon: const Icon(Icons.settings_rounded))
               ],
             ),
           ],
