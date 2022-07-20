@@ -25,8 +25,6 @@ class _UpdatePageState extends State<UpdatePage> {
 
   @override
   Widget build(BuildContext context) {
-    double deviceHeight = MediaQuery.of(context).size.height;
-
     Map userData = ModalRoute.of(context)?.settings.arguments as Map;
     userName = userName == "" ? userData['name'] : userName;
 

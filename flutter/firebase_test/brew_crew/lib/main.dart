@@ -1,10 +1,12 @@
 import 'package:brew_crew/Models/user_model.dart';
 import 'package:brew_crew/Screens/Pages/barista.dart';
+import 'package:brew_crew/Screens/Pages/detail.dart';
 import 'package:brew_crew/Screens/Pages/orders.dart';
 import 'package:brew_crew/Screens/Pages/settings.dart';
 import 'package:brew_crew/Screens/Pages/update.dart';
 import 'package:brew_crew/Screens/wrapper.dart';
 import 'package:brew_crew/Services/auth.dart';
+import 'package:brew_crew/Templates/constants.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -34,6 +36,7 @@ class MyApp extends StatelessWidget {
           '/update': (context) => const UpdatePage(),
           '/barista': (context) => const Barista(),
           '/orders': (context) => const OrderPage(),
+          '/detail': (context) => const DetailPage(),
         },
         // home: Wrapper(),
       ),

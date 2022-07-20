@@ -2,6 +2,7 @@ import 'package:brew_crew/Models/brew.dart';
 import 'package:brew_crew/Screens/Pages/brew_list.dart';
 import 'package:brew_crew/Services/database.dart';
 import 'package:brew_crew/Templates/colors.dart';
+import 'package:brew_crew/Templates/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,7 +16,6 @@ class OrderPage extends StatefulWidget {
 class _OrderPageState extends State<OrderPage> {
   @override
   Widget build(BuildContext context) {
-    double deviceHeight = MediaQuery.of(context).size.height;
     return StreamProvider<List<BrewModel>>.value(
       initialData: const [],
       value: DatabaseService(uid: '').brewStream,

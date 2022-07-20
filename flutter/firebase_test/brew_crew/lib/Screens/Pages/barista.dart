@@ -29,7 +29,6 @@ class _BaristaState extends State<Barista> {
 
   @override
   Widget build(BuildContext context) {
-    double deviceHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: customGreyColor,
       appBar: AppBar(

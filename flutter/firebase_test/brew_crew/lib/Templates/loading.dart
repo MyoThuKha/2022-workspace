@@ -1,4 +1,5 @@
 import 'package:brew_crew/Templates/colors.dart';
+import 'package:brew_crew/Templates/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
@@ -8,7 +9,6 @@ class LoadingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double deviceHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: coffeeColor,

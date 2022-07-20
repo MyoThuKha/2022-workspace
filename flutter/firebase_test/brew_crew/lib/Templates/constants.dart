@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
 import 'package:advanced_icon/advanced_icon.dart';
 
+double deviceHeight = 0;
+
 OutlineInputBorder customFocusBorder() {
   return OutlineInputBorder(
       borderRadius: BorderRadius.circular(30),

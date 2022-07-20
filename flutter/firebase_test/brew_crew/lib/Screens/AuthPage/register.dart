@@ -37,7 +37,6 @@ class _RegisterState extends State<Register> {
 
   @override
   Widget build(BuildContext context) {
-    double deviceHeight = MediaQuery.of(context).size.height;
     return _isLoading
         ? const LoadingPage(text: "JOIN Us")
         : GestureDetector(
