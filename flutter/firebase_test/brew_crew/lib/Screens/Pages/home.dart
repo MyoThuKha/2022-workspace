@@ -4,6 +4,7 @@ import 'package:brew_crew/Screens/Pages/coffee.dart';
 import 'package:brew_crew/Services/brewdb.dart';
 import 'package:brew_crew/Services/database.dart';
 import 'package:brew_crew/Templates/colors.dart';
+import 'package:brew_crew/Templates/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -41,11 +42,8 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  int _currentTab = 1;
-
   @override
   Widget build(BuildContext context) {
-    double deviceHeight = MediaQuery.of(context).size.height;
     return StreamProvider<List<BrewModel>>.value(
       initialData: const [],
       value: DatabaseService(uid: '').brewStream,
