@@ -4,6 +4,7 @@ import "package:flutter/material.dart";
 import 'package:advanced_icon/advanced_icon.dart';
 
 double deviceHeight = 0;
+double deviceWidth = 0;
 
 OutlineInputBorder customFocusBorder() {
   return OutlineInputBorder(

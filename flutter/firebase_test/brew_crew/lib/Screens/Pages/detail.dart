@@ -17,13 +17,16 @@ class _DetailPageState extends State<DetailPage> {
       backgroundColor: customGreyColor,
       body: Stack(
         children: <Widget>[
-          Container(
-            width: double.maxFinite,
-            height: 300,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/coffee2.jpeg'),
-                fit: BoxFit.cover,
+          Positioned(
+            top: 0,
+            child: Container(
+              width: deviceWidth,
+              height: deviceHeight * 3 / 7,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/coffee2.jpeg'),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
           ),
@@ -37,13 +40,14 @@ class _DetailPageState extends State<DetailPage> {
           ),
           //Fix here
           Positioned(
-            top: 100,
+            top: deviceHeight * 3 / 7 - 30,
             child: Container(
-              decoration: const BoxDecoration(
-                color: Colors.green,
-                borderRadius: BorderRadius.vertical(
-                  top: Radius.circular(30),
-                ),
+              width: deviceWidth,
+              height: deviceHeight * 4 / 7 + 30,
+              decoration: BoxDecoration(
+                color: customGreyColor,
+                borderRadius:
+                    const BorderRadius.vertical(top: Radius.circular(30)),
               ),
             ),
           ),

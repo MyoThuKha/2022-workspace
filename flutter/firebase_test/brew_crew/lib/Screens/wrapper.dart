@@ -11,6 +11,7 @@ class Wrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     deviceHeight = MediaQuery.of(context).size.height;
+    deviceWidth = MediaQuery.of(context).size.width;
     final userData = Provider.of<UserModel?>(context);
     return userData == null ? const Authenticate() : const TogglePages();
     //return TogglePages();
