@@ -11,6 +11,7 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
+  bool isFav = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,6 +38,19 @@ class _DetailPageState extends State<DetailPage> {
                   Navigator.pop(context);
                 },
                 icon: const Icon(CupertinoIcons.back, color: Colors.white)),
+          ),
+          Positioned(
+            top: 50,
+            right: 0,
+            child: IconButton(
+                onPressed: () {
+                  setState(() {
+                    isFav = !isFav;
+                  });
+                },
+                icon: Icon(
+                    isFav ? CupertinoIcons.heart_fill : CupertinoIcons.heart,
+                    color: isFav ? Colors.red : Colors.white)),
           ),
           //Fix here
           Positioned(
