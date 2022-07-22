@@ -53,7 +53,6 @@ class _DetailPageState extends State<DetailPage> {
                     isFav ? CupertinoIcons.heart_fill : CupertinoIcons.heart,
                     color: isFav ? Colors.red : Colors.white)),
           ),
-          //Fix here
           Positioned(
             top: deviceHeight * 3 / 7 - 30,
             child: Container(
@@ -67,7 +66,11 @@ class _DetailPageState extends State<DetailPage> {
                     const BorderRadius.vertical(top: Radius.circular(30)),
               ),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  //main header
+
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
@@ -89,9 +92,55 @@ class _DetailPageState extends State<DetailPage> {
                       ),
                     ],
                   ),
-                  //how many
-                  Text("Description"),
-                  Text(data['about']),
+                  // const SizedBox(height: 10),
+
+                  //how many size
+                  Row(
+                    children: <Widget>[
+                      Container(
+                        width: 80,
+                        height: 80,
+                        decoration: BoxDecoration(
+                          color: Colors.grey,
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  //Description section
+                  const Text(
+                    "Description",
+                    style: TextStyle(
+                      fontSize: 30,
+                      letterSpacing: 1,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  Text(
+                    data['about'],
+                    style: TextStyle(
+                      fontSize: 17,
+                      letterSpacing: 1,
+                      color: Colors.grey[700],
+                    ),
+                  ),
+
+                  //order buttton
+                  Container(
+                    alignment: Alignment.bottomCenter,
+                    width: double.maxFinite,
+                    height: 65,
+                    decoration: BoxDecoration(
+                        color: Colors.orange,
+                        borderRadius: BorderRadius.circular(30)),
+                    child: Center(
+                      child: Text(
+                        "Order",
+                        style: TextStyle(color: Colors.white, fontSize: 20),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
