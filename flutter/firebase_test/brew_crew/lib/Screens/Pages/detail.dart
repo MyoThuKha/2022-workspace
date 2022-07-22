@@ -11,6 +11,33 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
+  int _current = 1;
+  Widget appButton(int id) {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _current = id;
+        });
+      },
+      child: Container(
+        width: 60,
+        height: 60,
+        decoration: BoxDecoration(
+          color: id == _current ? coffeeColor : Colors.grey,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Center(
+          child: Text(
+            '$id',
+            style: TextStyle(
+                fontSize: 25,
+                color: id == _current ? Colors.white : Colors.black),
+          ),
+        ),
+      ),
+    );
+  }
+
   bool isFav = false;
   @override
   Widget build(BuildContext context) {
@@ -49,8 +76,7 @@ class _DetailPageState extends State<DetailPage> {
                     isFav = !isFav;
                   });
                 },
-                icon: Icon(
-                    isFav ? CupertinoIcons.heart_fill : CupertinoIcons.heart,
+                icon: Icon(isFav ? Icons.favorite : Icons.favorite_border,
                     color: isFav ? Colors.red : Colors.white)),
           ),
           Positioned(
@@ -95,35 +121,54 @@ class _DetailPageState extends State<DetailPage> {
                   // const SizedBox(height: 10),
 
                   //how many size
-                  Row(
-                    children: <Widget>[
-                      Container(
-                        width: 80,
-                        height: 80,
-                        decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.circular(30),
+
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        "Size Options",
+                        style: TextStyle(
+                          fontSize: 25,
+                          letterSpacing: 1,
+                          fontWeight: FontWeight.w500,
                         ),
+                      ),
+                      const SizedBox(height: 20),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          appButton(1),
+                          const SizedBox(width: 15),
+                          appButton(2),
+                          const SizedBox(width: 15),
+                          appButton(3),
+                        ],
                       ),
                     ],
                   ),
 
                   //Description section
-                  const Text(
-                    "Description",
-                    style: TextStyle(
-                      fontSize: 30,
-                      letterSpacing: 1,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  Text(
-                    data['about'],
-                    style: TextStyle(
-                      fontSize: 17,
-                      letterSpacing: 1,
-                      color: Colors.grey[700],
-                    ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        "Description",
+                        style: TextStyle(
+                          fontSize: 30,
+                          letterSpacing: 1,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        data['about'],
+                        style: TextStyle(
+                          fontSize: 17,
+                          letterSpacing: 1,
+                          color: Colors.grey[700],
+                        ),
+                      ),
+                    ],
                   ),
 
                   //order buttton
@@ -132,9 +177,10 @@ class _DetailPageState extends State<DetailPage> {
                     width: double.maxFinite,
                     height: 65,
                     decoration: BoxDecoration(
-                        color: Colors.orange,
-                        borderRadius: BorderRadius.circular(30)),
-                    child: Center(
+                      color: Colors.orange,
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: const Center(
                       child: Text(
                         "Order",
                         style: TextStyle(color: Colors.white, fontSize: 20),
