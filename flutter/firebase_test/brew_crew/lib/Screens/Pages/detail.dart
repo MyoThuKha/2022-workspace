@@ -14,6 +14,7 @@ class _DetailPageState extends State<DetailPage> {
   bool isFav = false;
   @override
   Widget build(BuildContext context) {
+    Map data = ModalRoute.of(context)?.settings.arguments as Map;
     return Scaffold(
       backgroundColor: customGreyColor,
       body: Stack(
@@ -58,10 +59,40 @@ class _DetailPageState extends State<DetailPage> {
             child: Container(
               width: deviceWidth,
               height: deviceHeight * 4 / 7 + 30,
+              //for content spacing
+              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
               decoration: BoxDecoration(
                 color: customGreyColor,
                 borderRadius:
                     const BorderRadius.vertical(top: Radius.circular(30)),
+              ),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(
+                        data['name'],
+                        style: const TextStyle(
+                          fontSize: 38,
+                          letterSpacing: 1,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      Text(
+                        "\$ ${data['price'].toString()}",
+                        style: TextStyle(
+                          fontSize: 30,
+                          color: coffeeColor,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                  //how many
+                  Text("Description"),
+                  Text(data['about']),
+                ],
               ),
             ),
           ),

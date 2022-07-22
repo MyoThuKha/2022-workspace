@@ -46,7 +46,15 @@ class _CoffeeListState extends State<CoffeeList> {
                   //Coffee part
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, '/detail');
+                      Navigator.pushNamed(
+                        context,
+                        '/detail',
+                        arguments: {
+                          "name": menuData![index].name,
+                          "about": menuData[index].about,
+                          "price": menuData[index].price,
+                        },
+                      );
                     },
                     child: Container(
                       height: 150,
