@@ -88,13 +88,6 @@ class _RegisterState extends State<Register> {
                               _isElevated = !_isElevated;
                               _startAutoValidate = true;
                             });
-                            // dynamic result = await _auth.signAsAnys();
-                            // if (result == null) {
-                            //   print("Failed");
-                            // } else {
-                            //   print("Success");
-                            //   print(result.uid);
-                            // }
                             if (_formkey.currentState!.validate()) {
                               setState(() {
                                 _isLoading = true;
@@ -136,13 +129,6 @@ class _RegisterState extends State<Register> {
                                           spreadRadius: 1)
                                     ],
                             ),
-                            // child: Icon(
-                            //   _isElevated
-                            //       ? Icons.local_cafe_rounded
-                            //       : CupertinoIcons.checkmark_alt,
-                            //   color: _isElevated ? Colors.black : Colors.green,
-                            //   size: 30,
-                            // ),
                             child: const Center(
                               child: FaIcon(FontAwesomeIcons.mugHot),
                             ),

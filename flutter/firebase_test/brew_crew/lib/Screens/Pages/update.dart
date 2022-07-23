@@ -119,7 +119,7 @@ class _UpdatePageState extends State<UpdatePage> {
                               });
                               await DatabaseService(uid: userData['uid'])
                                   .updateUserData(userName, userData['barista'],
-                                      userData['brew'] ?? "");
+                                      userData['brew'] ?? "", userData['size']);
                               // print(userName);
                               setState(() {
                                 _isLoading = false;

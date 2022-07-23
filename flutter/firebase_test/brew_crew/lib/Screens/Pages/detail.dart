@@ -169,8 +169,11 @@ class _DetailPageState extends State<DetailPage> {
                                 splashColor: Colors.grey,
                                 onTap: () async {
                                   await DatabaseService(uid: user.uid)
-                                      .updateUserData(userData!.name,
-                                          userData.barista, menuData['name']);
+                                      .updateUserData(
+                                          userData!.name,
+                                          userData.barista,
+                                          menuData['name'],
+                                          _current.toString());
                                 },
                                 child: Container(
                                   alignment: Alignment.bottomCenter,

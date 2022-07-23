@@ -1,6 +1,7 @@
 import 'package:brew_crew/Models/user_model.dart';
 import 'package:brew_crew/Services/database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -22,7 +23,9 @@ class AuthService {
       User user = result.user!;
       return _getUId(user);
     } catch (e) {
-      print(e.toString());
+      if (kDebugMode) {
+        print(e.toString());
+      }
       return null;
     }
   }
@@ -32,13 +35,11 @@ class AuthService {
     try {
       UserCredential result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
-      //print(result);
       return _getUId(result.user);
     } catch (e) {
       // print(e.toString());
       String error = e.toString();
       error = error.substring(error.indexOf('/'), error.indexOf(']'));
-      //print(error);
       return error;
     }
   }
@@ -51,11 +52,13 @@ class AuthService {
       User? user = result.user;
       //create dbase when register
       await DatabaseService(uid: user!.uid)
-          .updateUserData('new member', false, '');
+          .updateUserData('new member', false, '', '');
 
       return _getUId(user);
     } catch (e) {
-      print(e.toString());
+      if (kDebugMode) {
+        print(e.toString());
+      }
       return null;
     }
   }
@@ -67,7 +70,9 @@ class AuthService {
     try {
       return await _auth.signOut();
     } catch (e) {
-      print(e.toString());
+      if (kDebugMode) {
+        print(e.toString());
+      }
       return null;
     }
   }
