@@ -1,6 +1,7 @@
 import 'package:brew_crew/Models/menu_model.dart';
 import 'package:brew_crew/Services/brewdb.dart';
 import 'package:brew_crew/Templates/colors.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
@@ -85,11 +86,22 @@ class _CoffeeListState extends State<CoffeeList> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
-                                Text(
-                                  menuData![index].name,
-                                  style: const TextStyle(
-                                    fontSize: 25,
-                                  ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      menuData![index].name,
+                                      style: const TextStyle(
+                                        fontSize: 25,
+                                      ),
+                                    ),
+                                    // IconButton(
+                                    //   onPressed: () {},
+                                    //   icon: const Icon(CupertinoIcons
+                                    //       .line_horizontal_3_decrease),
+                                    // ),
+                                  ],
                                 ),
                                 const SizedBox(height: 15),
                                 Text(
