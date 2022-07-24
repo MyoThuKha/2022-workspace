@@ -1,6 +1,7 @@
 import 'package:brew_crew/Models/brew.dart';
 import 'package:brew_crew/Models/menu_model.dart';
 import 'package:brew_crew/Screens/Pages/coffee.dart';
+import 'package:brew_crew/Screens/Pages/orders.dart';
 import 'package:brew_crew/Services/brewdb.dart';
 import 'package:brew_crew/Services/database.dart';
 import 'package:brew_crew/Templates/colors.dart';
@@ -31,6 +32,8 @@ class _HomePageState extends State<HomePage> {
     super.dispose();
   }
 
+  bool _isMenu = true;
+
   Container _customBar() {
     return Container(
       width: 30,
@@ -39,6 +42,20 @@ class _HomePageState extends State<HomePage> {
         shape: const StadiumBorder(),
         color: coffeeColor,
       ),
+    );
+  }
+
+  Column _activeTab(text) {
+    return Column(
+      children: <Widget>[
+        Text(
+          "$text",
+          style: TextStyle(
+              color: coffeeColor, fontSize: 17, fontWeight: FontWeight.w500),
+        ),
+        const SizedBox(height: 5),
+        _customBar(),
+      ],
     );
   }
 
@@ -75,42 +92,44 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               children: <Widget>[
                 Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                  padding: const EdgeInsets.fromLTRB(30, 20, 30, 20),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
-                      TextButton(
-                        onPressed: () {},
-                        child: Column(
-                          children: <Widget>[
-                            Text(
-                              "Menu",
-                              style:
-                                  TextStyle(color: coffeeColor, fontSize: 17),
-                            ),
-                            const SizedBox(height: 5),
-                            _customBar(),
-                          ],
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, '/orders');
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _isMenu = true;
+                          });
                         },
-                        child: Column(
-                          children: <Widget>[
-                            Text(
-                              "Orders",
-                              style:
-                                  TextStyle(color: coffeeColor, fontSize: 17),
-                            ),
-                            // _customBar(),
-                          ],
-                        ),
+                        child: _isMenu
+                            ? _activeTab("Menu")
+                            : Text(
+                                "Menu",
+                                style: TextStyle(
+                                    color: coffeeColor,
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w500),
+                              ),
                       ),
-                      TextButton(
-                        onPressed: () {
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _isMenu = false;
+                          });
+                        },
+                        child: !_isMenu
+                            ? _activeTab("Orders")
+                            : Text(
+                                "Orders",
+                                style: TextStyle(
+                                    color: coffeeColor,
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
                           widget.toggleHomeView();
                           // Navigator.pushNamed(context, '/settings');
                         },
@@ -118,8 +137,10 @@ class _HomePageState extends State<HomePage> {
                           children: [
                             Text(
                               "Settings",
-                              style:
-                                  TextStyle(color: coffeeColor, fontSize: 17),
+                              style: TextStyle(
+                                  color: coffeeColor,
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.w500),
                             ),
                           ],
                         ),
@@ -127,7 +148,7 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                 ),
-                const CoffeeList(),
+                (_isMenu) ? const CoffeeList() : const OrderPage(),
               ],
             ),
           ),
