@@ -73,128 +73,135 @@ class _DetailPageState extends State<DetailPage> {
                       width: deviceWidth,
                       height: deviceHeight * 4 / 7 + 30,
                       //for content spacing
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 30, vertical: 20),
+                      padding: const EdgeInsets.fromLTRB(30, 20, 30, 0),
                       decoration: BoxDecoration(
                         color: customGreyColor,
                         borderRadius: const BorderRadius.vertical(
                             top: Radius.circular(30)),
                       ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          //main header
+                      child: SingleChildScrollView(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            //main header
 
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Text(
-                                menuData['name'],
-                                style: const TextStyle(
-                                  fontSize: 38,
-                                  letterSpacing: 1,
-                                  fontWeight: FontWeight.w500,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Flexible(
+                                  child: Text(
+                                    menuData['name'],
+                                    style: const TextStyle(
+                                      fontSize: 38,
+                                      letterSpacing: 1,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                "\$ ${menuData['price'].toString()}",
-                                style: TextStyle(
-                                  fontSize: 30,
-                                  color: coffeeColor,
-                                  fontWeight: FontWeight.w500,
+                                const SizedBox(width: 20),
+                                Text(
+                                  "\$ ${menuData['price'].toString()}",
+                                  style: TextStyle(
+                                    fontSize: 30,
+                                    color: coffeeColor,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                          // const SizedBox(height: 10),
+                              ],
+                            ),
+                            const SizedBox(height: 20),
 
-                          //how many size
+                            //how many size
 
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text(
-                                "Size Options",
-                                style: TextStyle(
-                                  fontSize: 25,
-                                  letterSpacing: 1,
-                                  fontWeight: FontWeight.w500,
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Text(
+                                  "Size Options",
+                                  style: TextStyle(
+                                    fontSize: 25,
+                                    letterSpacing: 1,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                                 ),
-                              ),
-                              const SizedBox(height: 20),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: <Widget>[
-                                  appButton(1),
-                                  const SizedBox(width: 15),
-                                  appButton(2),
-                                  const SizedBox(width: 15),
-                                  appButton(3),
-                                ],
-                              ),
-                            ],
-                          ),
+                                const SizedBox(height: 20),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: <Widget>[
+                                    appButton(1),
+                                    const SizedBox(width: 15),
+                                    appButton(2),
+                                    const SizedBox(width: 15),
+                                    appButton(3),
+                                  ],
+                                ),
+                              ],
+                            ),
 
-                          //Description section
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text(
-                                "Description",
-                                style: TextStyle(
-                                  fontSize: 30,
-                                  letterSpacing: 1,
-                                  fontWeight: FontWeight.w500,
+                            const SizedBox(height: 20),
+                            //Description section
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Text(
+                                  "Description",
+                                  style: TextStyle(
+                                    fontSize: 30,
+                                    letterSpacing: 1,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                                 ),
-                              ),
-                              const SizedBox(height: 8),
-                              Text(
-                                menuData['about'],
-                                style: TextStyle(
-                                  fontSize: 17,
-                                  letterSpacing: 1,
-                                  color: Colors.grey[700],
+                                const SizedBox(height: 10),
+                                Text(
+                                  menuData['about'],
+                                  style: TextStyle(
+                                    fontSize: 17,
+                                    letterSpacing: 1,
+                                    color: Colors.grey[700],
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
+                              ],
+                            ),
 
-                          //order buttton
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(30),
-                            child: Material(
-                              color: coffeeColor,
-                              child: InkWell(
-                                splashColor: Colors.grey,
-                                onTap: () async {
-                                  await DatabaseService(uid: user.uid)
-                                      .updateUserData(
-                                          userData!.name,
-                                          userData.barista,
-                                          menuData['name'],
-                                          _current.toString());
-                                },
-                                child: Container(
-                                  alignment: Alignment.bottomCenter,
-                                  width: double.maxFinite,
-                                  height: 65,
-                                  // decoration: BoxDecoration(
-                                  // color: Colors.orange,
-                                  // borderRadius: BorderRadius.circular(30),
-                                  // ),
-                                  child: const Center(
-                                    child: Text(
-                                      "Order",
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 20),
+                            const SizedBox(height: 20),
+                            //order buttton
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(30),
+                              child: Material(
+                                color: coffeeColor,
+                                child: InkWell(
+                                  splashColor: Colors.grey,
+                                  onTap: () async {
+                                    await DatabaseService(uid: user.uid)
+                                        .updateUserData(
+                                            userData!.name,
+                                            userData.barista,
+                                            menuData['name'],
+                                            _current.toString());
+                                  },
+                                  child: Container(
+                                    alignment: Alignment.bottomCenter,
+                                    width: double.maxFinite,
+                                    height: 65,
+                                    // decoration: BoxDecoration(
+                                    // color: Colors.orange,
+                                    // borderRadius: BorderRadius.circular(30),
+                                    // ),
+                                    child: const Center(
+                                      child: Text(
+                                        "Order",
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 20),
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
+                            const SizedBox(height: 20),
+                          ],
+                        ),
                       ),
                     ),
                   ),

@@ -90,10 +90,12 @@ class _CoffeeListState extends State<CoffeeList> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text(
-                                      menuData![index].name,
-                                      style: const TextStyle(
-                                        fontSize: 25,
+                                    Flexible(
+                                      child: Text(
+                                        menuData![index].name,
+                                        style: const TextStyle(
+                                          fontSize: 25,
+                                        ),
                                       ),
                                     ),
                                     // IconButton(

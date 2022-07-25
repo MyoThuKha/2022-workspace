@@ -96,10 +96,12 @@ class _OrderPageState extends State<OrderPage> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text(
-                                      menuData![index].name,
-                                      style: const TextStyle(
-                                        fontSize: 25,
+                                    Flexible(
+                                      child: Text(
+                                        menuData![index].name,
+                                        style: const TextStyle(
+                                          fontSize: 25,
+                                        ),
                                       ),
                                     ),
                                     IconButton(
