@@ -1,13 +1,11 @@
 import 'package:brew_crew/Models/brew_model.dart';
 import 'package:brew_crew/Models/menu_model.dart';
 import 'package:brew_crew/Models/user_model.dart';
-import 'package:brew_crew/Services/brewdb.dart';
 import 'package:brew_crew/Services/database.dart';
 import 'package:brew_crew/Templates/colors.dart';
-import 'package:brew_crew/Templates/constants.dart';
+import 'package:brew_crew/Templates/load.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:provider/provider.dart';
 
 class OrderPage extends StatefulWidget {
@@ -20,28 +18,17 @@ class OrderPage extends StatefulWidget {
 class _OrderPageState extends State<OrderPage> {
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<UserModel>(context);
+    final user = Provider.of<UserModel?>(context);
+    final menus = Provider.of<List<MenuModel>?>(context);
     return StreamBuilder<BrewModel?>(
-        stream: DatabaseService(uid: user.uid).brewStreamByUid,
+        stream: DatabaseService(uid: user!.uid).brewStreamByUid,
         initialData: null,
         builder: (context, snapshot) {
           if (snapshot.hasError) return Text('error ${snapshot.error}');
+
+          //loading if data is null
           if (!snapshot.hasData) {
-            //loading
-            return Center(
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.grey[300],
-                  borderRadius: const BorderRadius.vertical(
-                    top: Radius.circular(30),
-                  ),
-                ),
-                child: Center(
-                  child: LoadingAnimationWidget.inkDrop(
-                      color: coffeeColor, size: 50),
-                ),
-              ),
-            );
+            return loadingWidget();
           }
           BrewModel? userData = snapshot.data;
           return SingleChildScrollView(
@@ -98,6 +85,12 @@ class _OrderPageState extends State<OrderPage> {
                               const SizedBox(height: 15),
                               Text(
                                 userData.size,
+                                style: const TextStyle(
+                                  fontSize: 17,
+                                ),
+                              ),
+                              Text(
+                                "price",
                                 style: const TextStyle(
                                   fontSize: 17,
                                 ),
