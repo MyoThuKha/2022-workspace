@@ -1,4 +1,4 @@
-import 'package:brew_crew/Models/brew.dart';
+import 'package:brew_crew/Models/brew_model.dart';
 import 'package:brew_crew/Models/user_model.dart';
 import 'package:brew_crew/Services/auth.dart';
 import 'package:brew_crew/Services/database.dart';
@@ -32,7 +32,7 @@ class _SettingsState extends State<Settings> {
     final deviceHeight = MediaQuery.of(context).size.height;
 
     return StreamBuilder<BrewModel>(
-      stream: DatabaseService(uid: user.uid).userDocStream,
+      stream: DatabaseService(uid: user.uid).brewStreamByUid,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           BrewModel? userData = snapshot.data;

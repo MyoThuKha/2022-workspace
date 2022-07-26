@@ -52,7 +52,7 @@ class _BaristaState extends State<Barista> {
           IconButton(
               onPressed: () async {
                 if (name != "" && price != 0 && about != "") {
-                  await Brewdatabase().updateCoffee(name, price, about);
+                  await BrewdatabaseService().updateCoffee(name, price, about);
                 }
 
                 setState(() {

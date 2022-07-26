@@ -1,4 +1,4 @@
-import 'package:brew_crew/Models/brew.dart';
+import 'package:brew_crew/Models/brew_model.dart';
 import 'package:brew_crew/Templates/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

@@ -1,4 +1,4 @@
-import 'package:brew_crew/Models/brew.dart';
+import 'package:brew_crew/Models/brew_model.dart';
 import 'package:brew_crew/Models/menu_model.dart';
 import 'package:brew_crew/Screens/Pages/coffee.dart';
 import 'package:brew_crew/Screens/Pages/orders.dart';
@@ -63,120 +63,112 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamProvider<List<BrewModel>>.value(
-      initialData: const [],
-      value: DatabaseService(uid: '').brewStream,
-      child: StreamProvider<List<MenuModel>>.value(
-        initialData: [],
-        value: Brewdatabase().menuStream,
-        child: Scaffold(
-          backgroundColor: coffeeColor,
-          appBar: AppBar(
-            title: const Text(
-              "Brew",
-              style: TextStyle(fontSize: 40, color: Colors.white),
-            ),
-            toolbarHeight: deviceHeight * 15 / 70,
-            backgroundColor: coffeeColor,
-            elevation: 0,
-            actions: <Widget>[
-              IconButton(
-                  onPressed: () {
-                    widget.toggleHomeView();
-                  },
-                  icon: const Icon(CupertinoIcons.line_horizontal_3_decrease))
-            ],
+    return Scaffold(
+      backgroundColor: coffeeColor,
+      appBar: AppBar(
+        title: const Text(
+          "Brew",
+          style: TextStyle(fontSize: 40, color: Colors.white),
+        ),
+        toolbarHeight: deviceHeight * 15 / 70,
+        backgroundColor: coffeeColor,
+        elevation: 0,
+        actions: <Widget>[
+          IconButton(
+              onPressed: () {
+                widget.toggleHomeView();
+              },
+              icon: const Icon(CupertinoIcons.line_horizontal_3_decrease))
+        ],
+      ),
+      body: Container(
+        decoration: BoxDecoration(
+          color: Colors.grey[300],
+          borderRadius: const BorderRadius.vertical(
+            top: Radius.circular(30),
           ),
-          body: Container(
-            decoration: BoxDecoration(
-              color: Colors.grey[300],
-              borderRadius: const BorderRadius.vertical(
-                top: Radius.circular(30),
+        ),
+        child: Column(
+          children: <Widget>[
+            Container(
+              padding: const EdgeInsets.fromLTRB(30, 20, 30, 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _activeId = 1;
+                      });
+                    },
+                    child: _activeId == 1
+                        ? _activeTab("Menu")
+                        : Text(
+                            "Menu",
+                            style: TextStyle(
+                                color: coffeeColor,
+                                fontSize: 17,
+                                fontWeight: FontWeight.w500),
+                          ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _activeId = 2;
+                      });
+                    },
+                    child: _activeId == 2
+                        ? _activeTab("Dessert")
+                        : Text(
+                            "Dessert",
+                            style: TextStyle(
+                                color: coffeeColor,
+                                fontSize: 17,
+                                fontWeight: FontWeight.w500),
+                          ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _activeId = 3;
+                      });
+                    },
+                    child: _activeId == 3
+                        ? _activeTab("Orders")
+                        : Text(
+                            "Orders",
+                            style: TextStyle(
+                                color: coffeeColor,
+                                fontSize: 17,
+                                fontWeight: FontWeight.w500),
+                          ),
+                  ),
+                  // GestureDetector(
+                  //   onTap: () {
+                  //     widget.toggleHomeView();
+                  //     // Navigator.pushNamed(context, '/settings');
+                  //   },
+                  //   child: Column(
+                  //     children: [
+                  //       Text(
+                  //         "Settings",
+                  //         style: TextStyle(
+                  //             color: coffeeColor,
+                  //             fontSize: 17,
+                  //             fontWeight: FontWeight.w500),
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
+                ],
               ),
             ),
-            child: Column(
-              children: <Widget>[
-                Container(
-                  padding: const EdgeInsets.fromLTRB(30, 20, 30, 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            _activeId = 1;
-                          });
-                        },
-                        child: _activeId == 1
-                            ? _activeTab("Menu")
-                            : Text(
-                                "Menu",
-                                style: TextStyle(
-                                    color: coffeeColor,
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.w500),
-                              ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            _activeId = 2;
-                          });
-                        },
-                        child: _activeId == 2
-                            ? _activeTab("Dessert")
-                            : Text(
-                                "Dessert",
-                                style: TextStyle(
-                                    color: coffeeColor,
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.w500),
-                              ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            _activeId = 3;
-                          });
-                        },
-                        child: _activeId == 3
-                            ? _activeTab("Orders")
-                            : Text(
-                                "Orders",
-                                style: TextStyle(
-                                    color: coffeeColor,
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.w500),
-                              ),
-                      ),
-                      // GestureDetector(
-                      //   onTap: () {
-                      //     widget.toggleHomeView();
-                      //     // Navigator.pushNamed(context, '/settings');
-                      //   },
-                      //   child: Column(
-                      //     children: [
-                      //       Text(
-                      //         "Settings",
-                      //         style: TextStyle(
-                      //             color: coffeeColor,
-                      //             fontSize: 17,
-                      //             fontWeight: FontWeight.w500),
-                      //       ),
-                      //     ],
-                      //   ),
-                      // ),
-                    ],
-                  ),
-                ),
-                (_activeId == 1)
-                    ? const CoffeeList()
-                    : (_activeId == 2)
-                        ? const Dessert()
-                        : const OrderPage(),
-              ],
-            ),
-          ),
+            (_activeId == 1)
+                ? const CoffeeList()
+                : (_activeId == 2)
+                    ? const Dessert()
+                    : const OrderPage(),
+          ],
         ),
       ),
     );

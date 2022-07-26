@@ -1,4 +1,4 @@
-import 'package:brew_crew/Models/brew.dart';
+import 'package:brew_crew/Models/brew_model.dart';
 import 'package:brew_crew/Models/user_model.dart';
 import 'package:brew_crew/Services/auth.dart';
 import 'package:brew_crew/Services/database.dart';

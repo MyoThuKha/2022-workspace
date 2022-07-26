@@ -1,4 +1,4 @@
-import 'package:brew_crew/Models/brew.dart';
+import 'package:brew_crew/Models/brew_model.dart';
 import 'package:brew_crew/Models/user_model.dart';
 import 'package:brew_crew/Services/database.dart';
 import 'package:brew_crew/Templates/colors.dart';
@@ -17,14 +17,27 @@ class DetailPage extends StatefulWidget {
 
 class _DetailPageState extends State<DetailPage> {
   int _current = 1;
+  List<String> _images = [
+    "assets/coffee.jpg",
+    "assets/coffee1.jpeg",
+    "assets/coffee2.jpeg",
+    "assets/coffee3.jpeg",
+    "assets/coffee4.jpeg",
+    "assets/coffee5.jpeg",
+    "assets/coffee6.jpeg",
+    "assets/coffee7.jpeg",
+    "assets/coffee8.jpeg",
+  ];
 
   bool isFav = false;
   @override
   Widget build(BuildContext context) {
     Map menuData = ModalRoute.of(context)?.settings.arguments as Map;
     UserModel? user = Provider.of(context);
+
+    String imagePath = (_images.toList()..shuffle()).first;
     return StreamBuilder<BrewModel>(
-        stream: DatabaseService(uid: user!.uid).userDocStream,
+        stream: DatabaseService(uid: user!.uid).brewStreamByUid,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             BrewModel? userData = snapshot.data;
@@ -37,9 +50,9 @@ class _DetailPageState extends State<DetailPage> {
                     child: Container(
                       width: deviceWidth,
                       height: deviceHeight * 3 / 7,
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                         image: DecorationImage(
-                          image: AssetImage('assets/coffee2.jpeg'),
+                          image: AssetImage(imagePath),
                           fit: BoxFit.cover,
                         ),
                       ),

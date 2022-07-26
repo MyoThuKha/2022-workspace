@@ -16,7 +16,7 @@ class _CoffeeListState extends State<CoffeeList> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<List<MenuModel>?>(
-        stream: Brewdatabase().menuStream,
+        stream: BrewdatabaseService().menuStream,
         initialData: [],
         builder: (context, snapshot) {
           if (snapshot.hasError) return Text('error ${snapshot.error}');

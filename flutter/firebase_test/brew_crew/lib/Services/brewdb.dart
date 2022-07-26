@@ -2,7 +2,7 @@ import 'package:brew_crew/Models/menu_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 
-class Brewdatabase {
+class BrewdatabaseService {
   final CollectionReference brewCollection =
       FirebaseFirestore.instance.collection("menu");
 

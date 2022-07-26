@@ -1,4 +1,4 @@
-import 'package:brew_crew/Models/brew.dart';
+import 'package:brew_crew/Models/brew_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 
@@ -33,7 +33,7 @@ class DatabaseService {
 //get brew data by uid
 
   //get user doc stream
-  Stream<BrewModel> get userDocStream {
+  Stream<BrewModel> get brewStreamByUid {
     return brewCollection.doc(uid).snapshots().map(_customUserBrew);
   }
 
