@@ -4,6 +4,7 @@ import 'package:brew_crew/Services/auth.dart';
 import 'package:brew_crew/Services/database.dart';
 import 'package:brew_crew/Templates/colors.dart';
 import 'package:brew_crew/Templates/constants.dart';
+import 'package:brew_crew/Templates/load.dart';
 import 'package:brew_crew/Templates/loading.dart';
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
@@ -28,33 +29,33 @@ class _UpdatePageState extends State<UpdatePage> {
     Map userData = ModalRoute.of(context)?.settings.arguments as Map;
     userName = userName == "" ? userData['name'] : userName;
 
-    return _isLoading
-        ? const LoadingPage(text: "Change")
-        : GestureDetector(
-            onTap: (() {
-              FocusScopeNode currentFocus = FocusScope.of(context);
-              if (!currentFocus.hasPrimaryFocus) {
-                currentFocus.unfocus();
-              }
-            }),
-            child: Scaffold(
-              resizeToAvoidBottomInset: false,
-              backgroundColor: coffeeColor,
-              appBar: AppBar(
-                toolbarHeight: deviceHeight * 15 / 64,
-                title: const Text(
-                  "Change",
-                  style: TextStyle(
-                    fontSize: 40,
-                  ),
-                ),
-                backgroundColor: coffeeColor,
-                automaticallyImplyLeading: false,
-                elevation: 0,
-              ),
+    return GestureDetector(
+      onTap: (() {
+        FocusScopeNode currentFocus = FocusScope.of(context);
+        if (!currentFocus.hasPrimaryFocus) {
+          currentFocus.unfocus();
+        }
+      }),
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        backgroundColor: coffeeColor,
+        appBar: AppBar(
+          toolbarHeight: deviceHeight * 15 / 64,
+          title: const Text(
+            "Change",
+            style: TextStyle(
+              fontSize: 40,
+            ),
+          ),
+          backgroundColor: coffeeColor,
+          automaticallyImplyLeading: false,
+          elevation: 0,
+        ),
 
-              //BODY PART
-              body: Container(
+        //BODY PART
+        body: _isLoading
+            ? loadingWidget()
+            : Container(
                 decoration: BoxDecoration(
                   color: Colors.grey[300],
                   borderRadius: const BorderRadius.vertical(
@@ -209,7 +210,7 @@ class _UpdatePageState extends State<UpdatePage> {
                   ),
                 ),
               ),
-            ),
-          );
+      ),
+    );
   }
 }

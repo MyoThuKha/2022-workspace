@@ -3,8 +3,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 
 class BrewdatabaseService {
+  final String brew;
   final CollectionReference brewCollection =
       FirebaseFirestore.instance.collection("menu");
+
+  BrewdatabaseService({required this.brew});
 
   List<MenuModel> customMenuModel(QuerySnapshot snapshot) {
     return snapshot.docs.map((each) {
@@ -20,6 +23,18 @@ class BrewdatabaseService {
 
   Stream<List<MenuModel>> get menuStream {
     return brewCollection.snapshots().map(customMenuModel);
+  }
+
+  MenuModel customMenuModelByBrew(DocumentSnapshot snapshot) {
+    return MenuModel(
+      name: snapshot.get("name"),
+      price: snapshot.get("price"),
+      about: snapshot.get("about"),
+    );
+  }
+
+  Stream<MenuModel> get menuStreamByBrew {
+    return brewCollection.doc(brew).snapshots().map(customMenuModelByBrew);
   }
 
   //For barista
