@@ -1,7 +1,5 @@
 import 'package:brew_crew/Models/menu_model.dart';
-import 'package:brew_crew/Services/brewdb.dart';
 import 'package:brew_crew/Templates/colors.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:provider/provider.dart';

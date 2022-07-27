@@ -2,12 +2,15 @@ class BrewModel {
   final String name;
   final bool barista;
   final String brew;
-  final String size;
-  BrewModel(
-      {required this.name,
-      required this.barista,
-      required this.brew,
-      required this.size});
+  final int size;
+  final List<double> cost;
+  BrewModel({
+    required this.name,
+    required this.barista,
+    required this.brew,
+    required this.size,
+    required this.cost,
+  });
 }
 
 class UserModelSet extends BrewModel {
@@ -17,6 +20,8 @@ class UserModelSet extends BrewModel {
       required barista,
       required brew,
       required size,
+      required price,
       required this.uid})
-      : super(name: name, barista: barista, brew: brew, size: size);
+      : super(
+            name: name, barista: barista, brew: brew, size: size, cost: price);
 }

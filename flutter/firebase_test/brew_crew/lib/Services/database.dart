@@ -19,7 +19,8 @@ class DatabaseService {
         name: each.get('name') ?? '',
         barista: each.get('barista') ?? false,
         brew: each.get('brew') ?? '',
-        size: each.get('size') ?? '',
+        size: each.get('size') ?? 0,
+        cost: each.get('price') ?? [],
       );
     }).toList();
   }
@@ -43,20 +44,22 @@ class DatabaseService {
       name: snapshot.get("name") ?? "New Member",
       barista: snapshot.get("barista") ?? false,
       brew: snapshot.get("brew") ?? "",
-      size: snapshot.get("size") ?? "",
+      size: snapshot.get("size") ?? 0,
+      cost: snapshot.get('price') ?? [],
     );
   }
 
 //---------------------------------------
 
   Future updateUserData(
-      String name, bool barista, String brew, String size) async {
+      String name, bool barista, String brew, int size, List cost) async {
     try {
       return await brewCollection.doc(uid).set({
         'name': name,
         'barista': barista,
         'brew': brew,
         'size': size,
+        'cost': cost,
       });
     } catch (e) {
       if (kDebugMode) {

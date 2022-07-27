@@ -17,7 +17,7 @@ class DetailPage extends StatefulWidget {
 
 class _DetailPageState extends State<DetailPage> {
   int _current = 1;
-  List<String> _images = [
+  final List<String> _images = [
     "assets/coffee.jpg",
     "assets/coffee1.jpeg",
     "assets/coffee2.jpeg",
@@ -34,7 +34,6 @@ class _DetailPageState extends State<DetailPage> {
   Widget build(BuildContext context) {
     Map menuData = ModalRoute.of(context)?.settings.arguments as Map;
     UserModel? user = Provider.of(context);
-
     String imagePath = (_images.toList()..shuffle()).first;
     return StreamBuilder<BrewModel>(
         stream: DatabaseService(uid: user!.uid).brewStreamByUid,
@@ -86,7 +85,7 @@ class _DetailPageState extends State<DetailPage> {
                       width: deviceWidth,
                       height: deviceHeight * 4 / 7 + 30,
                       //for content spacing
-                      padding: const EdgeInsets.fromLTRB(30, 20, 30, 0),
+                      padding: const EdgeInsets.fromLTRB(30, 30, 30, 0),
                       decoration: BoxDecoration(
                         color: customGreyColor,
                         borderRadius: const BorderRadius.vertical(
@@ -114,7 +113,7 @@ class _DetailPageState extends State<DetailPage> {
                                 ),
                                 const SizedBox(width: 20),
                                 Text(
-                                  "\$ ${menuData['price'].toString()}",
+                                  "\$ ${menuData['price']}",
                                   style: TextStyle(
                                     fontSize: 30,
                                     color: coffeeColor,
@@ -188,10 +187,12 @@ class _DetailPageState extends State<DetailPage> {
                                   onTap: () async {
                                     await DatabaseService(uid: user.uid)
                                         .updateUserData(
-                                            userData!.name,
-                                            userData.barista,
-                                            menuData['name'],
-                                            _current.toString());
+                                      userData!.name,
+                                      userData.barista,
+                                      menuData['name'],
+                                      _current,
+                                      userData.cost,
+                                    );
                                   },
                                   child: Container(
                                     alignment: Alignment.bottomCenter,

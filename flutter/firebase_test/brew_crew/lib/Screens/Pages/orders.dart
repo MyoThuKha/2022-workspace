@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:brew_crew/Models/brew_model.dart';
 import 'package:brew_crew/Models/menu_model.dart';
 import 'package:brew_crew/Models/user_model.dart';
@@ -96,7 +94,7 @@ class _OrderPageState extends State<OrderPage> {
                                   ),
                                   const SizedBox(height: 15),
                                   Text(
-                                    userData.size,
+                                    "${userData.size}",
                                     style: const TextStyle(
                                       fontSize: 17,
                                     ),
@@ -127,7 +125,7 @@ class _OrderPageState extends State<OrderPage> {
                               ),
                             ),
                             Text(
-                              "$cost",
+                              "${cost + (2 * (userData.size - 1))}",
                               style: TextStyle(
                                 fontSize: 40,
                                 fontWeight: FontWeight.w400,
