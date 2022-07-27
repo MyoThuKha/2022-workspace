@@ -34,6 +34,7 @@ class _SettingsState extends State<Settings> {
     return StreamBuilder<BrewModel>(
       stream: DatabaseService(uid: user.uid).brewStreamByUid,
       builder: (context, snapshot) {
+        if (snapshot.hasError) Text("${snapshot.error}");
         if (snapshot.hasData) {
           BrewModel? userData = snapshot.data;
           return Scaffold(
@@ -144,6 +145,7 @@ class _SettingsState extends State<Settings> {
                                         "barista": userData.barista,
                                         "brew": userData.brew,
                                         "size": userData.size,
+                                        "cost": userData.cost,
                                       });
                                 },
                                 child: Container(

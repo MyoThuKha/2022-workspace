@@ -28,7 +28,8 @@ class _UpdatePageState extends State<UpdatePage> {
   Widget build(BuildContext context) {
     Map userData = ModalRoute.of(context)?.settings.arguments as Map;
     userName = userName == "" ? userData['name'] : userName;
-
+    // print(
+    //     "${userData['barista']}, ${userData['brew']}, ${userData['size']}, ${userData['cost']}");
     return GestureDetector(
       onTap: (() {
         FocusScopeNode currentFocus = FocusScope.of(context);
@@ -122,7 +123,7 @@ class _UpdatePageState extends State<UpdatePage> {
                                   .updateUserData(
                                 userName,
                                 userData['barista'],
-                                userData['brew'] ?? "",
+                                userData['brew'],
                                 userData['size'],
                                 userData['cost'],
                               );

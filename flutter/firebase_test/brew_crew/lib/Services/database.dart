@@ -20,7 +20,7 @@ class DatabaseService {
         barista: each.get('barista') ?? false,
         brew: each.get('brew') ?? '',
         size: each.get('size') ?? 0,
-        cost: each.get('price') ?? [],
+        cost: each.get('cost') ?? [],
       );
     }).toList();
   }
@@ -45,7 +45,7 @@ class DatabaseService {
       barista: snapshot.get("barista") ?? false,
       brew: snapshot.get("brew") ?? "",
       size: snapshot.get("size") ?? 0,
-      cost: snapshot.get('price') ?? [],
+      cost: snapshot.get("cost") ?? [],
     );
   }
 

@@ -2,6 +2,7 @@ import 'package:brew_crew/Models/menu_model.dart';
 import 'package:brew_crew/Screens/Pages/coffee.dart';
 import 'package:brew_crew/Screens/Pages/orders.dart';
 import 'package:brew_crew/Screens/Pages/dessert.dart';
+import 'package:brew_crew/Services/auth.dart';
 import 'package:brew_crew/Services/brewdb.dart';
 import 'package:brew_crew/Templates/colors.dart';
 import 'package:brew_crew/Templates/constants.dart';

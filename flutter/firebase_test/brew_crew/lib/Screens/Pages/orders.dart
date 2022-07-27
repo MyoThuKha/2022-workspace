@@ -1,5 +1,4 @@
 import 'package:brew_crew/Models/brew_model.dart';
-import 'package:brew_crew/Models/menu_model.dart';
 import 'package:brew_crew/Models/user_model.dart';
 import 'package:brew_crew/Services/database.dart';
 import 'package:brew_crew/Templates/colors.dart';
@@ -19,7 +18,6 @@ class _OrderPageState extends State<OrderPage> {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<UserModel?>(context);
-    final menus = Provider.of<List<MenuModel>?>(context);
     return StreamBuilder<BrewModel?>(
         stream: DatabaseService(uid: user!.uid).brewStreamByUid,
         initialData: null,
@@ -76,7 +74,15 @@ class _OrderPageState extends State<OrderPage> {
                                 ),
                               ),
                               IconButton(
-                                  onPressed: () {},
+                                  onPressed: () async {
+                                    await DatabaseService(uid: user.uid)
+                                        .updateUserData(
+                                            userData.name,
+                                            userData.barista,
+                                            "",
+                                            0,
+                                            [0, userData.cost[1]]);
+                                  },
                                   icon: const Icon(CupertinoIcons.trash)),
                             ],
                           ),
