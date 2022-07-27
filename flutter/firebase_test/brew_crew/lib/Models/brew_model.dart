@@ -3,7 +3,7 @@ class BrewModel {
   final bool barista;
   final String brew;
   final int size;
-  final List<double> cost;
+  final List cost;
   BrewModel({
     required this.name,
     required this.barista,
