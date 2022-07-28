@@ -38,7 +38,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return StreamProvider<List<MenuModel>?>.value(
-      initialData: null,
+      initialData: [],
       value: BrewdatabaseService(brew: '').menuStream,
       catchError: (_, __) {
         return null;
