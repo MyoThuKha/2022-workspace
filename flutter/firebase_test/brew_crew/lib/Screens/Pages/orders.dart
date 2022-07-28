@@ -127,7 +127,9 @@ class _OrderPageState extends State<OrderPage> {
                         ),
                       ),
                       Text(
-                        "${userData.cost[0] + userData.cost[1] + (2 * (userData.size - 1))}",
+                        (userData.brew.isEmpty)
+                            ? "${userData.cost[0] + userData.cost[1]}"
+                            : "${userData.cost[0] + userData.cost[1] + (2 * (userData.size - 1))}",
                         style: TextStyle(
                           fontSize: 40,
                           fontWeight: FontWeight.w400,
