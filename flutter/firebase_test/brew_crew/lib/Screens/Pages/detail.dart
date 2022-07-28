@@ -16,7 +16,6 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
-  int _current = 1;
   final List<String> _images = [
     "assets/coffee.jpg",
     "assets/coffee1.jpeg",
@@ -28,13 +27,22 @@ class _DetailPageState extends State<DetailPage> {
     "assets/coffee7.jpeg",
     "assets/coffee8.jpeg",
   ];
+  int _current = 1;
+  bool _orderNotify = false;
+
+  Future<void> order(String id, String name, bool barista, String brew,
+      int size, List cost) async {
+    await DatabaseService(uid: id)
+        .updateUserData(name, barista, brew, size, cost);
+  }
 
   bool isFav = false;
   @override
   Widget build(BuildContext context) {
     Map menuData = ModalRoute.of(context)?.settings.arguments as Map;
     UserModel? user = Provider.of(context);
-    String imagePath = (_images.toList()..shuffle()).first;
+    // String imagePath = (_images.toList()..shuffle()).first;
+    String imagePath = _images[8];
     return StreamBuilder<BrewModel>(
         stream: DatabaseService(uid: user!.uid).brewStreamByUid,
         builder: (context, snapshot) {
@@ -80,6 +88,34 @@ class _DetailPageState extends State<DetailPage> {
                             isFav ? Icons.favorite : Icons.favorite_border,
                             color: isFav ? Colors.red : Colors.white)),
                   ),
+
+                  //Order notification
+                  Positioned(
+                    top: 0,
+                    child: _orderNotify
+                        ? Container(
+                            width: deviceWidth,
+                            height: 150,
+                            padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
+                            decoration: BoxDecoration(
+                              color: customGreyColor,
+                              borderRadius: const BorderRadius.vertical(
+                                  bottom: Radius.circular(30)),
+                            ),
+                            child: Center(
+                              child: Text(
+                                "Added to orders",
+                                style: TextStyle(
+                                  color: coffeeColor,
+                                  fontSize: 30,
+                                ),
+                              ),
+                            ),
+                          )
+                        : const SizedBox(),
+                  ),
+
+                  //Body
                   Positioned(
                     top: deviceHeight * 3 / 7 - 30,
                     child: Container(
@@ -186,14 +222,22 @@ class _DetailPageState extends State<DetailPage> {
                                 child: InkWell(
                                   splashColor: Colors.grey,
                                   onTap: () async {
-                                    await DatabaseService(uid: user.uid)
-                                        .updateUserData(
+                                    await order(
+                                      user.uid,
                                       userData!.name,
                                       userData.barista,
                                       menuData['name'],
                                       _current,
                                       [menuData['price'], userData.cost[1]],
                                     );
+                                    setState(() {
+                                      _orderNotify = true;
+                                    });
+                                    await Future.delayed(
+                                        const Duration(milliseconds: 1000));
+                                    setState(() {
+                                      _orderNotify = false;
+                                    });
                                   },
                                   child: Container(
                                     alignment: Alignment.bottomCenter,

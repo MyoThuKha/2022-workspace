@@ -2,6 +2,7 @@ import 'package:brew_crew/Models/brew_model.dart';
 import 'package:brew_crew/Models/user_model.dart';
 import 'package:brew_crew/Services/database.dart';
 import 'package:brew_crew/Templates/colors.dart';
+import 'package:brew_crew/Templates/constants.dart';
 import 'package:brew_crew/Templates/load.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -82,11 +83,12 @@ class _OrderPageState extends State<OrderPage> {
                                           onPressed: () async {
                                             await DatabaseService(uid: user.uid)
                                                 .updateUserData(
-                                                    userData.name,
-                                                    userData.barista,
-                                                    "",
-                                                    0,
-                                                    [0, userData.cost[1]]);
+                                              userData.name,
+                                              userData.barista,
+                                              "",
+                                              0,
+                                              [0, userData.cost[1]],
+                                            );
                                           },
                                           icon:
                                               const Icon(CupertinoIcons.trash)),
@@ -119,11 +121,13 @@ class _OrderPageState extends State<OrderPage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      const Text(
+                      Text(
                         "Total : ",
                         style: TextStyle(
                           fontSize: 40,
-                          fontWeight: FontWeight.w400,
+                          color: coffeeColor,
+                          letterSpacing: 1,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                       Text(
