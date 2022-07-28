@@ -192,7 +192,7 @@ class _DetailPageState extends State<DetailPage> {
                                       userData.barista,
                                       menuData['name'],
                                       _current,
-                                      userData.cost,
+                                      [menuData['price'], userData.cost[1]],
                                     );
                                   },
                                   child: Container(
