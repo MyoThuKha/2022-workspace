@@ -13,6 +13,7 @@ class LoadingPage extends StatelessWidget {
       backgroundColor: coffeeColor,
       appBar: AppBar(
         toolbarHeight: deviceHeight * 15 / 64,
+        automaticallyImplyLeading: false,
         title: Text(
           text,
           style: const TextStyle(

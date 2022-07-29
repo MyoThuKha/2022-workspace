@@ -120,21 +120,21 @@ class _DetailPageState extends State<DetailPage> {
                   ),
 
                   //Body
-                  _orderLoading
-                      ? loadingWidget()
-                      : Positioned(
-                          top: deviceHeight * 3 / 7 - 30,
-                          child: Container(
-                            width: deviceWidth,
-                            height: deviceHeight * 4 / 7 + 30,
-                            //for content spacing
-                            padding: const EdgeInsets.fromLTRB(30, 30, 30, 0),
-                            decoration: BoxDecoration(
-                              color: customGreyColor,
-                              borderRadius: const BorderRadius.vertical(
-                                  top: Radius.circular(30)),
-                            ),
-                            child: SingleChildScrollView(
+                  Positioned(
+                    top: deviceHeight * 3 / 7 - 30,
+                    child: Container(
+                      width: deviceWidth,
+                      height: deviceHeight * 4 / 7 + 30,
+                      //for content spacing
+                      padding: const EdgeInsets.fromLTRB(30, 30, 30, 0),
+                      decoration: BoxDecoration(
+                        color: customGreyColor,
+                        borderRadius: const BorderRadius.vertical(
+                            top: Radius.circular(30)),
+                      ),
+                      child: _orderLoading
+                          ? loadingWidget()
+                          : SingleChildScrollView(
                               child: Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -227,7 +227,7 @@ class _DetailPageState extends State<DetailPage> {
                                   const SizedBox(height: 20),
                                   //order buttton
                                   ClipRRect(
-                                    borderRadius: BorderRadius.circular(30),
+                                    borderRadius: BorderRadius.circular(20),
                                     child: Material(
                                       color: coffeeColor,
                                       child: InkWell(
@@ -248,8 +248,8 @@ class _DetailPageState extends State<DetailPage> {
                                             ],
                                           );
                                           setState(() {
-                                            _orderNotify = true;
                                             _orderLoading = false;
+                                            _orderNotify = true;
                                           });
                                           await Future.delayed(const Duration(
                                               milliseconds: 1000));
@@ -262,8 +262,8 @@ class _DetailPageState extends State<DetailPage> {
                                           width: double.maxFinite,
                                           height: 65,
                                           // decoration: BoxDecoration(
-                                          // color: Colors.orange,
-                                          // borderRadius: BorderRadius.circular(30),
+                                          //   // color: Colors.orange,
+                                          //   // borderRadius: BorderRadius.circular(30),
                                           // ),
                                           child: const Center(
                                             child: Text(
@@ -281,8 +281,8 @@ class _DetailPageState extends State<DetailPage> {
                                 ],
                               ),
                             ),
-                          ),
-                        ),
+                    ),
+                  ),
                 ],
               ),
             );
@@ -292,7 +292,7 @@ class _DetailPageState extends State<DetailPage> {
         });
   }
 
-  //custom buttom for size
+  //custom buttom for size options
   Widget appButton(int id) {
     return GestureDetector(
       onTap: () {
