@@ -94,8 +94,9 @@ class _DetailPageState extends State<DetailPage> {
                     top: 0,
                     child: _orderNotify
                         ? Container(
-                            width: deviceWidth,
+                            width: deviceWidth - 100,
                             height: 150,
+                            margin: const EdgeInsets.symmetric(horizontal: 50),
                             padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
                             decoration: BoxDecoration(
                               color: customGreyColor,
@@ -108,6 +109,7 @@ class _DetailPageState extends State<DetailPage> {
                                 style: TextStyle(
                                   color: coffeeColor,
                                   fontSize: 30,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ),
