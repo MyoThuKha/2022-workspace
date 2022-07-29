@@ -16,7 +16,6 @@ class _CoffeeListState extends State<CoffeeList> {
   Widget build(BuildContext context) {
     //need refector
     final menuData = Provider.of<List<MenuModel>?>(context);
-    // if (snapshot.hasError) return Text('error ${snapshot.error}');
     if (menuData == null) {
       return Center(
         child: Container(
