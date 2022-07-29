@@ -3,6 +3,7 @@ import 'package:brew_crew/Models/user_model.dart';
 import 'package:brew_crew/Services/database.dart';
 import 'package:brew_crew/Templates/colors.dart';
 import 'package:brew_crew/Templates/constants.dart';
+import 'package:brew_crew/Templates/load.dart';
 import 'package:brew_crew/Templates/loading.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -29,6 +30,7 @@ class _DetailPageState extends State<DetailPage> {
   ];
   int _current = 1;
   bool _orderNotify = false;
+  bool _orderLoading = false;
 
   Future<void> order(String id, String name, bool barista, String brew,
       int size, List cost) async {
@@ -118,154 +120,169 @@ class _DetailPageState extends State<DetailPage> {
                   ),
 
                   //Body
-                  Positioned(
-                    top: deviceHeight * 3 / 7 - 30,
-                    child: Container(
-                      width: deviceWidth,
-                      height: deviceHeight * 4 / 7 + 30,
-                      //for content spacing
-                      padding: const EdgeInsets.fromLTRB(30, 30, 30, 0),
-                      decoration: BoxDecoration(
-                        color: customGreyColor,
-                        borderRadius: const BorderRadius.vertical(
-                            top: Radius.circular(30)),
-                      ),
-                      child: SingleChildScrollView(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            //main header
-
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                Flexible(
-                                  child: Text(
-                                    menuData['name'],
-                                    style: const TextStyle(
-                                      fontSize: 38,
-                                      letterSpacing: 1,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(width: 20),
-                                Text(
-                                  "\$ ${menuData['price']}",
-                                  style: TextStyle(
-                                    fontSize: 30,
-                                    color: coffeeColor,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ],
+                  _orderLoading
+                      ? loadingWidget()
+                      : Positioned(
+                          top: deviceHeight * 3 / 7 - 30,
+                          child: Container(
+                            width: deviceWidth,
+                            height: deviceHeight * 4 / 7 + 30,
+                            //for content spacing
+                            padding: const EdgeInsets.fromLTRB(30, 30, 30, 0),
+                            decoration: BoxDecoration(
+                              color: customGreyColor,
+                              borderRadius: const BorderRadius.vertical(
+                                  top: Radius.circular(30)),
                             ),
-                            const SizedBox(height: 20),
+                            child: SingleChildScrollView(
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  //main header
 
-                            //how many size
-
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  "Size Options",
-                                  style: TextStyle(
-                                    fontSize: 25,
-                                    letterSpacing: 1,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                                const SizedBox(height: 20),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: <Widget>[
-                                    appButton(1),
-                                    const SizedBox(width: 15),
-                                    appButton(2),
-                                    const SizedBox(width: 15),
-                                    appButton(3),
-                                  ],
-                                ),
-                              ],
-                            ),
-
-                            const SizedBox(height: 20),
-                            //Description section
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  "Description",
-                                  style: TextStyle(
-                                    fontSize: 30,
-                                    letterSpacing: 1,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                                const SizedBox(height: 10),
-                                Text(
-                                  menuData['about'],
-                                  style: TextStyle(
-                                    fontSize: 17,
-                                    letterSpacing: 1,
-                                    color: Colors.grey[700],
-                                  ),
-                                ),
-                              ],
-                            ),
-
-                            const SizedBox(height: 20),
-                            //order buttton
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(30),
-                              child: Material(
-                                color: coffeeColor,
-                                child: InkWell(
-                                  splashColor: Colors.grey,
-                                  onTap: () async {
-                                    await order(
-                                      user.uid,
-                                      userData!.name,
-                                      userData.barista,
-                                      menuData['name'],
-                                      _current,
-                                      [menuData['price'], userData.cost[1]],
-                                    );
-                                    setState(() {
-                                      _orderNotify = true;
-                                    });
-                                    await Future.delayed(
-                                        const Duration(milliseconds: 1000));
-                                    setState(() {
-                                      _orderNotify = false;
-                                    });
-                                  },
-                                  child: Container(
-                                    alignment: Alignment.bottomCenter,
-                                    width: double.maxFinite,
-                                    height: 65,
-                                    // decoration: BoxDecoration(
-                                    // color: Colors.orange,
-                                    // borderRadius: BorderRadius.circular(30),
-                                    // ),
-                                    child: const Center(
-                                      child: Text(
-                                        "Order",
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: <Widget>[
+                                      Flexible(
+                                        child: Text(
+                                          menuData['name'],
+                                          style: const TextStyle(
+                                            fontSize: 38,
+                                            letterSpacing: 1,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(width: 20),
+                                      Text(
+                                        "\$ ${menuData['price']}",
                                         style: TextStyle(
-                                            color: Colors.white, fontSize: 20),
+                                          fontSize: 30,
+                                          color: coffeeColor,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 20),
+
+                                  //how many size
+
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      const Text(
+                                        "Size Options",
+                                        style: TextStyle(
+                                          fontSize: 25,
+                                          letterSpacing: 1,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 20),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: <Widget>[
+                                          appButton(1),
+                                          const SizedBox(width: 15),
+                                          appButton(2),
+                                          const SizedBox(width: 15),
+                                          appButton(3),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+
+                                  const SizedBox(height: 20),
+                                  //Description section
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      const Text(
+                                        "Description",
+                                        style: TextStyle(
+                                          fontSize: 30,
+                                          letterSpacing: 1,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 10),
+                                      Text(
+                                        menuData['about'],
+                                        style: TextStyle(
+                                          fontSize: 17,
+                                          letterSpacing: 1,
+                                          color: Colors.grey[700],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+
+                                  const SizedBox(height: 20),
+                                  //order buttton
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(30),
+                                    child: Material(
+                                      color: coffeeColor,
+                                      child: InkWell(
+                                        splashColor: Colors.grey,
+                                        onTap: () async {
+                                          setState(() {
+                                            _orderLoading = true;
+                                          });
+                                          await order(
+                                            user.uid,
+                                            userData!.name,
+                                            userData.barista,
+                                            menuData['name'],
+                                            _current,
+                                            [
+                                              menuData['price'],
+                                              userData.cost[1]
+                                            ],
+                                          );
+                                          setState(() {
+                                            _orderNotify = true;
+                                            _orderLoading = false;
+                                          });
+                                          await Future.delayed(const Duration(
+                                              milliseconds: 1000));
+                                          setState(() {
+                                            _orderNotify = false;
+                                          });
+                                        },
+                                        child: Container(
+                                          alignment: Alignment.bottomCenter,
+                                          width: double.maxFinite,
+                                          height: 65,
+                                          // decoration: BoxDecoration(
+                                          // color: Colors.orange,
+                                          // borderRadius: BorderRadius.circular(30),
+                                          // ),
+                                          child: const Center(
+                                            child: Text(
+                                              "Order",
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 20),
+                                            ),
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
+                                  const SizedBox(height: 20),
+                                ],
                               ),
                             ),
-                            const SizedBox(height: 20),
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
-                  ),
                 ],
               ),
             );
