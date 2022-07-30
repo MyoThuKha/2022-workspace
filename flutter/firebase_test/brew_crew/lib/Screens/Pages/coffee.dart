@@ -38,7 +38,7 @@ class _CoffeeListState extends State<CoffeeList> {
         shrinkWrap: true,
         itemCount: menuData.length,
         itemBuilder: (context, index) => Column(
-          children: [
+          children: <Widget>[
             //Coffee part
             GestureDetector(
               onTap: () {

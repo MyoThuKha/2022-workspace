@@ -4,8 +4,6 @@ import 'package:brew_crew/Templates/colors.dart';
 import 'package:brew_crew/Templates/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class Barista extends StatefulWidget {
   const Barista({Key? key}) : super(key: key);
