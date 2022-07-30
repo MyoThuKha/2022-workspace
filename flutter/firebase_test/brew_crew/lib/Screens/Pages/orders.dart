@@ -16,6 +16,7 @@ class OrderPage extends StatefulWidget {
 }
 
 class _OrderPageState extends State<OrderPage> {
+  List<String> sizeList = ['None', 'Small', 'Medium', 'Large'];
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<UserModel?>(context);
@@ -56,6 +57,11 @@ class _OrderPageState extends State<OrderPage> {
                                   decoration: BoxDecoration(
                                     color: coffeeColor,
                                     borderRadius: BorderRadius.circular(20),
+                                    // image: const DecorationImage(
+                                    //   image:
+                                    //       AssetImage("assets/coffee_cup.png"),
+                                    //   fit: BoxFit.contain,
+                                    // ),
                                   ),
                                   child: Image.asset("assets/coffee_cup.png"),
                                 ),
@@ -101,17 +107,23 @@ class _OrderPageState extends State<OrderPage> {
                                       ],
                                     ),
                                     const SizedBox(height: 15),
-                                    Text(
-                                      "${userData.size}",
-                                      style: const TextStyle(
-                                        fontSize: 17,
-                                      ),
-                                    ),
-                                    Text(
-                                      "${userData.cost[0]}",
-                                      style: const TextStyle(
-                                        fontSize: 17,
-                                      ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        // Text(
+                                        //   "\$ ${userData.cost[0]}",
+                                        //   style: const TextStyle(
+                                        //     fontSize: 17,
+                                        //   ),
+                                        // ),
+                                        Text(
+                                          sizeList[userData.size],
+                                          style: const TextStyle(
+                                            fontSize: 17,
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ],
                                 ),
