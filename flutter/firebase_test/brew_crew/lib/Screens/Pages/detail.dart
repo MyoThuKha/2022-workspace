@@ -51,6 +51,7 @@ class _DetailPageState extends State<DetailPage> {
           if (snapshot.hasError) Text("${snapshot.error}");
           if (snapshot.hasData) {
             BrewModel? userData = snapshot.data;
+            List favList = userData!.favorite;
             return Scaffold(
               backgroundColor: customGreyColor,
               body: Stack(
@@ -81,10 +82,23 @@ class _DetailPageState extends State<DetailPage> {
                     top: 50,
                     right: 0,
                     child: IconButton(
-                        onPressed: () {
+                        onPressed: () async {
                           setState(() {
                             isFav = !isFav;
+
+                            isFav
+                                ? favList.add(menuData['name'])
+                                : favList.remove(menuData['name']);
                           });
+                          await order(
+                            user.uid,
+                            userData.name,
+                            userData.barista,
+                            userData.brew,
+                            userData.size,
+                            userData.cost,
+                            favList,
+                          );
                         },
                         icon: Icon(
                             isFav ? Icons.favorite : Icons.favorite_border,
@@ -238,7 +252,7 @@ class _DetailPageState extends State<DetailPage> {
                                           });
                                           await order(
                                             user.uid,
-                                            userData!.name,
+                                            userData.name,
                                             userData.barista,
                                             menuData['name'],
                                             _current,
