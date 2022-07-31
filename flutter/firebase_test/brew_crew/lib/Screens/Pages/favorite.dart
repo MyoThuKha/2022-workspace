@@ -1,8 +1,6 @@
 import 'package:brew_crew/Models/brew_model.dart';
 import 'package:brew_crew/Models/menu_model.dart';
 import 'package:brew_crew/Templates/colors.dart';
-import 'package:brew_crew/Templates/load.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -83,24 +81,29 @@ class _FavoriteState extends State<Favorite> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Flexible(
-                                          child: Text(
-                                            menuData[index].name,
-                                            style: const TextStyle(
-                                              fontSize: 25,
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 10),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Flexible(
+                                            child: Text(
+                                              menuData[index].name,
+                                              style: const TextStyle(
+                                                fontSize: 25,
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                        // IconButton(
-                                        //   onPressed: () {},
-                                        //   icon: const Icon(CupertinoIcons
-                                        //       .line_horizontal_3_decrease),
-                                        // ),
-                                      ],
+                                          IconButton(
+                                            onPressed: () {},
+                                            icon: Icon(
+                                              Icons.coffee_rounded,
+                                              color: coffeeColor,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                     const SizedBox(height: 15),
                                     Text(

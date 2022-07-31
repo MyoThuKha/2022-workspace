@@ -42,8 +42,9 @@ class _OrderPageState extends State<OrderPage> {
                 children: <Widget>[
                   (userData.brew.isEmpty)
                       ? const SizedBox()
-                      : SizedBox(
+                      : Container(
                           height: 150,
+                          margin: const EdgeInsets.symmetric(horizontal: 10),
                           child: Row(
                             children: <Widget>[
                               Expanded(
@@ -71,40 +72,37 @@ class _OrderPageState extends State<OrderPage> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
-                                    // Align(
-                                    //   alignment: Alignment.topRight,
-                                    //   child: IconButton(
-                                    //       onPressed: () {},
-                                    //       icon: const Icon(CupertinoIcons.trash)),
-                                    // ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Flexible(
-                                          child: Text(
-                                            userData.brew,
-                                            style: const TextStyle(
-                                              fontSize: 25,
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 10),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Flexible(
+                                            child: Text(
+                                              userData.brew,
+                                              style: const TextStyle(
+                                                fontSize: 25,
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                        IconButton(
-                                            onPressed: () async {
-                                              await DatabaseService(
-                                                      uid: user!.uid)
-                                                  .updateUserData(
-                                                userData.name,
-                                                userData.barista,
-                                                "",
-                                                0,
-                                                [0, userData.cost[1]],
-                                                userData.favorite,
-                                              );
-                                            },
-                                            icon: const Icon(
-                                                CupertinoIcons.trash)),
-                                      ],
+                                          IconButton(
+                                              onPressed: () async {
+                                                await DatabaseService(
+                                                        uid: user!.uid)
+                                                    .updateUserData(
+                                                  userData.name,
+                                                  userData.barista,
+                                                  "",
+                                                  0,
+                                                  [0, userData.cost[1]],
+                                                  userData.favorite,
+                                                );
+                                              },
+                                              icon: const Icon(
+                                                  CupertinoIcons.trash)),
+                                        ],
+                                      ),
                                     ),
                                     const SizedBox(height: 15),
                                     Row(
