@@ -33,9 +33,9 @@ class _DetailPageState extends State<DetailPage> {
   bool _orderLoading = false;
 
   Future<void> order(String id, String name, bool barista, String brew,
-      int size, List cost) async {
+      int size, List cost, List fav) async {
     await DatabaseService(uid: id)
-        .updateUserData(name, barista, brew, size, cost);
+        .updateUserData(name, barista, brew, size, cost, fav);
   }
 
   bool isFav = false;
@@ -246,6 +246,7 @@ class _DetailPageState extends State<DetailPage> {
                                               menuData['price'],
                                               userData.cost[1]
                                             ],
+                                            userData.favorite,
                                           );
                                           setState(() {
                                             _orderLoading = false;

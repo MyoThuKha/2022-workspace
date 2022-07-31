@@ -21,6 +21,7 @@ class DatabaseService {
         brew: each.get('brew') ?? '',
         size: each.get('size') ?? 0,
         cost: each.get('cost') ?? [],
+        favorite: each.get('favorite') ?? [],
       );
     }).toList();
   }
@@ -46,13 +47,14 @@ class DatabaseService {
       brew: snapshot.get("brew") ?? "",
       size: snapshot.get("size") ?? 0,
       cost: snapshot.get("cost") ?? [],
+      favorite: snapshot.get("favorite") ?? [],
     );
   }
 
 //---------------------------------------
 
-  Future updateUserData(
-      String name, bool barista, String brew, int size, List cost) async {
+  Future updateUserData(String name, bool barista, String brew, int size,
+      List cost, List favorite) async {
     try {
       return await brewCollection.doc(uid).set({
         'name': name,
@@ -60,6 +62,7 @@ class DatabaseService {
         'brew': brew,
         'size': size,
         'cost': cost,
+        'favorite': favorite,
       });
     } catch (e) {
       if (kDebugMode) {

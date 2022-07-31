@@ -2,7 +2,6 @@ import 'package:brew_crew/Models/brew_model.dart';
 import 'package:brew_crew/Models/user_model.dart';
 import 'package:brew_crew/Services/database.dart';
 import 'package:brew_crew/Templates/colors.dart';
-import 'package:brew_crew/Templates/constants.dart';
 import 'package:brew_crew/Templates/load.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -100,6 +99,7 @@ class _OrderPageState extends State<OrderPage> {
                                                 "",
                                                 0,
                                                 [0, userData.cost[1]],
+                                                userData.favorite,
                                               );
                                             },
                                             icon: const Icon(

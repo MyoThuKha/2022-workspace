@@ -146,6 +146,7 @@ class _SettingsState extends State<Settings> {
                                         "brew": userData.brew,
                                         "size": userData.size,
                                         "cost": userData.cost,
+                                        "favorite": userData.favorite,
                                       });
                                 },
                                 child: Container(
