@@ -38,7 +38,6 @@ class _DetailPageState extends State<DetailPage> {
         .updateUserData(name, barista, brew, size, cost, fav);
   }
 
-  bool isFav = false;
   @override
   Widget build(BuildContext context) {
     Map menuData = ModalRoute.of(context)?.settings.arguments as Map;
@@ -52,6 +51,7 @@ class _DetailPageState extends State<DetailPage> {
           if (snapshot.hasData) {
             BrewModel? userData = snapshot.data;
             List favList = userData!.favorite;
+            bool isFav = favList.contains(menuData['name']) ? true : false;
             return Scaffold(
               backgroundColor: customGreyColor,
               body: Stack(

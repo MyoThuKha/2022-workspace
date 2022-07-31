@@ -1,15 +1,13 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
-class Dessert extends StatefulWidget {
-  const Dessert({Key? key}) : super(key: key);
+class Favorite extends StatefulWidget {
+  const Favorite({Key? key}) : super(key: key);
 
   @override
-  State<Dessert> createState() => _DessertState();
+  State<Favorite> createState() => _FavoriteState();
 }
 
-class _DessertState extends State<Dessert> {
+class _FavoriteState extends State<Favorite> {
   @override
   Widget build(BuildContext context) {
     return Container(

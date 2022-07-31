@@ -3,7 +3,7 @@ import 'package:brew_crew/Models/menu_model.dart';
 import 'package:brew_crew/Models/user_model.dart';
 import 'package:brew_crew/Screens/Pages/coffee.dart';
 import 'package:brew_crew/Screens/Pages/orders.dart';
-import 'package:brew_crew/Screens/Pages/dessert.dart';
+import 'package:brew_crew/Screens/Pages/favorite.dart';
 import 'package:brew_crew/Services/auth.dart';
 import 'package:brew_crew/Services/brewdb.dart';
 import 'package:brew_crew/Services/database.dart';
@@ -178,7 +178,7 @@ class _HomePageState extends State<HomePage> {
                   (_activeId == 1)
                       ? const CoffeeList()
                       : (_activeId == 2)
-                          ? const Dessert()
+                          ? const Favorite()
                           : const OrderPage(),
                 ],
               ),
