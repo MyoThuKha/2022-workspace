@@ -254,10 +254,11 @@ class _DetailPageState extends State<DetailPage> {
                                             _orderLoading = true;
                                             orders!.add({
                                               "name": menuData['name'],
-                                              "price": menuData['price'],
+                                              "price": _price,
                                               "size": _current
                                             });
                                           });
+                                          //order update
                                           await update(
                                             user.uid,
                                             userData.name,
