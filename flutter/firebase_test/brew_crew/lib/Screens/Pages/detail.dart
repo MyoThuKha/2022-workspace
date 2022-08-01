@@ -32,6 +32,8 @@ class _DetailPageState extends State<DetailPage> {
   bool _orderNotify = false;
   bool _orderLoading = false;
   List? orders;
+  double? _price;
+  double sizeCost = 2;
 
   Future<void> update(
       String id, String name, bool barista, List brew, List fav) async {
@@ -51,6 +53,7 @@ class _DetailPageState extends State<DetailPage> {
           if (snapshot.hasData) {
             BrewModel? userData = snapshot.data;
             orders = orders ?? userData!.brew;
+            _price = _price ?? menuData['price'];
             List favList = userData!.favorite;
             bool isFav = favList.contains(menuData['name']) ? true : false;
             return Scaffold(
@@ -172,7 +175,7 @@ class _DetailPageState extends State<DetailPage> {
                                       ),
                                       const SizedBox(width: 20),
                                       Text(
-                                        "\$ ${menuData['price']}",
+                                        "\$ $_price",
                                         style: TextStyle(
                                           fontSize: 30,
                                           color: coffeeColor,
@@ -202,11 +205,11 @@ class _DetailPageState extends State<DetailPage> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.start,
                                         children: <Widget>[
-                                          appButton(1),
+                                          appButton(1, menuData['price']),
                                           const SizedBox(width: 15),
-                                          appButton(2),
+                                          appButton(2, menuData['price']),
                                           const SizedBox(width: 15),
-                                          appButton(3),
+                                          appButton(3, menuData['price']),
                                         ],
                                       ),
                                     ],
@@ -308,11 +311,12 @@ class _DetailPageState extends State<DetailPage> {
   }
 
   //custom buttom for size options
-  Widget appButton(int id) {
+  Widget appButton(int id, double basePrice) {
     return GestureDetector(
       onTap: () {
         setState(() {
           _current = id;
+          _price = basePrice + (sizeCost * (_current - 1));
         });
       },
       child: Container(
