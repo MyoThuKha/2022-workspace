@@ -1,6 +1,7 @@
 import 'package:brew_crew/Models/brew_model.dart';
 import 'package:brew_crew/Models/menu_model.dart';
 import 'package:brew_crew/Templates/colors.dart';
+import 'package:brew_crew/Templates/load.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -16,7 +17,8 @@ class _FavoriteState extends State<Favorite> {
   Widget build(BuildContext context) {
     final userData = Provider.of<BrewModel?>(context);
     final menuData = Provider.of<List<MenuModel>>(context);
-    List favList = userData!.favorite;
+    if (userData == null) return loadingWidget();
+    List favList = userData.favorite;
 
     // : Container(
     //     child: Column(

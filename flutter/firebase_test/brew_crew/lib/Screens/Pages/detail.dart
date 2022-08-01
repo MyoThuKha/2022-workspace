@@ -31,11 +31,11 @@ class _DetailPageState extends State<DetailPage> {
   int _current = 1;
   bool _orderNotify = false;
   bool _orderLoading = false;
+  List? orders;
 
-  Future<void> order(String id, String name, bool barista, String brew,
-      int size, List cost, List fav) async {
-    await DatabaseService(uid: id)
-        .updateUserData(name, barista, brew, size, cost, fav);
+  Future<void> update(
+      String id, String name, bool barista, List brew, List fav) async {
+    await DatabaseService(uid: id).updateUserData(name, barista, brew, fav);
   }
 
   @override
@@ -50,6 +50,7 @@ class _DetailPageState extends State<DetailPage> {
           if (snapshot.hasError) Text("${snapshot.error}");
           if (snapshot.hasData) {
             BrewModel? userData = snapshot.data;
+            orders = orders ?? userData!.brew;
             List favList = userData!.favorite;
             bool isFav = favList.contains(menuData['name']) ? true : false;
             return Scaffold(
@@ -90,13 +91,12 @@ class _DetailPageState extends State<DetailPage> {
                                 ? favList.add(menuData['name'])
                                 : favList.remove(menuData['name']);
                           });
-                          await order(
+                          //favorite
+                          await update(
                             user.uid,
                             userData.name,
                             userData.barista,
                             userData.brew,
-                            userData.size,
-                            userData.cost,
                             favList,
                           );
                         },
@@ -249,17 +249,17 @@ class _DetailPageState extends State<DetailPage> {
                                         onTap: () async {
                                           setState(() {
                                             _orderLoading = true;
+                                            orders!.add([
+                                              menuData['name'],
+                                              menuData['price'],
+                                              _current
+                                            ]);
                                           });
-                                          await order(
+                                          await update(
                                             user.uid,
                                             userData.name,
                                             userData.barista,
-                                            menuData['name'],
-                                            _current,
-                                            [
-                                              menuData['price'],
-                                              userData.cost[1]
-                                            ],
+                                            orders!,
                                             userData.favorite,
                                           );
                                           setState(() {

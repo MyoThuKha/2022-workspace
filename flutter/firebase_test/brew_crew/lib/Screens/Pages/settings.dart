@@ -144,8 +144,6 @@ class _SettingsState extends State<Settings> {
                                         "name": userData.name,
                                         "barista": userData.barista,
                                         "brew": userData.brew,
-                                        "size": userData.size,
-                                        "cost": userData.cost,
                                         "favorite": userData.favorite,
                                       });
                                 },

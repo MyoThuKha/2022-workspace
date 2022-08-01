@@ -18,9 +18,9 @@ class DatabaseService {
       return BrewModel(
         name: each.get('name') ?? '',
         barista: each.get('barista') ?? false,
-        brew: each.get('brew') ?? '',
-        size: each.get('size') ?? 0,
-        cost: each.get('cost') ?? [],
+        brew: each.get('brew') ?? [],
+        // size: each.get('size') ?? 0,
+        // cost: each.get('cost') ?? [],
         favorite: each.get('favorite') ?? [],
       );
     }).toList();
@@ -44,24 +44,22 @@ class DatabaseService {
     return BrewModel(
       name: snapshot.get("name") ?? "New Member",
       barista: snapshot.get("barista") ?? false,
-      brew: snapshot.get("brew") ?? "",
-      size: snapshot.get("size") ?? 0,
-      cost: snapshot.get("cost") ?? [],
+      brew: snapshot.get("brew") ?? [],
+      // size: snapshot.get("size") ?? 0,
+      // cost: snapshot.get("cost") ?? [],
       favorite: snapshot.get("favorite") ?? [],
     );
   }
 
 //---------------------------------------
 
-  Future updateUserData(String name, bool barista, String brew, int size,
-      List cost, List favorite) async {
+  Future updateUserData(
+      String name, bool barista, List brew, List favorite) async {
     try {
       return await brewCollection.doc(uid).set({
         'name': name,
         'barista': barista,
         'brew': brew,
-        'size': size,
-        'cost': cost,
         'favorite': favorite,
       });
     } catch (e) {
