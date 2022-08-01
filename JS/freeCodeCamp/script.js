@@ -31,3 +31,20 @@ console.log(JSON.stringify(cue(num, 0)));
 console.log(isItTrue());
 console.log(switchCase(3));
 console.log(lessThan(3, 4));
+
+var arr = [];
+
+function addOdd(arr) {
+  for (var i = 1; i < 10; i += 2) {
+    arr.push(i);
+  }
+  return arr;
+}
+
+console.log(addOdd(arr));
+
+function iterateArray(arr) {
+  for (var i = 0; i < arr.length; i++) {
+    console.log(arr[i]);
+  }
+}
