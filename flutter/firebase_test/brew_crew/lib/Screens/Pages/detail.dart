@@ -249,11 +249,11 @@ class _DetailPageState extends State<DetailPage> {
                                         onTap: () async {
                                           setState(() {
                                             _orderLoading = true;
-                                            orders!.add([
-                                              menuData['name'],
-                                              menuData['price'],
-                                              _current
-                                            ]);
+                                            orders!.add({
+                                              "name": menuData['name'],
+                                              "price": menuData['price'],
+                                              "size": _current
+                                            });
                                           });
                                           await update(
                                             user.uid,
