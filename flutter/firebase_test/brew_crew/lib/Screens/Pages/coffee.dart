@@ -17,16 +17,19 @@ class _CoffeeListState extends State<CoffeeList> {
     //need refector
     final menuData = Provider.of<List<MenuModel>?>(context);
     if (menuData == null) {
-      return Center(
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.grey[300],
-            borderRadius: const BorderRadius.vertical(
-              top: Radius.circular(30),
+      return Expanded(
+        child: Center(
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.grey[300],
+              borderRadius: const BorderRadius.vertical(
+                top: Radius.circular(30),
+              ),
             ),
-          ),
-          child: Center(
-            child: LoadingAnimationWidget.inkDrop(color: coffeeColor, size: 50),
+            child: Center(
+              child:
+                  LoadingAnimationWidget.inkDrop(color: coffeeColor, size: 50),
+            ),
           ),
         ),
       );

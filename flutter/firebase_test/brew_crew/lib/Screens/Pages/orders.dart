@@ -22,7 +22,7 @@ class _OrderPageState extends State<OrderPage> {
   Widget build(BuildContext context) {
     final user = Provider.of<UserModel?>(context);
     final userData = Provider.of<BrewModel?>(context);
-    if (userData == null) return loadingWidget();
+    if (userData == null) return Expanded(child: loadingWidget());
     orders = orders ?? userData.brew;
 
     //Fixed with better algorithm(added price to db)

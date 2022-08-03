@@ -16,8 +16,8 @@ class _FavoriteState extends State<Favorite> {
   @override
   Widget build(BuildContext context) {
     final userData = Provider.of<BrewModel?>(context);
-    final menuData = Provider.of<List<MenuModel>>(context);
-    if (userData == null) return loadingWidget();
+    final menuData = Provider.of<List<MenuModel>?>(context);
+    if (userData == null) return Expanded(child: loadingWidget());
     List favList = userData.favorite;
 
     // : Container(
@@ -34,7 +34,7 @@ class _FavoriteState extends State<Favorite> {
       child: ListView.builder(
           scrollDirection: Axis.vertical,
           shrinkWrap: true,
-          itemCount: menuData.length,
+          itemCount: menuData!.length,
           itemBuilder: (context, index) {
             return !favList.contains(menuData[index].name)
                 ? const SizedBox()
