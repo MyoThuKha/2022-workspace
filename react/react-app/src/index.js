@@ -1,6 +1,12 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import "bootstrap/dist/css/bootstrap.css";
+import Counter from "./components/Counter.jsx";
 
-const element = <h1>Hello world</h1>;
-
-ReactDOM.render(element, document.getElementById("root"));
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <React.StrictMode>
+    <Counter />
+  </React.StrictMode>
+);
