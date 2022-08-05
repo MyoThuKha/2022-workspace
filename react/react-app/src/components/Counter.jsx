@@ -1,27 +1,31 @@
+//update state
 import React, { Component } from "react";
 
 class Counter extends Component {
   state = {
     count: 0,
-    tags: ["tag1", "tag2", "tag3"],
+    tags: [],
   };
 
   render() {
     let getBadgeClass = "badge m-2 bg-";
     getBadgeClass += this.state.count === 0 ? "warning" : "primary";
     return (
-      <React.Fragment>
+      <div>
         <span className={getBadgeClass}>{this.formatCount()}</span>
-        <button className="btn btn-secondary btn-sm">Increment</button>
-        <ul>
-          {this.state.tags.map((tag) => (
-            <li key={tag}>{tag}</li>
-          ))}
-        </ul>
-      </React.Fragment>
+        <button
+          onClick={this.handleIncrement}
+          className="btn btn-secondary m-2"
+        >
+          Increment
+        </button>
+      </div>
     );
   }
 
+  handleIncrement = () => {
+    this.setState({ count: this.state.count + 1 });
+  };
   formatCount() {
     const { count } = this.state;
     return count === 0 ? "Zero" : count;
