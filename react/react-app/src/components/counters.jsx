@@ -22,9 +22,10 @@ class Counters extends Component {
         {this.state.counters.map((each) => (
           <Counter
             key={each.id}
-            value={each.value}
             onDelete={this.handleDelete}
-            id={each.id}
+            counter={each}
+            // value={each.value}
+            // id={each.id}
           >
             {/* can be pass id={each.id} as data and adding h4 in counter  */}
             <h4>Title {each.id}</h4>
