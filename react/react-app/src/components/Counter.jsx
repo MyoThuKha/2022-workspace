@@ -11,6 +11,7 @@ class Counter extends Component {
     getBadgeClass += this.state.value === 0 ? "warning" : "primary";
     return (
       <div>
+        {this.props.children}
         <span className={getBadgeClass}>{this.formatCount()}</span>
         <button
           onClick={() => this.handleIncrement({ id: 1 })}
