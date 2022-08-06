@@ -6,7 +6,7 @@ class Counter extends Component {
   };
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     let getBadgeClass = "badge m-2 bg-";
     getBadgeClass += this.state.value === 0 ? "warning" : "primary";
     return (
@@ -19,14 +19,21 @@ class Counter extends Component {
         >
           Increment
         </button>
+        <button
+          onClick={() => this.props.onDelete(this.props.id)}
+          className="btn btn-warning m-2"
+        >
+          Delete
+        </button>
       </div>
     );
   }
 
   handleIncrement = (product) => {
-    console.log(product);
+    // console.log(product);
     this.setState({ value: this.state.value + 1 });
   };
+
   formatCount() {
     const { value: count } = this.state;
     return count === 0 ? "Zero" : count;
