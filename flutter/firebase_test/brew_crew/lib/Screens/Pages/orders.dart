@@ -17,13 +17,13 @@ class OrderPage extends StatefulWidget {
 class _OrderPageState extends State<OrderPage> {
   List<String> sizeList = ['None', 'Small', 'Medium', 'Large'];
   List? orders;
-  double total = 0;
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<UserModel?>(context);
     final userData = Provider.of<BrewModel?>(context);
     if (userData == null) return Expanded(child: loadingWidget());
     orders = orders ?? userData.brew;
+    print(orders);
 
     //Fixed with better algorithm(added price to db)
     return Expanded(
@@ -31,7 +31,7 @@ class _OrderPageState extends State<OrderPage> {
         itemCount: userData.brew.length + 1,
         itemBuilder: (context, index) {
           if (index <= userData.brew.length - 1) {
-            total = total + userData.brew[index]["price"];
+            double eachPrice = userData.brew[index]["price"];
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -81,16 +81,16 @@ class _OrderPageState extends State<OrderPage> {
                                   IconButton(
                                       onPressed: () async {
                                         setState(() {
-                                          total = total -
-                                              userData.brew[index]['price'];
                                           orders!.remove(userData.brew[index]);
                                         });
+
                                         await DatabaseService(uid: user!.uid)
                                             .updateUserData(
                                           userData.name,
                                           userData.barista,
                                           orders!,
                                           userData.favorite,
+                                          userData.total - eachPrice,
                                         );
                                       },
                                       icon: const Icon(CupertinoIcons.trash)),
@@ -145,7 +145,7 @@ class _OrderPageState extends State<OrderPage> {
                       // (userData.brew.isEmpty)
                       // ? "${userData.cost[0] + userData.cost[1]}"
                       // : "${userData.cost[0] + userData.cost[1] + (2 * (userData.size - 1))}",
-                      "$total \$",
+                      "${userData.total} \$",
                       style: TextStyle(
                         fontSize: 40,
                         fontWeight: FontWeight.w400,

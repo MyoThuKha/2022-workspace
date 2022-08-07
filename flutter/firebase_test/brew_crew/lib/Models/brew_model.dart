@@ -6,11 +6,13 @@ class BrewModel {
   // final List cost;
   final List brew;
   final List favorite;
+  final double total;
   BrewModel({
     required this.name,
     required this.barista,
     required this.brew,
     required this.favorite,
+    required this.total,
   });
 }
 

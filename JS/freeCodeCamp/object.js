@@ -29,3 +29,12 @@ function lookupObj(val) {
 }
 
 lookupObj("nodf");
+
+//es6
+class Vegetable {
+  constructor(name) {
+    this.name = name;
+  }
+}
+var carrot = new Vegetable("carrot");
+console.log(carrot.name);

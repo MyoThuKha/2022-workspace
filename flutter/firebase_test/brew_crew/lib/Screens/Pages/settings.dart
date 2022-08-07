@@ -145,6 +145,7 @@ class _SettingsState extends State<Settings> {
                                         "barista": userData.barista,
                                         "brew": userData.brew,
                                         "favorite": userData.favorite,
+                                        "total": userData.total,
                                       });
                                 },
                                 child: Container(

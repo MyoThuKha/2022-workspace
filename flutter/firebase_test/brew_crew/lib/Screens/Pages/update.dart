@@ -125,6 +125,7 @@ class _UpdatePageState extends State<UpdatePage> {
                                 userData['barista'],
                                 userData['brew'],
                                 userData['favorite'],
+                                userData['total'],
                               );
                               // print(userName);
                               setState(() {

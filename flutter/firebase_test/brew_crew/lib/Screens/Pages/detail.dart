@@ -35,9 +35,10 @@ class _DetailPageState extends State<DetailPage> {
   double? _price;
   double sizeCost = 2;
 
-  Future<void> update(
-      String id, String name, bool barista, List brew, List fav) async {
-    await DatabaseService(uid: id).updateUserData(name, barista, brew, fav);
+  Future<void> update(String id, String name, bool barista, List brew, List fav,
+      double total) async {
+    await DatabaseService(uid: id)
+        .updateUserData(name, barista, brew, fav, total);
   }
 
   @override
@@ -101,6 +102,7 @@ class _DetailPageState extends State<DetailPage> {
                             userData.barista,
                             userData.brew,
                             favList,
+                            userData.total,
                           );
                         },
                         icon: Icon(
@@ -265,6 +267,7 @@ class _DetailPageState extends State<DetailPage> {
                                             userData.barista,
                                             orders!,
                                             userData.favorite,
+                                            userData.total + _price!,
                                           );
                                           setState(() {
                                             _orderLoading = false;

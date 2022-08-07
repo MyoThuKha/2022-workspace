@@ -43,13 +43,16 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final user = Provider.of<UserModel>(context);
     return StreamProvider<List<MenuModel>?>.value(
-      initialData: [],
+      initialData: const [],
       value: BrewdatabaseService(brew: '').menuStream,
       catchError: (_, __) {
         return null;
       },
       child: StreamProvider<BrewModel?>.value(
         initialData: null,
+        catchError: (_, __) {
+          return null;
+        },
         value: DatabaseService(uid: user.uid).brewStreamByUid,
         child: Scaffold(
           backgroundColor: coffeeColor,
