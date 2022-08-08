@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import logo from "../logo.svg";
-import bsIcon from "../assets/bootstrap.png";
 class Item extends Component {
   state = {
     react: {
@@ -8,7 +7,8 @@ class Item extends Component {
       url: "https://reactjs.org/",
     },
     bootstrap: {
-      image: bsIcon,
+      image:
+        "https://getbootstrap.com/docs/5.2/assets/brand/bootstrap-logo-shadow.png",
       url: "https://getbootstrap.com/",
     },
   };
@@ -18,6 +18,7 @@ class Item extends Component {
   render() {
     const current =
       this.props.items === "React" ? this.state.react : this.state.bootstrap;
+    const imageResize = this.props.items === "React" ? "" : "mt-1 mb-2 mx-4";
     return (
       <React.Fragment>
         <a
@@ -31,11 +32,13 @@ class Item extends Component {
             className="container bg-white rounded shadow m-2"
           >
             <div className="pt-2  justify-content-center">
-              <img
-                className="rounded img-fluid mx-auto d-block"
-                src={current.image}
-                alt="icon"
-              />
+              <div className={imageResize}>
+                <img
+                  className="rounded img-fluid mx-auto d-block"
+                  src={current.image}
+                  alt="icon"
+                />
+              </div>
             </div>
             <div className="h3 text-center text-black my-auto">
               {this.props.items}
