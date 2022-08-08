@@ -1,38 +1,47 @@
 import React, { Component } from "react";
-import image from "../assets/menu/A/A.jpg";
+import logo from "../logo.svg";
+import bsIcon from "../assets/bootstrap.png";
 class Item extends Component {
-  state = {};
+  state = {
+    react: {
+      image: logo,
+      url: "https://reactjs.org/",
+    },
+    bootstrap: {
+      image: bsIcon,
+      url: "https://getbootstrap.com/",
+    },
+  };
+  style = {
+    height: 234,
+  };
   render() {
+    const current =
+      this.props.items === "React" ? this.state.react : this.state.bootstrap;
     return (
       <React.Fragment>
-        <div className="container">
-          <div className="row justify-content-around">
-            <div className="col-3">
-              <div className="container bg-white rounded shadow m-2">
-                <div className="pt-2 pb-5 justify-content-center">
-                  <img className="rounded mx-auto d-block" src={image} alt="" />
-                </div>
-                <div className="lead justify-content-center">Ramen</div>
-              </div>
+        <a
+          href={current.url}
+          target="_blank"
+          rel="noreferrer"
+          className="text-decoration-none"
+        >
+          <div
+            style={this.style}
+            className="container bg-white rounded shadow m-2"
+          >
+            <div className="pt-2  justify-content-center">
+              <img
+                className="rounded img-fluid mx-auto d-block"
+                src={current.image}
+                alt="icon"
+              />
             </div>
-            <div className="col-3">
-              <div className="container bg-white rounded shadow m-2">
-                <div className="p-2 pb-5 justify-content-center">
-                  <img className="rounded mx-auto d-block" src={image} alt="" />
-                </div>
-                <div className="lead justify-content-center">Ramen</div>
-              </div>
-            </div>
-            <div className="col-3">
-              <div className="container bg-white rounded shadow m-2">
-                <div className="p-2 pb-5 justify-content-center">
-                  <img className="rounded mx-auto d-block" src={image} alt="" />
-                </div>
-                <div className="lead justify-content-center">Ramen</div>
-              </div>
+            <div className="h3 text-center text-black my-auto">
+              {this.props.items}
             </div>
           </div>
-        </div>
+        </a>
       </React.Fragment>
     );
   }

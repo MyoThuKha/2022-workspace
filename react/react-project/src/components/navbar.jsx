@@ -3,21 +3,25 @@ import image from "../assets/main_image.jpg";
 class NavBar extends Component {
   state = {};
   style = {
-    height: "800px",
+    height: "900px",
     backgroundImage: `url(${image})`,
-    backgroundSize: "100% 800px",
+    backgroundSize: "100% 900px",
   };
   render() {
     return (
       <React.Fragment>
         <div style={this.style} className="">
-          <nav className="navbar navbar-light bg-light">
+          <nav className="navbar sticky-top navbar-light bg-light">
             <div className="container-fluid">
               <a className="navbar-brand" href=".">
-                <div className="lead">Home Page</div>
+                <div className="h4">Home Page</div>
               </a>
             </div>
           </nav>
+
+          <div className="display-3 text-white fw-bold text-center mt-5">
+            Under Development
+          </div>
         </div>
       </React.Fragment>
     );
