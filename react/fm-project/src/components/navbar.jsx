@@ -3,7 +3,7 @@ import React from "react";
 const NavBar = () => {
   return (
     <React.Fragment>
-      <nav className="navbar navbar-expand-md navbar-dark bg-black border-bottom p-3">
+      <nav className="navbar sticky-top navbar-expand-md navbar-dark bg-black border-bottom p-3">
         <div className="container-xxl justify-content-end">
           {/* <a href="." className="navbar-brand ">
             <span className="text-white ">Home</span>

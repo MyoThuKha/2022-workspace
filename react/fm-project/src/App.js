@@ -6,7 +6,7 @@ import About from "./components/about";
 function App() {
   return (
     <React.Fragment>
-      <div style={{ height: "1000px" }} className="bg-black">
+      <div style={{ height: "1000px" }} className="bg-black" id="home">
         <NavBar />
         <About />
       </div>
