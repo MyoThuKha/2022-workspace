@@ -34,10 +34,11 @@ const NavBar = () => {
                 About
               </a>
               <a
-                href="https://github.com/MyoThuKha"
+                // href="https://github.com/MyoThuKha"
+                href="#projects"
                 className="nav-link text-white"
-                target="_blank"
-                rel="noreferrer"
+                // target="_blank"
+                // rel="noreferrer"
               >
                 Projects
               </a>

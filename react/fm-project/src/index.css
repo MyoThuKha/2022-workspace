@@ -11,3 +11,22 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+/* .dynamicText span {
+  position: relative;
+}
+.dynamicText span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  border-left: 2px solid white;
+  animation: typing 3s steps(25) 25;
+}
+@keyframes typing {
+  100% {
+    left: 100%;
+  }
+} */

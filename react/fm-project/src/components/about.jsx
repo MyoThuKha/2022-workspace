@@ -5,10 +5,13 @@ const About = () => {
     <React.Fragment>
       <div className="container-fluid" id="about">
         <div
-          style={{ paddingTop: 140, marginBottom: 20 }}
+          style={{
+            paddingTop: 140,
+            marginBottom: 20,
+          }}
           className="display-2 text-white"
         >
-          <span className="d-block d-md-inline">Hello, </span>
+          <span className="d-block d-md-inline ">Hello, </span>
           <span>I am Myo Thu Kha.</span>
         </div>
         <div className="lead text-white">
