@@ -7,7 +7,11 @@ import Projects from "./components/project";
 function App() {
   return (
     <React.Fragment>
-      <div style={{ height: "1000px" }} className="bg-black" id="home">
+      <div
+        // style={{ height: "1000px" }}
+        className="bg-black"
+        id="home"
+      >
         <NavBar />
         <div className="container-fluid align-items-between">
           <About />
