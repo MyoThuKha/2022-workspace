@@ -3,7 +3,7 @@ import React from "react";
 const About = () => {
   return (
     <React.Fragment>
-      <div className="container-fluid" id="about">
+      <div style={{ height: "100vh" }} className="container-fluid" id="about">
         <div
           style={{
             paddingTop: 140,
