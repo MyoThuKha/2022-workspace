@@ -7,7 +7,7 @@ function App() {
   return (
     <React.Fragment>
       <NavBar></NavBar>
-      <main>
+      <main className="m-5">
         <Home></Home>
       </main>
     </React.Fragment>
