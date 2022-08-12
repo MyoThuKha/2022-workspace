@@ -4,19 +4,14 @@ const Projects = () => {
   return (
     <React.Fragment>
       <div
-        style={{ height: "100vh" }}
-        className="container-fluid"
         id="projects"
-      >
-        <div
-          style={
-            {
-              // padingTop: 140,
-              // marginBottom: 20,
-            }
-          }
-          className="text-white h3"
-        >
+        style={{
+          padingTop: 240,
+          // marginBottom: 20,
+        }}
+      ></div>
+      <div style={{ height: "100vh" }} className="container-fluid">
+        <div className="text-white h3">
           {template(
             "https://github.com/MyoThuKha/Simple-Note-App",
             "Simple Note App",
