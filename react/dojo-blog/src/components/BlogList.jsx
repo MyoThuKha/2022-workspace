@@ -1,16 +1,24 @@
 import React from "react";
 
-const BlogList = ({ blogs, title }) => {
+const BlogList = ({ blogs, title, handleDelete }) => {
   return (
-    <React.Fragment>
+    <div className="m-4">
       <div className="h2">{title}</div>
       {blogs.map((blog) => (
-        <div key={blog.id} className="blogList">
-          <div className="h1">{blog.title}</div>
-          <div className="lead">{blog.content}</div>
+        <div key={blog.id}>
+          <div className="text-danger h3">{blog.title}</div>
+          <div>{blog.content}</div>
+          <button
+            onClick={() => {
+              handleDelete(blog.id);
+            }}
+            className="btn btn-danger mt-2 mb-4"
+          >
+            Delete
+          </button>
         </div>
       ))}
-    </React.Fragment>
+    </div>
   );
 };
 

@@ -34,8 +34,10 @@ const Home = () => {
     newName("Aye Aye");
     newAge(23);
   };
-  const updateBlog = () => {
-    setBlogs("Aye Aye");
+
+  const handleDelete = (id) => {
+    const newBlogs = blogs.filter((blog) => blog.id !== id);
+    setBlogs(newBlogs);
   };
 
   return (
@@ -44,10 +46,19 @@ const Home = () => {
       <button onClick={updateVar} className="btn btn-primary">
         Click me
       </button>
-      <div className="lead">
+      <div>
         {name} is {age} years old.
       </div>
-      <BlogList blogs={blogs} title="Home"></BlogList>
+      <BlogList
+        blogs={blogs}
+        title="Home"
+        handleDelete={handleDelete}
+      ></BlogList>
+      <BlogList
+        blogs={blogs.filter((blog) => blog.author === "mario")}
+        title="Mario"
+        handleDelete={handleDelete}
+      ></BlogList>
     </React.Fragment>
   );
 };
