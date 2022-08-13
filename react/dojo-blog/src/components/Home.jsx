@@ -2,6 +2,7 @@
 import { useState } from "react";
 import React from "react";
 import BlogList from "./BlogList";
+import { useEffect } from "react";
 
 const Home = () => {
   //destructuring
@@ -34,6 +35,11 @@ const Home = () => {
     newName("Aye Aye");
     newAge(23);
   };
+
+  useEffect(() => {
+    //dont change state here, will run infinite loop
+    console.log("useEffect ran");
+  });
 
   const handleDelete = (id) => {
     const newBlogs = blogs.filter((blog) => blog.id !== id);
