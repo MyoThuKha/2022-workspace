@@ -39,7 +39,8 @@ const Home = () => {
   useEffect(() => {
     //dont change state here, will run infinite loop
     console.log("useEffect ran");
-  });
+    console.log(name);
+  }, [name]);
 
   const handleDelete = (id) => {
     const newBlogs = blogs.filter((blog) => blog.id !== id);
