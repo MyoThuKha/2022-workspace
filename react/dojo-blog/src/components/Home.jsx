@@ -13,14 +13,16 @@ const Home = () => {
 
   useEffect(() => {
     //dont change state here, will run infinite loop
-    fetch("http://localhost:8000/blogs")
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        setBlogs(data);
-        setPending(false);
-      });
+    setTimeout(() => {
+      fetch("http://localhost:8000/blogs")
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          setBlogs(data);
+          setPending(false);
+        });
+    }, 1000);
   }, []);
 
   //update
