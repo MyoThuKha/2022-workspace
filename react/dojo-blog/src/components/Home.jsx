@@ -8,8 +8,20 @@ const Home = () => {
   //destructuring
   const [name, newName] = useState("Mg Mg");
   const [age, newAge] = useState(18);
-
   const [blogs, setBlogs] = useState(null);
+  const [pending, setPending] = useState(true);
+
+  useEffect(() => {
+    //dont change state here, will run infinite loop
+    fetch("http://localhost:8000/blogs")
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setBlogs(data);
+        setPending(false);
+      });
+  }, []);
 
   //update
   const updateVar = () => {
@@ -17,20 +29,10 @@ const Home = () => {
     newAge(23);
   };
 
-  useEffect(() => {
-    //dont change state here, will run infinite loop
-    console.log("useEffect ran");
-    fetch("http://localhost:8000/blogs")
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => setBlogs(data));
-  }, []);
-
-  const handleDelete = (id) => {
-    const newBlogs = blogs.filter((blog) => blog.id !== id);
-    setBlogs(newBlogs);
-  };
+  // const handleDelete = (id) => {
+  //   const newBlogs = blogs.filter((blog) => blog.id !== id);
+  //   setBlogs(newBlogs);
+  // };
 
   return (
     <React.Fragment>
@@ -41,13 +43,9 @@ const Home = () => {
       <div>
         {name} is {age} years old.
       </div>
-      {blogs && (
-        <BlogList
-          blogs={blogs}
-          title="Home"
-          handleDelete={handleDelete}
-        ></BlogList>
-      )}
+      {pending && <div>Loading... </div>}
+
+      {blogs && <BlogList blogs={blogs} title="Home"></BlogList>}
     </React.Fragment>
   );
 };
