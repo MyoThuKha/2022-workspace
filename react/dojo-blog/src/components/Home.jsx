@@ -9,26 +9,7 @@ const Home = () => {
   const [name, newName] = useState("Mg Mg");
   const [age, newAge] = useState(18);
 
-  const [blogs, setBlogs] = useState([
-    {
-      title: "My new website",
-      content: "Lorem ipsum ...",
-      author: "mario",
-      id: 1,
-    },
-    {
-      title: "Welcome party",
-      content: "Lorem ipsum ...",
-      author: "princess peach",
-      id: 2,
-    },
-    {
-      title: "Web dev tools",
-      content: "Web dev tools are awesome",
-      author: "mario",
-      id: 3,
-    },
-  ]);
+  const [blogs, setBlogs] = useState(null);
 
   //update
   const updateVar = () => {
@@ -39,8 +20,12 @@ const Home = () => {
   useEffect(() => {
     //dont change state here, will run infinite loop
     console.log("useEffect ran");
-    console.log(name);
-  }, [name]);
+    fetch("http://localhost:8000/blogs")
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => setBlogs(data));
+  }, []);
 
   const handleDelete = (id) => {
     const newBlogs = blogs.filter((blog) => blog.id !== id);
@@ -56,16 +41,13 @@ const Home = () => {
       <div>
         {name} is {age} years old.
       </div>
-      <BlogList
-        blogs={blogs}
-        title="Home"
-        handleDelete={handleDelete}
-      ></BlogList>
-      <BlogList
-        blogs={blogs.filter((blog) => blog.author === "mario")}
-        title="Mario"
-        handleDelete={handleDelete}
-      ></BlogList>
+      {blogs && (
+        <BlogList
+          blogs={blogs}
+          title="Home"
+          handleDelete={handleDelete}
+        ></BlogList>
+      )}
     </React.Fragment>
   );
 };
