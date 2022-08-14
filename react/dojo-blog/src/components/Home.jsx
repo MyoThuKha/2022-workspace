@@ -10,19 +10,25 @@ const Home = () => {
   const [age, newAge] = useState(18);
   const [blogs, setBlogs] = useState(null);
   const [pending, setPending] = useState(true);
+  const [errText, setErrText] = useState(null);
 
   useEffect(() => {
     //dont change state here, will run infinite loop
-    setTimeout(() => {
-      fetch("http://localhost:8000/blogs")
-        .then((res) => {
-          return res.json();
-        })
-        .then((data) => {
-          setBlogs(data);
-          setPending(false);
-        });
-    }, 1000);
+    fetch("http://localhost:8000/blogs")
+      .then((res) => {
+        //if data not exist
+        if (res.status !== 200) {
+          throw Error("wrong fetch");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        setBlogs(data);
+        setPending(false);
+      })
+      .catch((err) => {
+        setErrText(err.message);
+      });
   }, []);
 
   //update
@@ -45,6 +51,7 @@ const Home = () => {
       <div>
         {name} is {age} years old.
       </div>
+      {errText && <div>{errText}</div>}
       {pending && <div>Loading... </div>}
 
       {blogs && <BlogList blogs={blogs} title="Home"></BlogList>}
