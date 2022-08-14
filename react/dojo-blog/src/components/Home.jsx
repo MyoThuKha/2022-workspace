@@ -2,35 +2,17 @@
 import { useState } from "react";
 import React from "react";
 import BlogList from "./BlogList";
-import { useEffect } from "react";
+import useFetch from "../custom_hooks/useFetch";
 
 const Home = () => {
   //destructuring
   const [name, newName] = useState("Mg Mg");
   const [age, newAge] = useState(18);
-  const [blogs, setBlogs] = useState(null);
-  const [pending, setPending] = useState(true);
-  const [errText, setErrText] = useState(null);
-
-  useEffect(() => {
-    //dont change state here, will run infinite loop
-    fetch("http://localhost:8000/blogs")
-      .then((res) => {
-        //if data not exist
-        if (res.status !== 200) {
-          throw Error("wrong fetch");
-        }
-        return res.json();
-      })
-      .then((data) => {
-        setBlogs(data);
-        setPending(false);
-      })
-      .catch((err) => {
-        setErrText(err.message);
-      });
-  }, []);
-
+  const {
+    data: blogs,
+    pending,
+    errText,
+  } = useFetch("http://localhost:8000/blogs");
   //update
   const updateVar = () => {
     newName("Aye Aye");
