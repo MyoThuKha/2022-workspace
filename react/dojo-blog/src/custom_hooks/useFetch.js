@@ -20,6 +20,7 @@ const useFetch = (url) => {
       })
       .catch((err) => {
         setErrText(err.message);
+        setPending(false);
       });
     //run only when url change
   }, [url]);
