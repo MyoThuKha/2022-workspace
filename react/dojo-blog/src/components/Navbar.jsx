@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   return (
@@ -9,12 +10,18 @@ const NavBar = () => {
             The Dojo Blog
           </span>
           <div className="justify-content-end">
-            <a href="#home" className="d-inline-block nav-link me-5">
+            <Link
+              to="/"
+              className="d-inline-block text-secondary nav-link me-5"
+            >
               Home
-            </a>
-            <a href="#home" className="d-inline-block nav-link">
+            </Link>
+            <Link
+              to="/create"
+              className="d-inline-block text-secondary nav-link"
+            >
               New Blog
-            </a>
+            </Link>
           </div>
         </div>
       </nav>
