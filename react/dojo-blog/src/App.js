@@ -2,20 +2,24 @@ import "./App.css";
 import React from "react";
 import NavBar from "./components/Navbar";
 import Home from "./components/Home";
-import { BrowseRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Create from "./components/Create";
 function App() {
   return (
     <React.Fragment>
-      <NavBar></NavBar>
-      <main className="m-5">
-        <Router>
+      <Router>
+        <NavBar></NavBar>
+        <main className="m-5">
           <Switch>
             <Route path="/">
               <Home />
             </Route>
+            <Route path="/create">
+              <Create />
+            </Route>
           </Switch>
-        </Router>
-      </main>
+        </main>
+      </Router>
     </React.Fragment>
   );
 }
