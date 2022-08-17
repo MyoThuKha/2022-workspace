@@ -8,11 +8,23 @@ const Create = () => {
   const [body, setBody] = useState("");
   const [author, setAuthor] = useState("yoshi");
 
+  const reset = () => {
+    setTitle("");
+    setBody("");
+    setAuthor("yoshi");
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const result = { title, body, author };
+    console.log(result);
+  };
+
   return (
     <React.Fragment>
       <div style={style} className="mx-5 text-center mx-auto ">
         <div className="h3 text-danger mb-5">Create new Blog</div>
-        <form className="">
+        <form onSubmit={handleSubmit} className="">
           <label className="d-block mb-2 text-start text-secondary">
             Blog title:{" "}
           </label>
@@ -43,8 +55,10 @@ const Create = () => {
             <option value="mario">Mario</option>
             <option value="yoshi">Yoshi</option>
           </select>
-          <button className="btn btn-success mx-2">Submit</button>
-          <button className="btn btn-outline-secondary mx-2">Cancel</button>
+          <button className="btn btn-success mx-2">Add Blog</button>
+          <button onClick={reset} className="btn btn-outline-secondary mx-2">
+            Cancel
+          </button>
         </form>
       </div>
       <h2 className="my-5 text-info">Preview</h2>
