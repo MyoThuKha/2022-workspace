@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 const Create = () => {
   const style = {
@@ -8,6 +9,7 @@ const Create = () => {
   const [body, setBody] = useState("");
   const [author, setAuthor] = useState("yoshi");
   const [isPending, setPending] = useState(false);
+  const history = useHistory();
 
   const reset = () => {
     setTitle("");
@@ -28,6 +30,10 @@ const Create = () => {
     }).then(() => {
       console.log("updated json data");
       setPending(false);
+
+      //go back one time
+      // history.go(-1);
+      history.push("/");
     });
   };
 
