@@ -5,6 +5,7 @@ import Home from "./components/Home";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Create from "./components/Create";
 import BlogDetails from "./components/BlogDetail";
+import NotFound from "./components/notFound";
 function App() {
   return (
     <React.Fragment>
@@ -20,6 +21,9 @@ function App() {
             </Route>
             <Route path="/details/:id">
               <BlogDetails />
+            </Route>
+            <Route path="*">
+              <NotFound />
             </Route>
           </Switch>
         </main>
