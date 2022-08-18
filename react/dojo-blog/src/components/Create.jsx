@@ -7,6 +7,7 @@ const Create = () => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [author, setAuthor] = useState("yoshi");
+  const [isPending, setPending] = useState(false);
 
   const reset = () => {
     setTitle("");
@@ -18,6 +19,16 @@ const Create = () => {
     e.preventDefault();
     const result = { title, body, author };
     console.log(result);
+    setPending(true);
+
+    fetch("http://localhost:8000/blogs/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(result),
+    }).then(() => {
+      console.log("updated json data");
+      setPending(false);
+    });
   };
 
   return (
@@ -55,10 +66,22 @@ const Create = () => {
             <option value="mario">Mario</option>
             <option value="yoshi">Yoshi</option>
           </select>
-          <button className="btn btn-success mx-2">Add Blog</button>
-          <button onClick={reset} className="btn btn-outline-secondary mx-2">
-            Cancel
-          </button>
+          {!isPending && (
+            <React.Fragment>
+              <button className="btn btn-success mx-2">Add Blog</button>
+              <button
+                onClick={reset}
+                className="btn btn-outline-secondary mx-2"
+              >
+                Cancel
+              </button>
+            </React.Fragment>
+          )}
+          {isPending && (
+            <button disabled className="btn btn-success mx-2">
+              Adding...
+            </button>
+          )}
         </form>
       </div>
       <h2 className="my-5 text-info">Preview</h2>
