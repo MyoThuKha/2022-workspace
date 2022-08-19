@@ -16,7 +16,12 @@ const Header = () => {
           <path fill="none" d="M50 30 L50 -10 C50 -10 90 -10 90 30 Z" />
         </svg>
       </div>
-      <motion.div initial={{ y: -300 }} animate={{ y: -30 }} className="title">
+      <motion.div
+        initial={{ y: -300 }}
+        animate={{ y: -30 }}
+        transition={{ delay: 1.2, type: "spring", stiffness: 180 }}
+        className="title"
+      >
         <h1>Pizza Joint</h1>
       </motion.div>
     </header>
