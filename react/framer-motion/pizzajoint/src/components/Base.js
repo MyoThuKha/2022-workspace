@@ -2,18 +2,45 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
+const containerVarients = {
+  before: {
+    opacity: 0,
+    x: "100vw",
+  },
+  after: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      delay: 2,
+      type: "spring",
+      stiffness: 100,
+    },
+  },
+};
+
+const buttonVarients = {
+  before: {
+    opacity: 0,
+    x: "-100vw",
+  },
+  after: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      type: "spring",
+      stiffness: 80,
+    },
+  },
+};
+
 const Base = ({ addBase, pizza }) => {
   const bases = ["Classic", "Thin & Crispy", "Thick Crust"];
 
   return (
     <motion.div
-      initial={{ x: "100vw" }}
-      animate={{ x: 0 }}
-      transition={{
-        delay: 2,
-        type: "spring",
-        stiffness: 100,
-      }}
+      variants={containerVarients}
+      initial="before"
+      animate="after"
       className="base container"
     >
       <h3>Step 1: Choose Your Base</h3>
@@ -41,12 +68,9 @@ const Base = ({ addBase, pizza }) => {
       </ul>
 
       {pizza.base && (
-        <div className="next">
+        <motion.div className="next" variants={buttonVarients}>
           <Link to="/toppings">
             <motion.button
-              initial={{ x: "-100vw" }}
-              animate={{ x: 0 }}
-              transition={{ type: "spring", stiffness: 80 }}
               whileHover={{
                 textShadow: "0px 0px 8px #ffffff",
                 boxShadow: "0px 0px 8px #ffffff",
@@ -55,7 +79,7 @@ const Base = ({ addBase, pizza }) => {
               Next
             </motion.button>
           </Link>
-        </div>
+        </motion.div>
       )}
     </motion.div>
   );
