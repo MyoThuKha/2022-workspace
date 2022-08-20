@@ -5,9 +5,12 @@ import { motion } from "framer-motion";
 const buttonVarients = {
   hover: {
     // keyframes is not in transition
-    scale: [1, 1.1, 1, 1.1, 1, 1.1, 1],
+    scale: 1.1,
     textShadow: "0px 0px 8px #ffffff",
     boxShadow: "0px 0px 8px #ffffff",
+    transition: {
+      yoyo: Infinity,
+    },
   },
 };
 const Home = () => {
