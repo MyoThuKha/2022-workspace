@@ -18,7 +18,7 @@ const containerVarients = {
   },
 };
 
-const buttonVarients = {
+const orderVarients = {
   before: {
     opacity: 0,
     x: "-100vw",
@@ -29,6 +29,18 @@ const buttonVarients = {
     transition: {
       type: "spring",
       stiffness: 80,
+    },
+  },
+};
+
+const buttonVarients = {
+  hover: {
+    // keyframes is not in transition
+    scale: 1.1,
+    textShadow: "0px 0px 8px #ffffff",
+    boxShadow: "0px 0px 8px #ffffff",
+    transition: {
+      yoyo: Infinity,
     },
   },
 };
@@ -74,14 +86,9 @@ const Toppings = ({ addTopping, pizza }) => {
         })}
       </ul>
 
-      <motion.div variants={buttonVarients}>
+      <motion.div variants={orderVarients}>
         <Link to="/order">
-          <motion.button
-            whileHover={{
-              textShadow: "0px 0px 8px #ffffff",
-              boxShadow: "0px 0px 8px #ffffff",
-            }}
-          >
+          <motion.button variants={buttonVarients} whileHover="hover">
             Order
           </motion.button>
         </Link>
