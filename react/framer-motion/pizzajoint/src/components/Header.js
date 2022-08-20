@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 const Header = () => {
   return (
@@ -22,7 +23,9 @@ const Header = () => {
         transition={{ delay: 1.2, type: "spring", stiffness: 180 }}
         className="title"
       >
-        <h1>Pizza Joint</h1>
+        <Link to="/">
+          <h1>Pizza Joint</h1>
+        </Link>
       </motion.div>
     </header>
   );

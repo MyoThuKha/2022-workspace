@@ -11,9 +11,15 @@ const containerVarients = {
     opacity: 1,
     x: 0,
     transition: {
-      delay: 1.4,
+      // delay: 1.4,
       type: "spring",
       stiffness: 100,
+    },
+  },
+  exit: {
+    x: "-100vw",
+    transition: {
+      ease: "easeInOut",
     },
   },
 };
@@ -61,6 +67,7 @@ const Toppings = ({ addTopping, pizza }) => {
       variants={containerVarients}
       initial="before"
       animate="after"
+      exit="exit"
     >
       <h3>Step 2: Choose Toppings</h3>
       <ul>
