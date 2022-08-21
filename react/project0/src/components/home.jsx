@@ -15,9 +15,23 @@ const textVariants = {
   },
 };
 
+const buttonMoveVariant = {
+  before: {
+    opacity: 0,
+  },
+  after: {
+    opacity: 1,
+    transition: {
+      duration: 1.2,
+    },
+  },
+};
+
 const buttonVariants = {
   hover: {
     scale: 1.1,
+    // textShadow: "0px 0px 5px white",
+    // boxShadow: "0px 0px 5px white",
   },
 };
 const Home = () => {
@@ -32,15 +46,17 @@ const Home = () => {
         <div className="d-block display-3 text-center text-white mb-5">
           Welcome to CAMPER CAFE.
         </div>
-        <Link to="/coffee">
-          <motion.button
-            variants={buttonVariants}
-            whileHover="hover"
-            className="text-white"
-          >
-            Order
-          </motion.button>
-        </Link>
+        <motion.div variants={buttonMoveVariant}>
+          <Link to="/coffee">
+            <motion.button
+              variants={buttonVariants}
+              whileHover="hover"
+              className="text-white"
+            >
+              Order
+            </motion.button>
+          </Link>
+        </motion.div>
       </motion.div>
     </div>
   );
