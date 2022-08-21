@@ -1,22 +1,45 @@
 import React from "react";
+import { motion } from "framer-motion";
 
+const textVariants = {
+  before: {
+    opacity: 0,
+  },
+  after: {
+    opacity: 1,
+    transition: {
+      duration: 1.5,
+      when: "beforeChildren",
+    },
+  },
+};
+
+const buttonVariants = {
+  hover: {
+    scale: 1.1,
+  },
+};
 const Home = () => {
   return (
-    <React.Fragment>
-      <div className="home">
-        <div className="hello text-center">
-          <div className="d-block display-3 text-center text-white mb-5">
-            Welcome to Coffee Site.
-          </div>
-          <button className="btn rounded-pill btn-outline-light">
-            Order Coffee
-          </button>
-          {/* <button className="btn btn-outline-dark rounded-pill">
-            Look Around
-          </button> */}
+    <div className="home">
+      <motion.div
+        variants={textVariants}
+        initial="before"
+        animate="after"
+        className="hello text-center"
+      >
+        <div className="d-block display-3 text-center text-white mb-5">
+          Welcome to Coffee Site.
         </div>
-      </div>
-    </React.Fragment>
+        <motion.button
+          variants={buttonVariants}
+          whileHover="hover"
+          className="text-white"
+        >
+          Order
+        </motion.button>
+      </motion.div>
+    </div>
   );
 };
 
