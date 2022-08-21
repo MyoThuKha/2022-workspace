@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 const Dessert = () => {
   const dessertList = [
     { name: "Donut", id: 1 },
@@ -29,13 +30,18 @@ const Dessert = () => {
               key={each.id}
             >
               {current === each.name ? (
-                <div className="fs-3">{each.name}</div>
+                <div className="activeItem">
+                  <div className="bulletIcon "></div>
+                  <div className="ms-2 d-inline-block fs-3">{each.name}</div>
+                </div>
               ) : (
                 <div>{each.name}</div>
               )}
             </div>
           ))}
-          <motion.button className="mt-3 text-white">Next</motion.button>
+          <Link to="/orders">
+            <motion.button className="mt-3 text-white">Next</motion.button>
+          </Link>
         </div>
       </motion.div>
     </div>

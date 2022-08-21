@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const textVariants = {
   before: {
@@ -31,13 +32,15 @@ const Home = () => {
         <div className="d-block display-3 text-center text-white mb-5">
           Welcome to CAMPER CAFE.
         </div>
-        <motion.button
-          variants={buttonVariants}
-          whileHover="hover"
-          className="text-white"
-        >
-          Order
-        </motion.button>
+        <Link to="/coffee">
+          <motion.button
+            variants={buttonVariants}
+            whileHover="hover"
+            className="text-white"
+          >
+            Order
+          </motion.button>
+        </Link>
       </motion.div>
     </div>
   );
