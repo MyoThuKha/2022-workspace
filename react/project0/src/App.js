@@ -2,6 +2,7 @@ import Header from "./components/header";
 import { Switch, Route } from "react-router-dom";
 import Home from "./components/home";
 import Coffee from "./components/coffee";
+import Dessert from "./components/dessert";
 
 function App() {
   return (
@@ -14,6 +15,9 @@ function App() {
           </Route>
           <Route path="/coffee">
             <Coffee></Coffee>
+          </Route>
+          <Route path="/dessert">
+            <Dessert></Dessert>
           </Route>
         </Switch>
       </main>

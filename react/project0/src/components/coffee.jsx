@@ -18,7 +18,7 @@ const Coffee = () => {
         <div className="d-block h2 text-center text-white my-5">
           Choose your Coffee
         </div>
-        <div>
+        <div className="text-start">
           {coffeeList.map((each) => (
             <div
               onClick={() => {
@@ -30,7 +30,7 @@ const Coffee = () => {
               {each.name}
             </div>
           ))}
-          <motion.button className="text-white text-start">Next</motion.button>
+          <motion.button className="mt-3 text-white">Next</motion.button>
         </div>
       </motion.div>
     </div>
