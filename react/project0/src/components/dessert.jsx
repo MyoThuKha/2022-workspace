@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useState } from "react";
 const Dessert = () => {
   const dessertList = [
     { name: "Donut", id: 1 },
@@ -6,11 +7,14 @@ const Dessert = () => {
     { name: "Cheesecake", id: 3 },
     { name: "Cinnamon Roll", id: 4 },
   ];
-  const setCoffee = (coffee) => {
-    console.log(coffee);
+  const [current, setCurrent] = useState("");
+
+  const handleClick = (coffee) => {
+    setCurrent(coffee);
   };
+
   return (
-    <div className="home">
+    <div className="centerDiv">
       <motion.div className="hello text-center">
         <div className="d-block h2 text-center text-white my-5">
           Choose your Desserts
@@ -19,12 +23,16 @@ const Dessert = () => {
           {dessertList.map((each) => (
             <div
               onClick={() => {
-                setCoffee(each.name);
+                handleClick(each.name);
               }}
               className="text-white fs-5 text-start mb-3"
               key={each.id}
             >
-              {each.name}
+              {current === each.name ? (
+                <div className="fs-3">{each.name}</div>
+              ) : (
+                <div>{each.name}</div>
+              )}
             </div>
           ))}
           <motion.button className="mt-3 text-white">Next</motion.button>

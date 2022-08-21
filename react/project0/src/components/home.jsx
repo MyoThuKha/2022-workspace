@@ -21,7 +21,7 @@ const buttonVariants = {
 };
 const Home = () => {
   return (
-    <div className="home">
+    <div className="centerDiv">
       <motion.div
         variants={textVariants}
         initial="before"
@@ -29,7 +29,7 @@ const Home = () => {
         className="hello text-center"
       >
         <div className="d-block display-3 text-center text-white mb-5">
-          Welcome to Coffee Site.
+          Welcome to CAMPER CAFE.
         </div>
         <motion.button
           variants={buttonVariants}

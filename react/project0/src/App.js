@@ -3,6 +3,8 @@ import { Switch, Route } from "react-router-dom";
 import Home from "./components/home";
 import Coffee from "./components/coffee";
 import Dessert from "./components/dessert";
+import Orders from "./components/orders";
+import NotFound from "./components/not_found";
 
 function App() {
   return (
@@ -18,6 +20,12 @@ function App() {
           </Route>
           <Route path="/dessert">
             <Dessert></Dessert>
+          </Route>
+          <Route path="/orders">
+            <Orders></Orders>
+          </Route>
+          <Route path="*">
+            <NotFound></NotFound>
           </Route>
         </Switch>
       </main>
