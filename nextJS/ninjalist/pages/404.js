@@ -1,6 +1,8 @@
 import Link from "next/link";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import React from "react";
 
 const NotFound = () => {
   const route = useRouter();
@@ -10,15 +12,20 @@ const NotFound = () => {
     }, 4000);
   }, [route]);
   return (
-    <div className="notFound">
-      <h1>Page not Found</h1>
-      <p>
-        Go back to{" "}
-        <Link href="/">
-          <a>Home</a>
-        </Link>
-      </p>
-    </div>
+    <React.Fragment>
+      <Head>
+        <title>Not Found</title>
+      </Head>
+      <div className="notFound">
+        <h1>Page not Found</h1>
+        <p>
+          Go back to{" "}
+          <Link href="/">
+            <a>Home</a>
+          </Link>
+        </p>
+      </div>
+    </React.Fragment>
   );
 };
 

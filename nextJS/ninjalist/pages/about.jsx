@@ -1,8 +1,13 @@
+import Head from "next/head";
 import React from "react";
 
 const About = () => {
   return (
     <React.Fragment>
+      <Head>
+        <title>Ninja Site - About</title>
+        <meta name="keywords" content="about" />
+      </Head>
       <h1>About Page</h1>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo architecto
