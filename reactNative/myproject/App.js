@@ -1,40 +1,34 @@
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
-import { StyleSheet, Text, View, Button, TextInput } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  TextInput,
+  ScrollView,
+} from "react-native";
 
 export default function App() {
-  const [name, setName] = useState("John");
-  const [age, setAge] = useState("18");
-  const clickHandler = () => {
-    setName("My name is Myo Thu Kha.");
-  };
+  const [items, setItems] = useState([
+    { name: "John", key: 1 },
+    { name: "Sam", key: 2 },
+    { name: "Anon", key: 3 },
+    { name: "Olivia", key: 4 },
+    { name: "James", key: 5 },
+    { name: "May", key: 6 },
+  ]);
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>{name}</Text>
-      <View>
-        <TextInput
-          placeholder="Name"
-          onChangeText={(val) => setName(val)}
-          style={styles.input}
-        />
-      </View>
-      <View>
-        <Text style={styles.header}>{age}</Text>
-        <View>
-          <TextInput
-            placeholder="Age"
-            keyboardType="email"
-            onChangeText={(val) => setAge(val)}
-            style={styles.input}
-          />
-        </View>
-      </View>
-
-      {/* // */}
-      <View style={styles.button}>
-        <Button title="Change" onPress={clickHandler} />
-      </View>
-      <StatusBar style="auto" />
+      <ScrollView>
+        {items.map((item) => {
+          return (
+            <View key={item.key}>
+              <Text style={styles.item}>{item.name}</Text>
+            </View>
+          );
+        })}
+      </ScrollView>
     </View>
   );
 }
@@ -43,22 +37,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    // alignItems: "center",
+    // justifyContent: "center",
   },
-  header: {
-    fontSize: 30,
-    margin: 30,
-  },
-  button: {
-    marginTop: 10,
-  },
-  input: {
-    borderColor: "grey",
-    borderWidth: 1,
+  item: {
+    color: "white",
+    backgroundColor: "#c68642",
+    height: 100,
     borderRadius: 8,
-    padding: 10,
-    width: 350,
-    height: 50,
+    margin: 30,
+    padding: 30,
   },
 });
