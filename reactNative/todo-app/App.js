@@ -17,10 +17,13 @@ export default function App() {
       return preList.filter((item) => item.key != id);
     });
   };
+  const onSubmitHandler = (text) => {
+    setTodoList([{ text: text, key: Math.random().toString() }, ...todoList]);
+  };
   return (
     <View style={styles.container}>
       <Header />
-      <AddItem />
+      <AddItem onSubmitHandler={onSubmitHandler} />
       <FlatList
         data={todoList}
         renderItem={({ item }) => (
