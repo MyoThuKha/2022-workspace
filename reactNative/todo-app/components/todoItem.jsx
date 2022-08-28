@@ -1,10 +1,12 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
-const TodoItem = ({ text }) => {
+const TodoItem = ({ item, onDeleteHandler }) => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>{text}</Text>
-    </View>
+    <TouchableOpacity onPress={() => onDeleteHandler(item.key)}>
+      <View style={styles.container}>
+        <Text style={styles.text}>{item.text}</Text>
+      </View>
+    </TouchableOpacity>
   );
 };
 

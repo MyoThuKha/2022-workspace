@@ -1,14 +1,21 @@
 import { StatusBar } from "expo-status-bar";
+import { useState } from "react";
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import Header from "./components/header";
 import TodoItem from "./components/todoItem";
 
 export default function App() {
-  const todoList = [
+  const [todoList, setTodoList] = useState([
     { text: "buy milk", key: "1" },
     { text: "do landuary", key: "2" },
     { text: "go to walmart", key: "3" },
-  ];
+  ]);
+
+  const onDeleteHandler = (id) => {
+    setTodoList((preList) => {
+      return preList.filter((item) => item.key != id);
+    });
+  };
   return (
     <View style={styles.container}>
       <Header />
@@ -16,7 +23,7 @@ export default function App() {
         data={todoList}
         renderItem={({ item }) => (
           <View key={item.key}>
-            <TodoItem text={item.text} />
+            <TodoItem item={item} onDeleteHandler={onDeleteHandler} />
           </View>
         )}
       />
