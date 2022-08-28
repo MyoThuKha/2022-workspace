@@ -1,6 +1,13 @@
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import {
+  Alert,
+  FlatList,
+  Keyboard,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  View,
+} from "react-native";
 import AddItem from "./components/addItem";
 import Header from "./components/header";
 import TodoItem from "./components/todoItem";
@@ -18,21 +25,31 @@ export default function App() {
     });
   };
   const onSubmitHandler = (text) => {
-    setTodoList([{ text: text, key: Math.random().toString() }, ...todoList]);
+    if (text.length > 0) {
+      setTodoList([{ text: text, key: Math.random().toString() }, ...todoList]);
+    } else {
+      Alert.alert("Input", "Add Something", [{ text: "Ok" }]);
+    }
   };
   return (
-    <View style={styles.container}>
-      <Header />
-      <AddItem onSubmitHandler={onSubmitHandler} />
-      <FlatList
-        data={todoList}
-        renderItem={({ item }) => (
-          <View key={item.key}>
-            <TodoItem item={item} onDeleteHandler={onDeleteHandler} />
-          </View>
-        )}
-      />
-    </View>
+    <TouchableWithoutFeedback
+      onPress={() => {
+        Keyboard.dismiss();
+      }}
+    >
+      <View style={styles.container}>
+        <Header />
+        <AddItem onSubmitHandler={onSubmitHandler} />
+        <FlatList
+          data={todoList}
+          renderItem={({ item }) => (
+            <View key={item.key}>
+              <TodoItem item={item} onDeleteHandler={onDeleteHandler} />
+            </View>
+          )}
+        />
+      </View>
+    </TouchableWithoutFeedback>
   );
 }
 
