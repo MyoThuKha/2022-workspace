@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 const TodoItem = ({ item, onDeleteHandler }) => {
   return (
     <TouchableOpacity onPress={() => onDeleteHandler(item.key)}>
-      <View style={styles.container}>
+      <View key={item.key} style={styles.container}>
         <Text style={styles.text}>{item.text}</Text>
       </View>
     </TouchableOpacity>

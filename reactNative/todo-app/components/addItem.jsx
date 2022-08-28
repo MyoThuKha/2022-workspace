@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import {
   Button,
   StyleSheet,
@@ -11,7 +11,7 @@ import {
 const AddItem = ({ onSubmitHandler }) => {
   const [text, setText] = useState("");
   return (
-    <View>
+    <React.Fragment>
       <View style={styles.inputBox}>
         <TextInput
           multiline
@@ -21,16 +21,18 @@ const AddItem = ({ onSubmitHandler }) => {
           }}
         />
       </View>
-      <TouchableOpacity
-        onPress={() => {
-          onSubmitHandler(text);
-        }}
-      >
-        <View style={styles.submitButton}>
-          <Text style={styles.buttonText}>Add</Text>
-        </View>
-      </TouchableOpacity>
-    </View>
+      <View style={styles.buttonSection}>
+        <TouchableOpacity
+          onPress={() => {
+            onSubmitHandler(text);
+          }}
+        >
+          <View style={styles.submitButton}>
+            <Text style={styles.buttonText}>Add</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+    </React.Fragment>
   );
 };
 
@@ -44,19 +46,20 @@ const styles = StyleSheet.create({
     marginVertical: 30,
     padding: 20,
   },
+  buttonSection: {
+    flex: 1,
+    alignItems: "center",
+  },
   submitButton: {
-    marginVertical: 40,
-    marginHorizontal: 80,
-    marginLeft: 120,
-    backgroundColor: "grey",
+    backgroundColor: "pink",
     width: 150,
     height: 60,
     borderRadius: 25,
     justifyContent: "center",
+    alignItems: "center",
   },
   buttonText: {
     color: "white",
-    textAlign: "center",
     fontSize: 20,
   },
 });

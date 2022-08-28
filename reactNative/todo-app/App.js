@@ -37,25 +37,36 @@ export default function App() {
         Keyboard.dismiss();
       }}
     >
+      {/* // */}
       <View style={styles.container}>
         <Header />
-        <AddItem onSubmitHandler={onSubmitHandler} />
-        <FlatList
-          data={todoList}
-          renderItem={({ item }) => (
-            <View key={item.key}>
+        <View style={styles.inputSection}>
+          <AddItem onSubmitHandler={onSubmitHandler} />
+        </View>
+        <View style={styles.list}>
+          <FlatList
+            data={todoList}
+            renderItem={({ item }) => (
               <TodoItem item={item} onDeleteHandler={onDeleteHandler} />
-            </View>
-          )}
-        />
+            )}
+          />
+        </View>
       </View>
+
+      {/* // */}
     </TouchableWithoutFeedback>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
+    flex: 1,
     backgroundColor: "#fff",
+  },
+  inputSection: {
+    flex: 1,
+  },
+  list: {
+    flex: 2,
   },
 });
