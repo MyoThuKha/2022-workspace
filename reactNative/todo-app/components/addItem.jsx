@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { Button, StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  Button,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 const AddItem = ({ onSubmitHandler }) => {
   const [text, setText] = useState("");
@@ -14,15 +21,15 @@ const AddItem = ({ onSubmitHandler }) => {
           }}
         />
       </View>
-      <View style={styles.submitButton}>
-        <Button
-          title="Add"
-          color="grey"
-          onPress={() => {
-            onSubmitHandler(text);
-          }}
-        />
-      </View>
+      <TouchableOpacity
+        onPress={() => {
+          onSubmitHandler(text);
+        }}
+      >
+        <View style={styles.submitButton}>
+          <Text style={styles.buttonText}>Add</Text>
+        </View>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -38,9 +45,19 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   submitButton: {
-    marginTop: 20,
-    marginBottom: 60,
+    marginVertical: 40,
     marginHorizontal: 80,
+    marginLeft: 120,
+    backgroundColor: "grey",
+    width: 150,
+    height: 60,
+    borderRadius: 25,
+    justifyContent: "center",
+  },
+  buttonText: {
+    color: "white",
+    textAlign: "center",
+    fontSize: 20,
   },
 });
 
