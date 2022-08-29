@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import AddItem from "./components/addItem";
 import Header from "./components/header";
+import SandBox from "./components/sandbox";
 import TodoItem from "./components/todoItem";
 
 export default function App() {
@@ -38,6 +39,7 @@ export default function App() {
       }}
     >
       {/* // */}
+      {/* <SandBox /> */}
       <View style={styles.container}>
         <Header />
         <View style={styles.inputSection}>
