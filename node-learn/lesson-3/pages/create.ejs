@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head.ejs') %>
+  <body>
+    <%- include('./partials/nav.ejs') %>
+    <h1><%= title %></h1>
+    <form>
+      <label for="topic">Blog Topic</label>
+      <input list="topics" id="topic" />
+      <datalist id="topics">
+        <option value="Sport"></option>
+        <option value="Food"></option>
+        <option value="Education"></option>
+        <option value="Tech"></option>
+      </datalist>
+    </form>
+    <%- include('./partials/footer.ejs') %>
+  </body>
+</html>
