@@ -1,4 +1,5 @@
 const express = require("express");
+const morgan = require("morgan");
 
 const app = express();
 
@@ -7,10 +8,8 @@ app.set("views", "pages");
 
 app.listen(3000);
 
-app.use((req, res, next) => {
-  console.log(req.url);
-  next();
-});
+app.use(morgan("dev"));
+app.use(express.static("public"));
 
 app.get("/", (req, res) => {
   res.render("index", { title: "Home" });
